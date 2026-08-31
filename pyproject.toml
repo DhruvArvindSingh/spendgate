@@ -5,8 +5,12 @@ description = "Deterministic spending authority for AI agents on Razorpay and UP
 requires-python = ">=3.12"
 dependencies = []
 
+# Phase 2 onward. The engine and ledger stay dependency-free; these are only
+# needed for the HTTP boundary, the mock merchant and the rail client.
+
 [project.optional-dependencies]
 dev = ["pytest>=8"]
+http = ["httpx>=0.27", "fastapi>=0.110", "uvicorn>=0.29"]
 
 [build-system]
 requires = ["setuptools>=68"]
@@ -19,3 +23,8 @@ where = ["src"]
 testpaths = ["tests"]
 pythonpath = ["src"]
 addopts = "-q --strict-markers"
+filterwarnings = [
+  # uvicorn 0.42 still imports websockets.legacy; not our code, not our fix.
+  "ignore:websockets.legacy is deprecated:DeprecationWarning",
+  "ignore:websockets.server.WebSocketServerProtocol is deprecated:DeprecationWarning",
+]

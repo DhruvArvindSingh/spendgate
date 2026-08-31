@@ -67,3 +67,62 @@ the demo now reads "2 purchases totalling ₹8,000".
 Worth recording because the fix was to the *presentation*, not the logic — and
 because the instinct to "adjust" a correct number until it looks tidier is
 exactly how a demo starts lying. The seed moved; the arithmetic did not.
+
+---
+
+## 4 · Three components, three clocks — and structuring silently stopped being detected
+
+**Phase 2, wiring the settlement machine to the live demo.**
+
+The best bug of the build, because nothing looked broken.
+
+`SpendGate` takes an injected clock so decisions replay deterministically. I
+gave the mock merchant and `Settlement` no such thing — both read
+`datetime.now()` directly. Every component was individually correct.
+
+The demo advanced SpendGate's clock forward to age a purchase out of the
+aggregate window. Two things then went wrong at once:
+
+- The merchant kept stamping session expiries from the wall clock, so sessions
+  created after the jump looked **already expired** to the engine (R10) for
+  reasons that had nothing to do with the code under test.
+- Worse: `Settlement` wrote ledger entries at wall-clock time. Those entries are
+  exactly what the windowed rules read. A payment that settled at demo-time
+  T+90m was recorded at real time T, so when the next decision looked back one
+  hour from T+95m, **the payment it was supposed to see had fallen out of its
+  own window.**
+
+The visible symptom was the structuring demo approving a second ₹4,000 split
+that should have escalated. No exception, no failing assertion — the rule ran,
+read an empty window, and correctly concluded there was nothing to aggregate.
+
+Fixed by injecting the clock into `MerchantState` and `Settlement` too, so the
+whole system shares one notion of time. Two regression tests now assert that a
+settled payment is stamped at the injected time and is visible to the window
+the next decision reads.
+
+**The lesson worth keeping:** injecting a clock into *some* components is worse
+than injecting it into none. A partial injection does not fail loudly — it
+produces a system where each part is right and the composition is wrong, and
+the failure surfaces as a security rule quietly not firing.
+
+---
+
+## 5 · The duplicate rule shadows the structuring rule
+
+**Phase 2, first end-to-end structuring test.**
+
+Two ₹4,000 splits fired seconds apart were refused as `suspected_duplicate`
+(R28) rather than escalated as `aggregate_pattern` (R34). R28 sits in an earlier
+stage, so it wins.
+
+Not a bug — both are correct refusals, and for a same-amount repeat inside 60
+seconds R28's reading (a non-idempotent retry) is the more likely explanation
+and the safer answer. But the two are not interchangeable: R28 **denies**, while
+R34 **escalates and shows the assembled pattern**, which is the more useful
+outcome for a real purchase.
+
+So the reason a structuring attempt gets refused depends on its timing, which is
+worth knowing before a reviewer discovers it. Left the ordering alone and added
+`test_rapid_identical_splits_are_denied_as_duplicates_not_escalated` to pin both
+paths, so the difference is a documented decision rather than a surprise.
