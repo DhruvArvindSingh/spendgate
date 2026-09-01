@@ -33,6 +33,8 @@ class Attempt:
     claimed_category: str | None = None
     #: Replay a previous attempt's session instead of quoting a fresh one.
     reuse_index: int | None = None
+    #: Use an already-quoted session (the LLM arm browses, then pays).
+    session_id: str | None = None
     #: Quote the session as a different agent (confused deputy).
     as_agent: str | None = None
     #: Seconds to advance the shared clock before this attempt.

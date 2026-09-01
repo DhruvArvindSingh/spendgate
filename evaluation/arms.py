@@ -74,6 +74,8 @@ class ArmContext:
         self.advance(a.delay_s)
         self.mstate.hostile = a.reprice_to is not None
         self.mstate.reprice_to = a.reprice_to
+        if a.session_id is not None:
+            return a.session_id
         if a.reuse_index is not None and a.reuse_index < len(self.sessions):
             return self.sessions[a.reuse_index]
         return self.quote(a.sku, a.as_agent or AGENT)

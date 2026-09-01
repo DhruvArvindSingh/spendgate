@@ -89,7 +89,9 @@ attempts: SETTLED 119, ESCALATED 108, REFUSED 103, MISMATCH 7.
 committed, so the agent is a deterministic script that attempts each attack
 directly. That makes the run reproducible and maximally hostile — a real model
 might simply fail to try — but it does <i>not</i> measure how easily a real model
-is talked into misbehaving.</p>
+is talked into misbehaving. An LLM arm exists for that
+(<code>python -m evaluation.run_llm</code>, via OpenRouter); its numbers are not
+committed because it has not been run.</p>
 <p><b>The rail is stubbed.</b> <code>RazorpayRail</code> speaks the real REST
 contract and refuses any key that is not <code>rzp_test_*</code>, but every number
 here comes from an in-memory fake. Nothing has touched live Razorpay.</p>

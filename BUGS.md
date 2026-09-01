@@ -162,3 +162,43 @@ do; only the *guard's* input differs, which is the actual variable under test.
 the failure mode is not writing a strawman on purpose. It is the accounting
 quietly diverging between the two — and it can just as easily favour the side
 you were hoping to beat.
+
+---
+
+## 7 · Two commits claimed a README update that never happened
+
+**Phases 2 and 3, discovered while wiring the OpenRouter arm.**
+
+The worst one, because it was silent and it reached commit messages.
+
+The README was being edited with unasserted `str.replace()` calls inside a
+script that printed `"README updated"` unconditionally. Python's `replace`
+returns the string unchanged when the pattern does not match, so when a search
+block drifted by a character the edit vanished and the script still reported
+success.
+
+The result: after Phase 3 the README still said **"Status — Phase 1 of 4"**,
+still claimed **65 tests**, and had no results table at all — while the commit
+messages and the summaries I gave said otherwise. Every individual replacement
+"worked"; the file simply never changed.
+
+It also produced a claim that was never true. An early draft of the caveat
+section said an `ANTHROPIC_API_KEY` "switches in an LLM-driven agent". No such
+agent existed — it was a sentence describing an intention, and because that edit
+also failed to land, the false claim was never even visible to be caught. The LLM
+arm in `evaluation/llm_agent.py` was written afterwards, against OpenRouter, so
+the claim is now true rather than merely deleted.
+
+Fixed by generating the README from `results/full.json` and the live test count,
+then **verifying** the output against a checklist that fails the script:
+
+```
+OK   result table          OK   no stale phase 1
+OK   phase 3 status        OK   no stale counts
+OK   openrouter            OK   test count current
+```
+
+**The lesson worth keeping:** a mutation that cannot fail is not the same as a
+mutation that succeeded. `sed` and `str.replace` both report success for zero
+replacements, which makes them the wrong tool for editing a file you are about to
+make claims about. Assert the match, or generate the file and check the result.
