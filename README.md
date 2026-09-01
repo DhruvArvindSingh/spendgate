@@ -180,7 +180,16 @@ src/spendgate/
   rail.py         Razorpay REST adapter + an in-memory fake
   webhooks.py     HMAC verification over raw bytes, event dedup
   settlement.py   the money state machine
-tests/            98 tests; test_coverage.py asserts 37/37 rules are tripped
+  evidence.py     signed dispute bundle
+  mcp_server.py   MCP tool surface; the schema is the security boundary
+evaluation/
+  corpus.py       210 adversarial cases, deterministic under a seed
+  oracle.py       independent adjudicator — imports neither engine
+  arms.py         Arm A (naive) and Arm B (SpendGate)
+  harness.py      the runner and the metrics
+  report.py       results/full.json -> a standalone HTML report
+tests/            137 tests; test_coverage.py asserts 37/37 rules are tripped
+results/          committed raw output
 demo.py           the whole stack, end to end
 ```
 

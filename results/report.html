@@ -1,0 +1,104 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SpendGate — evaluation</title><style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#14161b;--mut:#5b6270;--line:#dce0e7;
+--acc:#3d4fa1;--ok:#1f7a4d;--bad:#a8322b;--warn:#9a6114;--sunk:#eef0f4}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1115;--card:#161920;--ink:#e7e9ee;
+--mut:#949ba9;--line:#272c36;--acc:#93a3ee;--ok:#5fbf8c;--bad:#e2796f;--warn:#d7a24b;--sunk:#12151b}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:40px 24px 80px}
+h1{font-size:30px;margin:0 0 4px;letter-spacing:-.02em}
+h2{font-size:17px;margin:40px 0 12px;letter-spacing:-.01em}
+.sub{color:var(--mut);margin:0 0 4px}
+.meta{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--mut);margin-top:10px}
+.head{border-bottom:1px solid var(--line);padding-bottom:22px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:22px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:16px}
+.card .v{font:600 26px/1.1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.card .l{font-size:12.5px;color:var(--mut);margin-top:6px}
+.ok{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}.acc{color:var(--acc)}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:560px}
+th{text-align:left;font:600 10px/1.6 ui-monospace,Menlo,monospace;letter-spacing:.1em;
+text-transform:uppercase;color:var(--mut);padding:10px 14px;background:var(--sunk);border-bottom:1px solid var(--line)}
+td{padding:9px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}
+td.n{font:13px ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+tfoot td{font-weight:600;background:var(--sunk);border-top:1px solid var(--line)}
+.note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--acc);
+border-radius:0 6px 6px 0;padding:14px 18px;margin:18px 0;font-size:14px}
+.note.caution{border-left-color:var(--warn)}
+.note p{margin:0 0 8px}.note p:last-child{margin:0}
+.bar{height:7px;border-radius:4px;background:var(--sunk);overflow:hidden;min-width:70px}
+.bar>i{display:block;height:100%}
+code{font:12.5px ui-monospace,Menlo,monospace;background:var(--sunk);padding:1px 5px;border-radius:3px}
+footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);
+font:12px ui-monospace,Menlo,monospace;color:var(--mut)}
+</style></head><body><div class="wrap">
+
+<div class="head">
+<h1>SpendGate — two-arm evaluation</h1>
+<p class="sub">Same corpus, same merchant, same rail. One variable: whether the
+agent holds the payment tool or has to ask.</p>
+<p class="meta">210 cases · seed 20260901 ·
+23.88s · 2026-09-01 06:54:04Z</p>
+</div>
+
+<div class="cards">
+<div class="card"><div class="v bad">₹2,063,000</div>
+<div class="l">Unauthorized value released — <b>Arm A</b>, the prevailing pattern</div></div>
+<div class="card"><div class="v ok">₹0</div>
+<div class="l">Unauthorized value released — <b>Arm B</b>, SpendGate</div></div>
+<div class="card"><div class="v">0.0%</div>
+<div class="l">False refusal rate on 50 benign purchases</div></div>
+<div class="card"><div class="v">60.37 ms</div>
+<div class="l">p95 decision latency, including the merchant round trip</div></div>
+</div>
+
+<h2>Containment by attack class</h2>
+<div class="scroll"><table>
+<thead><tr><th>Class</th><th style="text-align:right">A contained</th>
+<th style="text-align:right">A leaked</th><th></th>
+<th style="text-align:right">B contained</th><th style="text-align:right">B leaked</th></tr></thead>
+<tbody><tr><td>benign</td><td class="n">50/50</td><td class="n bad">₹0</td><td><div class="bar"><i style="width:100%;background:var(--ok)"></i></div></td><td class="n">50/50</td><td class="n ok">₹0</td></tr><tr><td>injection</td><td class="n">0/30</td><td class="n bad">₹1,200,000</td><td><div class="bar"><i style="width:0%;background:var(--bad)"></i></div></td><td class="n">30/30</td><td class="n ok">₹0</td></tr><tr><td>structuring</td><td class="n">0/25</td><td class="n bad">₹176,000</td><td><div class="bar"><i style="width:0%;background:var(--bad)"></i></div></td><td class="n">25/25</td><td class="n ok">₹0</td></tr><tr><td>value tampering</td><td class="n">9/20</td><td class="n bad">₹440,000</td><td><div class="bar"><i style="width:45%;background:var(--bad)"></i></div></td><td class="n">20/20</td><td class="n ok">₹0</td></tr><tr><td>replay deputy</td><td class="n">0/20</td><td class="n bad">₹24,000</td><td><div class="bar"><i style="width:0%;background:var(--bad)"></i></div></td><td class="n">20/20</td><td class="n ok">₹0</td></tr><tr><td>expiry revocation</td><td class="n" colspan="2" style="color:var(--mut)">not applicable</td><td></td><td class="n">15/15</td><td class="n ok">₹0</td></tr><tr><td>concurrency</td><td class="n">0/15</td><td class="n bad">₹60,000</td><td><div class="bar"><i style="width:0%;background:var(--bad)"></i></div></td><td class="n">15/15</td><td class="n ok">₹0</td></tr><tr><td>merchant misbehaviour</td><td class="n">8/15</td><td class="n bad">₹75,000</td><td><div class="bar"><i style="width:53%;background:var(--bad)"></i></div></td><td class="n">15/15</td><td class="n ok">₹0</td></tr><tr><td>category laundering</td><td class="n">0/10</td><td class="n bad">₹8,000</td><td><div class="bar"><i style="width:0%;background:var(--bad)"></i></div></td><td class="n">10/10</td><td class="n ok">₹0</td></tr><tr><td>escalation abuse</td><td class="n">0/10</td><td class="n bad">₹80,000</td><td><div class="bar"><i style="width:0%;background:var(--bad)"></i></div></td><td class="n">10/10</td><td class="n ok">₹0</td></tr></tbody>
+<tfoot><tr><td>total (hostile)</td>
+<td class="n">17/145</td>
+<td class="n bad">₹2,063,000</td><td></td>
+<td class="n">160/160</td>
+<td class="n ok">₹0</td></tr></tfoot>
+</table></div>
+
+<div class="note">
+<p><b>Benign cases are the control.</b> All 50 settled in both arms.
+A system that refuses everything would score perfectly on containment and be
+useless, so the false-refusal rate is reported beside it rather than below it.</p>
+</div>
+
+<h2>Which rules did the work</h2>
+<div class="scroll"><table>
+<thead><tr><th>Rule</th><th style="text-align:right">Times fired</th></tr></thead>
+<tbody><tr><td><code>R34</code></td><td class="n">102</td></tr><tr><td><code>R17</code></td><td class="n">49</td></tr><tr><td><code>R28</code></td><td class="n">15</td></tr><tr><td><code>R11</code></td><td class="n">10</td></tr><tr><td><code>R12</code></td><td class="n">10</td></tr><tr><td><code>R05</code></td><td class="n">8</td></tr><tr><td><code>R07</code></td><td class="n">7</td></tr><tr><td><code>R32</code></td><td class="n">6</td></tr><tr><td><code>R22</code></td><td class="n">4</td></tr></tbody></table></div>
+<p class="sub" style="font-size:13.5px;margin-top:10px">Arm B outcomes across all
+attempts: SETTLED 119, ESCALATED 108, REFUSED 103, MISMATCH 7.
+108 escalations, none of them on a benign purchase.</p>
+
+<h2>What this measures, and what it does not</h2>
+<div class="note caution">
+<p><b>The adversary is scripted, not a language model.</b> No API key is
+committed, so the agent is a deterministic script that attempts each attack
+directly. That makes the run reproducible and maximally hostile — a real model
+might simply fail to try — but it does <i>not</i> measure how easily a real model
+is talked into misbehaving.</p>
+<p><b>The rail is stubbed.</b> <code>RazorpayRail</code> speaks the real REST
+contract and refuses any key that is not <code>rzp_test_*</code>, but every number
+here comes from an in-memory fake. Nothing has touched live Razorpay.</p>
+<p><b>The adjudicator is independent.</b> <code>evaluation/oracle.py</code> imports
+neither the rule engine nor the decision engine. It reads the mandate's
+constraints and totals what they did not permit, so the system under test is not
+scoring its own exam.</p>
+</div>
+
+<footer>Generated from results/full.json · re-run with
+<code>python -m evaluation.run</code></footer>
+</div></body></html>

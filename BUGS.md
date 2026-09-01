@@ -126,3 +126,39 @@ So the reason a structuring attempt gets refused depends on its timing, which is
 worth knowing before a reviewer discovers it. Left the ordering alone and added
 `test_rapid_identical_splits_are_denied_as_duplicates_not_escalated` to pin both
 paths, so the difference is a documented decision rather than a surprise.
+
+---
+
+## 6 · The evaluation was crediting Arm A for a test it never sat
+
+**Phase 3, first full run of the corpus.**
+
+The `expiry_revocation` class attacks a signed mandate: spend against one that
+has expired or been revoked. The first full run scored it **Arm A 15/15
+contained, ₹0 leaked** — a perfect score, better than SpendGate managed on
+several other classes.
+
+Arm A has no mandate. It has limits written in a prompt. There is nothing there
+to expire and nothing to revoke, so the attack was only ever applied to Arm B,
+and Arm A collected fifteen free passes for a test it was never subjected to.
+
+The direction is worth noting: this flattered the *control* arm, not the system
+under test. It still had to go. A comparison that hands one side points for
+absent tests is not a comparison, and it inflated Arm A's containment from a
+true 17/145 to a false 32/160.
+
+Fixed by giving each case an `applies_to` field. Inapplicable arms are skipped
+and reported as **not applicable** rather than as a pass, in the JSON and in the
+HTML report.
+
+**A second thing surfaced in the same pass.** `NaiveArm` was charging
+`CATALOG[sku]["amount"]` — a constant — while Arm B charged whatever the
+merchant's checkout session said. That quietly exempted Arm A from the
+merchant-repricing attack, since a repriced session never reached it. Both arms
+now read the amount from the merchant, which is what a real implementation would
+do; only the *guard's* input differs, which is the actual variable under test.
+
+**The lesson worth keeping:** when you build both sides of your own comparison,
+the failure mode is not writing a strawman on purpose. It is the accounting
+quietly diverging between the two — and it can just as easily favour the side
+you were hoping to beat.
