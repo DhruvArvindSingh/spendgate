@@ -59,12 +59,18 @@ def test_client_refuses_without_a_key(monkeypatch):
 
 
 def test_runner_exits_nonzero_without_a_key():
-    """A run that quietly degrades to nothing is worse than one that fails."""
+    """A run that quietly degrades to nothing is worse than one that fails.
+
+    SPENDGATE_NO_DOTENV is essential here, not incidental: without it the
+    subprocess loads the developer's real .env, finds a key, and starts a paid
+    evaluation that this test then kills on timeout.
+    """
     env = {k: v for k, v in os.environ.items()
            if k not in ("OPENROUTER_API_KEY", "OPENROUTER_KEY")}
+    env["SPENDGATE_NO_DOTENV"] = "1"
     r = subprocess.run([sys.executable, "-m", "evaluation.run_llm"],
                        cwd=ROOT, env=env, capture_output=True, text=True, timeout=60)
-    assert r.returncode == 2
+    assert r.returncode == 2, f"stdout={r.stdout[:300]} stderr={r.stderr[:300]}"
     assert "OPENROUTER_API_KEY is not set" in r.stderr
 
 

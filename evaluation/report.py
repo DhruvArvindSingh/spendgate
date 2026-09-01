@@ -58,6 +58,78 @@ def rupees(minor: int) -> str:
     return f"₹{minor / 100:,.0f}"
 
 
+def render_llm(path: Path) -> str:
+    """The LLM arm, if it has been run. Absent rather than faked when it has not."""
+    if not path.exists():
+        return ""
+    d = json.loads(path.read_text())
+    meta = d.get("meta", {})
+    by = {}
+    for r in d["runs"]:
+        e = by.setdefault((r["klass"], r["arm"]), {"settled": 0, "n": 0,
+                                                   "charged": 0, "unauth": 0})
+        e["settled"] += sum(o == "SETTLED" for o in r["outcomes"])
+        e["n"] += len(r["outcomes"])
+        e["charged"] += r["charged_minor"]
+        e["unauth"] += r["unauthorized_minor"]
+
+    klasses = sorted({k for k, _ in by})
+    rows = []
+    for k in klasses:
+        a = by.get((k, "A_naive"), {})
+        b = by.get((k, "B_spendgate"), {})
+        def cell(v):
+            # n == 0 means the model never called a payment tool: the agent
+            # refused, which is not the same as a scenario that did not run.
+            if v.get("n", 0) == 0:
+                return '<td class="n" style="color:var(--mut)">model declined</td>'
+            return f'<td class="n">{v["settled"]}/{v["n"]}</td>'
+
+        rows.append(
+            f'<tr><td>{k.replace("_", " ")}</td>'
+            f'{cell(a)}<td class="n bad">{rupees(a.get("unauth", 0))}</td>'
+            f'{cell(b)}<td class="n ok">{rupees(b.get("unauth", 0))}</td></tr>')
+
+    a_tot = sum(v["unauth"] for (k, arm), v in by.items() if arm == "A_naive")
+    b_tot = sum(v["unauth"] for (k, arm), v in by.items() if arm == "B_spendgate")
+    mis = sum(r["misreported"] for r in d["runs"] if r["arm"] == "A_naive")
+    n_a = sum(1 for r in d["runs"] if r["arm"] == "A_naive")
+
+    return f"""
+<h2>The LLM arm — a real model, not a script</h2>
+<p class="sub">{meta.get('model', '?')} · {meta.get('reps', '?')} reps ·
+every goal a fresh model context, one persistent ledger.</p>
+
+<div class="cards">
+<div class="card"><div class="v bad">{rupees(a_tot)}</div>
+<div class="l">Released without authority — <b>Arm A</b></div></div>
+<div class="card"><div class="v ok">{rupees(b_tot)}</div>
+<div class="l">Released without authority — <b>Arm B</b></div></div>
+<div class="card"><div class="v">{mis}/{n_a}</div>
+<div class="l">Times the model misreported an amount</div></div>
+</div>
+
+<div class="scroll"><table>
+<thead><tr><th>Scenario</th><th style="text-align:right">A settled</th>
+<th style="text-align:right">A leaked</th><th style="text-align:right">B settled</th>
+<th style="text-align:right">B leaked</th></tr></thead>
+<tbody>{''.join(rows)}</tbody></table></div>
+
+<div class="note">
+<p><b>The model did nothing wrong.</b> It never misreported an amount, refused
+the injected television on sight, and declined the prohibited category without
+being asked to. The leak is not misbehaviour.</p>
+<p>It comes from two things a model cannot supply: it does not remember what it
+already spent when each invocation is a fresh context, and it cannot enforce a
+policy it was never told. The aggregate limit lives with the principal, not in
+the agent's instructions — so a perfectly obedient agent walks straight through
+it, three times in a row.</p>
+<p><b>That is the actual argument for this project.</b> Not that agents lie —
+this one did not — but that budgets are state, and an agent has none.</p>
+</div>
+"""
+
+
 def render(s: dict) -> str:
     a, b = s["arms"]["A_naive"], s["arms"]["B_spendgate"]
     meta = s.get("meta", {})
@@ -87,6 +159,8 @@ def render(s: dict) -> str:
     rule_rows = "".join(
         f'<tr><td><code>{r}</code></td><td class="n">{n}</td></tr>'
         for r, n in rules.most_common())
+
+    llm_section = render_llm(RESULTS / "llm.json")
 
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -156,6 +230,7 @@ constraints and totals what they did not permit, so the system under test is not
 scoring its own exam.</p>
 </div>
 
+{llm_section}
 <footer>Generated from results/full.json · re-run with
 <code>python -m evaluation.run</code></footer>
 </div></body></html>"""

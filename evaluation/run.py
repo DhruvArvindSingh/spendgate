@@ -21,6 +21,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 from evaluation.corpus import SEED, build_corpus  # noqa: E402
 from evaluation.harness import run  # noqa: E402
 
+from spendgate.dotenv import find_and_load  # noqa: E402
+
+find_and_load(Path(__file__).resolve().parent.parent)
+
 RESULTS = Path(__file__).resolve().parent.parent / "results"
 
 
