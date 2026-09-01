@@ -29,8 +29,19 @@ class RailTimeout(RailError):
     """Outcome unknown. Never released, never committed — held for reconciliation."""
 
 
+#: How long SpendGate holds a reservation for an order nobody has paid.
+#:
+#: This is OUR timeout, not the rail's. Razorpay orders have no expiry — the
+#: Orders API rejects expire_by outright ("not required and should not be
+#: sent"); it is a Payment Links field. So an unpaid order stays payable
+#: forever and the reservation has to be released on our own clock, with a
+#: compensating control for the late-payment case. See BUGS.md §9.
+RESERVATION_TTL = 15 * 60
+
+
 class Rail(Protocol):
     def create_order(self, amount_minor: int, receipt: str, notes: dict) -> dict: ...
+    def fetch_order(self, order_id: str) -> dict: ...
     def fetch_payment(self, payment_id: str) -> dict: ...
     def fetch_order_payments(self, order_id: str) -> list[dict]: ...
     def refund(self, payment_id: str, amount_minor: int) -> dict: ...
@@ -77,10 +88,14 @@ class RazorpayRail:
     def create_order(self, amount_minor: int, receipt: str, notes: dict) -> dict:
         # The amount is set here, server side, from facts resolved out of band.
         # `receipt` carries our authorization id so a retry is reconcilable.
+        # No expire_by: the Orders API rejects it. Orders never expire.
         return self._call("POST", "/orders", json={
             "amount": amount_minor, "currency": "INR",
             "receipt": receipt, "notes": notes, "payment_capture": 1,
         })
+
+    def fetch_order(self, order_id: str) -> dict:
+        return self._call("GET", f"/orders/{order_id}")
 
     def fetch_payment(self, payment_id: str) -> dict:
         return self._call("GET", f"/payments/{payment_id}")
@@ -91,6 +106,27 @@ class RazorpayRail:
     def refund(self, payment_id: str, amount_minor: int) -> dict:
         return self._call("POST", f"/payments/{payment_id}/refund",
                           json={"amount": amount_minor})
+
+    def create_payment_link(self, amount_minor: int, description: str,
+                            notes: dict, reference_id: str,
+                            expire_by: int | None = None) -> dict:
+        """A link a human can open to actually complete the payment.
+
+        Notifications are explicitly disabled: this must never send an SMS or an
+        email to anyone. The link is for the operator running the check.
+        """
+        return self._call("POST", "/payment_links", json={
+            "amount": amount_minor, "currency": "INR",
+            "accept_partial": False, "description": description[:2048],
+            "reference_id": reference_id,
+            "notify": {"sms": False, "email": False},
+            "reminder_enable": False, "notes": notes,
+            # expire_by IS valid here — links expire, orders do not.
+            **({"expire_by": int(expire_by)} if expire_by else {}),
+        })
+
+    def fetch_payment_link(self, link_id: str) -> dict:
+        return self._call("GET", f"/payment_links/{link_id}")
 
     def close(self) -> None:
         if self._client is not None:
@@ -112,6 +148,13 @@ class FakeRazorpay:
     _seq: itertools.count = field(default_factory=lambda: itertools.count(1))
     _lock: threading.Lock = field(default_factory=threading.Lock)
 
+    #: Wall clock for expiry decisions; injected so tests can move time.
+    now: Any = None
+
+    def _now(self) -> int:
+        import time as _time
+        return int(self.now()) if callable(self.now) else int(_time.time())
+
     def create_order(self, amount_minor: int, receipt: str, notes: dict) -> dict:
         if self.timeout_next:
             self.timeout_next = False
@@ -121,15 +164,23 @@ class FakeRazorpay:
                 return self.orders[self.receipts[receipt]]
             oid = f"order_{next(self._seq):012d}"
             order = {"id": oid, "amount": amount_minor, "currency": "INR",
-                     "receipt": receipt, "notes": notes, "status": "created"}
+                     "receipt": receipt, "notes": notes, "status": "created",
+                     "attempts": 0}
             self.orders[oid] = order
             self.receipts[receipt] = oid
             return order
+
+    def fetch_order(self, order_id: str) -> dict:
+        if order_id not in self.orders:
+            raise RailError(f"no such order {order_id}")
+        # Orders never expire at Razorpay, so neither do they here.
+        return dict(self.orders[order_id])
 
     def pay(self, order_id: str) -> dict:
         """Simulate the customer completing (or failing) the payment."""
         with self._lock:
             order = self.orders[order_id]
+            order["attempts"] = order.get("attempts", 0) + 1
             pid = f"pay_{next(self._seq):012d}"
             if self.fail_next:
                 self.fail_next = False

@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-09-01T07:57:01.678428+00:00",
+  "mode": "test",
+  "checks_passed": 15,
+  "checks_total": 15,
+  "order_id": "order_TWhL88tncwbdYz",
+  "order_amount_minor": 120000,
+  "approved_amount_minor": 120000,
+  "note": "Live Razorpay test mode. Capture requires a human to open the payment link, so settlement is exercised against the fake rail in the test suite, not here."
+}

@@ -27,7 +27,7 @@ from typing import Callable
 
 from .ledger import InMemoryLedger
 from .money import Paise, fmt
-from .rail import Rail, RailError, RailTimeout
+from .rail import RESERVATION_TTL, Rail, RailError, RailTimeout
 from .webhooks import WebhookEvent
 
 
@@ -39,11 +39,16 @@ class AuthState(str, Enum):
     INDETERMINATE = "INDETERMINATE"
     REFUNDED = "REFUNDED"
     MISMATCH = "MISMATCH"
+    #: Reservation released after our own timeout on an order nobody paid.
+    #: The order remains payable at Razorpay forever, so this state carries a
+    #: compensating control: a late capture against it is refunded and alerted.
+    ABANDONED = "ABANDONED"
 
 
 #: Terminal states never transition again. A late webhook against one of these
 #: is an anomaly to record, not an instruction to follow.
-TERMINAL = {AuthState.SETTLED, AuthState.FAILED, AuthState.REFUNDED, AuthState.MISMATCH}
+TERMINAL = {AuthState.SETTLED, AuthState.FAILED, AuthState.REFUNDED,
+            AuthState.MISMATCH, AuthState.ABANDONED}
 
 
 @dataclass
@@ -58,6 +63,7 @@ class Authorization:
     payment_id: str | None = None
     captured_minor: Paise | None = None
     sku: str | None = None
+    reserved_at: datetime | None = None
     history: list[tuple[str, str]] = field(default_factory=list)
 
     def to(self, state: AuthState, note: str = "") -> None:
@@ -77,6 +83,10 @@ class Settlement:
     #: clock while the engine reads an injected one silently moves settled
     #: payments outside the windows that are supposed to see them.
     clock: Callable[[], datetime] = lambda: datetime.now(timezone.utc)
+    #: How long a reservation is held for an order nobody has paid. Razorpay
+    #: orders never expire, so this timeout is ours and the release is backed by
+    #: a compensating control rather than by the order becoming unpayable.
+    reservation_ttl_seconds: int = RESERVATION_TTL
     _lock: threading.RLock = field(default_factory=threading.RLock)
 
     def _now(self) -> datetime:
@@ -91,6 +101,7 @@ class Settlement:
     def execute(self, auth: Authorization) -> Authorization:
         """Create the order for the amount the BOUNCER read, never agent input."""
         with self._lock:
+            auth.reserved_at = auth.reserved_at or self._now()
             self.authorizations[auth.auth_id] = auth
             try:
                 order = self.rail.create_order(
@@ -141,6 +152,20 @@ class Settlement:
     def _captured(self, auth: Authorization, event: WebhookEvent) -> Authorization:
         if auth.state is AuthState.SETTLED:
             return auth                                   # duplicate delivery
+        if auth.state is AuthState.ABANDONED:
+            # The compensating control. We released this budget because nobody
+            # had paid; someone has now paid anyway. Money moved outside any
+            # live reservation, so it is refunded rather than absorbed.
+            self._alert(
+                f"late capture on abandoned {auth.auth_id}: "
+                f"{fmt(event.amount_minor or 0)} moved after the reservation was released"
+            )
+            try:
+                if event.payment_id:
+                    self.rail.refund(event.payment_id, event.amount_minor or auth.approved_minor)
+            except RailError as exc:
+                self._alert(f"refund of late capture failed: {exc}")
+            return auth
         if auth.state in TERMINAL:
             self._alert(f"late payment.captured on {auth.state.value} {auth.auth_id}")
             return auth
@@ -211,17 +236,24 @@ class Settlement:
     def reconcile(self, auth_id: str) -> Authorization:
         """Resolve an INDETERMINATE authorization by asking the rail.
 
-        This is the only path out of "we don't know". It never guesses; if the
-        rail still cannot say, the reservation stays held.
+        The only path out of "we don't know". It never guesses: a reservation is
+        released only once the money definitively did not move AND cannot still
+        move. An order that is unpaid but still payable stays held, and says so.
         """
         with self._lock:
             auth = self.authorizations[auth_id]
             if auth.state is not AuthState.INDETERMINATE:
                 return auth
+
+            if auth.order_id is None:
+                # No order exists, so nothing could have been charged.
+                self.ledger.release(auth.mandate_id, auth.auth_id, self._now())
+                auth.to(AuthState.FAILED, "reconciled: order was never created")
+                return auth
+
             try:
-                payments = (
-                    self.rail.fetch_order_payments(auth.order_id) if auth.order_id else []
-                )
+                payments = self.rail.fetch_order_payments(auth.order_id)
+                order = self.rail.fetch_order(auth.order_id)
             except RailError as exc:
                 self._alert(f"reconcile failed for {auth_id}: {exc}")
                 return auth
@@ -248,8 +280,21 @@ class Settlement:
                 auth.to(AuthState.FAILED, "reconciled: all attempts failed")
                 return auth
 
-            # No order, or no payment attempts at all: nothing was charged.
-            if auth.order_id is None:
-                self.ledger.release(auth.mandate_id, auth.auth_id, self._now())
-                auth.to(AuthState.FAILED, "reconciled: order was never created")
+            # Nothing captured, nothing failed: nobody has paid yet. Razorpay
+            # orders never expire, so there is no moment at which the rail
+            # declares this dead. We hold for our own TTL and then release.
+            held_for = (self._now() - (auth.reserved_at or self._now())).total_seconds()
+            if held_for < self.reservation_ttl_seconds:
+                remaining = int(self.reservation_ttl_seconds - held_for)
+                auth.to(AuthState.INDETERMINATE,
+                        f"order {order.get('id')} unpaid ({order.get('attempts', 0)} "
+                        f"attempts); holding for another {remaining}s")
+                return auth
+
+            self.ledger.release(auth.mandate_id, auth.auth_id, self._now())
+            auth.to(AuthState.ABANDONED,
+                    f"unpaid after {int(held_for)}s; reservation released. "
+                    "The order stays payable — a late capture will be refunded.")
+            self._alert(f"{auth.auth_id} abandoned unpaid; order {order.get('id')} "
+                        "remains payable at the rail")
             return auth

@@ -251,3 +251,50 @@ the wrong question, not that the effect is absent. The first version could only
 have produced a headline about models being untrustworthy — and when the model
 turned out to be trustworthy, it had nothing left to say. The second version
 survives a perfectly behaved agent, which is the only version worth submitting.
+
+---
+
+## 9 · I invented an API field, and one live call found it
+
+**Phase 4, first run against live Razorpay test mode.**
+
+`scripts/live_rail_check.py` drives the whole pipeline against the real API.
+Twelve checks, ten green. The two failures were in `reconcile`.
+
+The state that broke it: an order exists, nobody has paid it, and the fake had
+never modelled that. `FakeRazorpay` only ever produced two shapes — a captured
+payment, or no order at all — so `reconcile` had a branch for "the order was
+never created" and simply **fell through** for "the order exists and is
+unpaid", leaving the authorization `INDETERMINATE` with no path out and the
+budget held forever.
+
+The fix looked obvious: set `expire_by` on the order, then an unpaid order
+eventually becomes unpayable and the reservation is safe to release. I
+implemented it, updated the fake, wrote four tests, and they all passed.
+
+Then the live rail rejected every single order:
+
+```
+400  expire_by is/are not required and should not be sent
+```
+
+**`expire_by` is a Payment Links field. Razorpay orders have no expiry at all.**
+I had designed against an API that does not exist, and the fake — which I had
+just taught to store `expire_by` — agreed with me perfectly.
+
+The real design has to accept that an unpaid order stays payable forever:
+
+- The timeout is **ours**, not the rail's: hold the reservation for
+  `RESERVATION_TTL`, then release it.
+- Releasing is only safe with a **compensating control**, because the order is
+  still live. The authorization moves to `ABANDONED`, and a capture arriving
+  against an abandoned authorization is refunded and alerted rather than
+  absorbed — money moved with no live reservation behind it.
+
+`expire_by` stays on `create_payment_link`, where it is real.
+
+**The lesson worth keeping:** a fake you wrote agrees with whatever you believed
+when you wrote it. Four green tests certified a field that the vendor rejects on
+sight. The fake is worth having — it makes the state machine testable — but it
+can only ever confirm your model of the rail, never correct it. That correction
+costs one real API call, and it is the cheapest call in the project.

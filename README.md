@@ -59,7 +59,7 @@ on one.
 ```
 $ python -m evaluation.run       # 210 cases x 2 arms, ~24s -> results/full.json
 $ python -m evaluation.report    # -> results/report.html
-$ python -m pytest               # 152 passed
+$ python -m pytest               # 157 passed
 $ python demo.py                 # spins up the merchant on a real socket
 ```
 
@@ -73,9 +73,35 @@ imports neither the rule engine nor the decision engine, and a test greps the
 source to keep it that way. It reads the mandate's constraints and totals what
 they did not permit, so the system under test is not scoring its own exam.
 
-**The rail is stubbed.** `RazorpayRail` speaks the real REST contract and refuses
-any key that is not `rzp_test_*`, but every committed number comes from an
-in-memory fake. Nothing here has touched live Razorpay.
+**The corpus runs against a fake rail**, so it stays reproducible and free. The
+adapter is separately exercised against live Razorpay test mode — see below —
+and refuses any key that is not `rzp_test_*`.
+
+### Against live Razorpay
+
+`python scripts/live_rail_check.py` drives the whole pipeline against
+api.razorpay.com in test mode: real merchant on a real socket, real decision,
+real reservation, real order. **15/15 checks pass.**
+
+What it proves that the fake cannot:
+
+- a refused decision creates **nothing** at the rail — the order count is
+  unchanged across a denial
+- the order Razorpay records carries ₹1,200, the amount
+  resolved from the merchant, not one the agent supplied
+- the authorization id travels as the order's `receipt`, so money that moved
+  without a local record is still recoverable
+- an unpaid order is held, then released on our own timeout, and the still-live
+  order is flagged rather than forgotten
+
+Capture still needs a human to open the payment link the check prints, so
+settlement itself is exercised against the fake in the test suite. That split is
+deliberate and stated rather than papered over.
+
+This is also where [`BUGS.md`](BUGS.md) §9 came from: the fake had agreed with an
+API field that does not exist, and four green tests certified it. One live call
+disagreed.
+
 
 **The adversary is scripted.** Attacks are attempted directly by a deterministic
 script, which makes the run reproducible and maximally hostile — a real model
@@ -312,7 +338,7 @@ evaluation/
   llm.py          OpenRouter client for the LLM arm
   llm_agent.py    the two tool surfaces handed to a real model
   report.py       results/full.json -> a standalone HTML report
-tests/            152 tests; test_coverage.py asserts 37/37 rules are tripped
+tests/            157 tests; test_coverage.py asserts 37/37 rules are tripped
 results/          committed raw output
 demo.py           the whole stack, end to end
 ```
@@ -320,7 +346,7 @@ demo.py           the whole stack, end to end
 ## Run it
 
 ```bash
-python -m pytest             # 152 tests
+python -m pytest             # 157 tests
 python demo.py               # the walkthrough, on a real socket
 python -m evaluation.run     # the corpus -> results/full.json
 python -m evaluation.report  # -> results/report.html
@@ -353,9 +379,11 @@ Stated because they will be asked, and because a list of none is not credible.
 - **Single-node serialisation.** Per-mandate locking is correct but not
   horizontally scalable. Distributed budget accounting is genuinely harder and out
   of scope.
-- **No live rail.** Real banks fail in ways a fake does not simulate — a bank that
-  is slow rather than down, a payment that succeeds after you gave up on it.
-  Designed for, not tested against.
+- **Capture is not exercised live.** Order creation, amount binding, refusal and
+  reconciliation all run against real Razorpay; completing a payment needs a
+  human to open the link, so settlement is tested against the fake. Real banks
+  also fail in ways a fake does not simulate — slow rather than down, or
+  succeeding after you gave up.
 - **One model, few reps.** The LLM arm has been run against
   `anthropic/claude-sonnet-4.5` only. A different model may misreport amounts
   where this one did not, which would change the injection findings but not the

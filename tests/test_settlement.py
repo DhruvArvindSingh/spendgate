@@ -7,7 +7,7 @@ INDETERMINATE holds it. Everything else here is a consequence of that.
 from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 import pytest
 
@@ -20,6 +20,8 @@ from spendgate.webhooks import (
 
 MANDATE, MERCHANT, SECRET = "mnd_1", "mrc_lumen", "whsec_test"
 BUDGET, AMOUNT = rupees(15_000), rupees(1_200)
+#: A pinned clock, for the tests that compare an order's expiry timestamp.
+NOW = datetime(2026, 9, 1, 10, 0, tzinfo=timezone.utc)
 
 
 @pytest.fixture
@@ -274,3 +276,85 @@ def test_a_settled_payment_is_visible_to_the_windowed_rules():
     recent = ledger.snapshot(MANDATE).recent
     cutoff = (t + _td(minutes=5)) - _td(seconds=3600)
     assert [x for x in recent if x.at > cutoff], "settled payment fell outside its own window"
+
+
+# --------------------------------------------------- unpaid orders (BUGS §9)
+def _indeterminate(rig, auth_id="aut_u", amount=AMOUNT):
+    """An authorization whose order exists but whose webhook never arrived."""
+    ledger, rail, s = rig
+    s.clock = lambda: NOW
+    ledger.reserve(MANDATE, auth_id, amount, NOW, MERCHANT)
+    auth = s.execute(Authorization(auth_id, MANDATE, f"cs_{auth_id}", amount, MERCHANT))
+    auth.to(AuthState.INDETERMINATE, "simulated lost webhook")
+    return auth
+
+
+def test_orders_carry_no_expiry_because_the_rail_rejects_one(rig):
+    """Razorpay's Orders API answers expire_by with "not required and should not
+    be sent" — it is a Payment Links field. Sending one fails the whole call, so
+    the reservation timeout has to be ours instead."""
+    ledger, rail, s = rig
+    auth = _indeterminate(rig, "aut_x")
+    assert "expire_by" not in rail.fetch_order(auth.order_id)
+    assert s.reservation_ttl_seconds > 0, "the timeout lives on our side"
+
+
+def test_reconcile_holds_an_unpaid_reservation_inside_the_ttl(rig):
+    """Releasing early invites a double-spend: the order is still payable."""
+    ledger, rail, s = rig
+    auth = _indeterminate(rig)
+
+    auth = s.reconcile(auth.auth_id)
+
+    assert auth.state is AuthState.INDETERMINATE
+    assert "holding for another" in auth.history[-1][1]
+    assert ledger.snapshot(MANDATE).reserved_minor == AMOUNT
+    assert ledger.snapshot(MANDATE).settled_minor == 0
+    ledger.check_invariant(MANDATE)
+
+
+def test_reconcile_abandons_an_unpaid_reservation_after_the_ttl(rig):
+    """Budget cannot be held forever for an order nobody paid, so it is
+    released — and the state records that the order is still live."""
+    ledger, rail, s = rig
+    auth = _indeterminate(rig)
+    s.clock = lambda: NOW + timedelta(seconds=s.reservation_ttl_seconds + 60)
+
+    auth = s.reconcile(auth.auth_id)
+
+    assert auth.state is AuthState.ABANDONED
+    assert "remains payable" in " ".join(s.anomalies)
+    assert ledger.available(MANDATE) == BUDGET
+    ledger.check_invariant(MANDATE)
+
+
+def test_a_late_capture_on_an_abandoned_authorization_is_refunded(rig):
+    """The compensating control that makes the release safe. Money moved with no
+    live reservation behind it, so it is handed back rather than absorbed."""
+    ledger, rail, s = rig
+    auth = _indeterminate(rig)
+    s.clock = lambda: NOW + timedelta(seconds=s.reservation_ttl_seconds + 60)
+    auth = s.reconcile(auth.auth_id)
+    assert auth.state is AuthState.ABANDONED
+
+    payment = rail.pay(auth.order_id)          # someone pays the stale link
+    auth = deliver(rig, "payment.captured", payment)
+
+    assert auth.state is AuthState.ABANDONED, "a terminal state is not reopened"
+    assert ledger.snapshot(MANDATE).settled_minor == 0, "no budget is consumed"
+    assert any("late capture on abandoned" in a for a in s.anomalies)
+    assert rail.refunds, "the late capture must be refunded"
+    ledger.check_invariant(MANDATE)
+
+
+def test_a_paid_order_still_settles_on_reconcile(rig):
+    """The TTL check must not shadow the case that actually matters."""
+    ledger, rail, s = rig
+    auth = _indeterminate(rig, "aut_p")
+    rail.pay(auth.order_id)
+
+    auth = s.reconcile("aut_p")
+
+    assert auth.state is AuthState.SETTLED
+    assert ledger.snapshot(MANDATE).settled_minor == AMOUNT
+    ledger.check_invariant(MANDATE)
