@@ -240,6 +240,13 @@ _S4 = [
     Rule("R29", "concurrent_budget_conflict", "concurrency", Kind.INTEGRITY, Outcome.DENIED, Layer.LEDGER,
          _never, lambda c, r: "Another payment on this mandate is being processed. Retry shortly.",
          "Lost the per-mandate serialisation lock"),
+    # A prompt that cannot be shown is a decision the principal did not make, so
+    # an exhausted escalation budget refuses rather than approves. Enforced in
+    # the escalation service, which is where the attention state lives.
+    Rule("R38", "escalation_budget_exhausted", "concurrency", Kind.INTEGRITY,
+         Outcome.DENIED, Layer.SERVICE,
+         _never, lambda c, r: "Too many approvals pending; this cannot be raised now.",
+         "Escalation rate limit — defends human attention (A8)"),
 ]
 
 # --------------------------------------------------------------------------
@@ -327,5 +334,9 @@ REGISTRY: tuple[Rule, ...] = tuple(_S1 + _S2 + _S3 + _S4 + _S5)
 BY_ID: dict[str, Rule] = {r.id: r for r in REGISTRY}
 ENGINE_RULES: tuple[Rule, ...] = tuple(r for r in REGISTRY if r.layer is Layer.ENGINE)
 
-assert len(REGISTRY) == 37, f"registry drifted from the PRD: {len(REGISTRY)} rules"
-assert len({r.reason_code for r in REGISTRY}) == 37, "duplicate reason code"
+#: The count is derived, not asserted against a number written elsewhere — a
+#: hardcoded 37 in three files is how documentation drifts from code.
+RULE_COUNT = len(REGISTRY)
+
+assert len({r.reason_code for r in REGISTRY}) == RULE_COUNT, "duplicate reason code"
+assert len({r.id for r in REGISTRY}) == RULE_COUNT, "duplicate rule id"

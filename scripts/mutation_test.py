@@ -93,6 +93,21 @@ MUTATIONS = [
      "            if False:",
      "the adjudicator under-counts violations"),
 
+    ("escalation budget never blocks", "src/spendgate/escalation.py",
+     "            if len(pending) >= self.max_pending:",
+     "            if False:",
+     "the principal can be flooded with approval prompts"),
+
+    ("exhausted escalation approves instead of refusing", "src/spendgate/service.py",
+     "        allowed, why = self.escalation.check(mandate.principal_id, now)\n        if allowed:",
+     "        allowed, why = self.escalation.check(mandate.principal_id, now)\n        if True:",
+     "an unshowable prompt is treated as consent"),
+
+    ("answering refunds the window count", "src/spendgate/escalation.py",
+     "            self._pending.setdefault(principal_id, set()).discard(authorization_id)",
+     "            self._pending.setdefault(principal_id, set()).discard(authorization_id)\n            r = self._raised.get(principal_id)\n            if r:\n                r.pop()",
+     "answering fast buys unlimited prompts"),
+
     ("session single-use check removed", "src/spendgate/rules.py",
      '         lambda c, r: c.facts is not None and c.facts.consumed,',
      '         lambda c, r: False,',

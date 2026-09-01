@@ -347,3 +347,46 @@ count had drifted from the suite.
 design share its blind spots. Mutation testing does not — it asks whether the
 suite can *tell the difference*, and the answer pointed straight at a sentence I
 had believed for four days.
+
+---
+
+## 11 · A control that existed only in the design document
+
+**Audit follow-up.**
+
+The PRD said, under escalation resolution:
+
+> "Escalations are themselves rate-limited per principal per hour. An attacker
+> who can generate unlimited approval prompts has found a denial-of-service
+> against human attention […] the escalation budget is a security control, not a
+> UX preference."
+
+The threat model listed it as the mitigation for A8, approval fatigue. The
+corpus had a whole `escalation_abuse` class for it.
+
+None of it existed. There was no rate limit anywhere in the code. The
+`escalation_abuse` cases passed because the *aggregate* rule happened to catch
+the same purchases for an unrelated reason — the class was green for four days
+while testing nothing it claimed to test.
+
+This is the same failure as §10 and worth naming as a pattern: a document
+written alongside the code will describe things that were intended, and there is
+no mechanism that notices the difference. Green tests are not that mechanism
+when the tests were written from the same intent.
+
+Built now as `escalation.py` and rule **R38**, with two limits that fail
+differently: a rolling window cap on total prompts raised, and a cap on prompts
+outstanding at once. Answering frees a pending slot but not the window count —
+otherwise answering quickly becomes a way to buy unlimited prompts, and the
+attacker just needs a cooperative victim.
+
+An exhausted budget **refuses**. A prompt that cannot be shown is a decision the
+principal did not make, and treating it as approval would be precisely the
+fatigue attack the control exists to stop.
+
+In the corpus it now fires 20 times and drops total prompts raised from 108 to
+88. Three mutations covering it are killed by the suite.
+
+One structural fix came with it: the rule count is now derived from the registry
+rather than asserted against a literal. `assert len(REGISTRY) == 37` in one file
+and "37 rules" in three others is exactly how a document drifts from its code.

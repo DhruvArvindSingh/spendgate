@@ -21,6 +21,7 @@ from datetime import datetime, timezone
 from typing import Callable, Protocol
 
 from .engine import decide
+from .escalation import EscalationBudget
 from .ledger import BudgetLockTimeout, InMemoryLedger
 from .models import (
     AgentRecord, AuthorizationRequest, Context, Decision, Mandate,
@@ -99,6 +100,9 @@ class SpendGate:
     mandates: dict[str, Mandate] = field(default_factory=dict)
     agents: dict[str, AgentRecord] = field(default_factory=dict)
     idempotency: IdempotencyStore = field(default_factory=IdempotencyStore)
+    #: Human attention is finite; an attacker who can raise unlimited prompts
+    #: has a denial-of-service against it (PRD 7.7, A8).
+    escalation: EscalationBudget = field(default_factory=EscalationBudget)
     clock: Callable[[], datetime] = lambda: datetime.now(timezone.utc)
     lock_timeout: float = 2.0
 
@@ -115,12 +119,43 @@ class SpendGate:
                 return "", Decision(**{**stored.__dict__, "outcome": Outcome.REPLAYED})
 
         auth_id = "aut_" + uuid.uuid4().hex[:12]
-        decision = self._evaluate(req)
+        decision = self._evaluate(req, auth_id)
         if req.idempotency_key:
             self.idempotency.finish(scope, req.idempotency_key, decision)
         return auth_id, decision
 
-    def _evaluate(self, req: AuthorizationRequest) -> Decision:
+    def _gate_escalation(self, mandate: Mandate, decision: Decision,
+                         auth_id: str, now: datetime) -> Decision:
+        """Charge a prompt to the principal's attention budget, or refuse.
+
+        Refusing is the only safe answer: a prompt that cannot be shown is a
+        decision the principal did not make, and treating it as approval is
+        exactly the fatigue attack this exists to stop.
+        """
+        allowed, why = self.escalation.check(mandate.principal_id, now)
+        if allowed:
+            self.escalation.raise_prompt(mandate.principal_id, auth_id, now)
+            return decision
+        rule = BY_ID["R38"]
+        return Decision(
+            outcome=rule.outcome,
+            reason_code=rule.reason_code,
+            reason_text=f"{why}. The original reason was: {decision.reason_text}",
+            rule_id=rule.id,
+            rules_evaluated=decision.rules_evaluated,
+            overridable=False,
+            amount_minor=decision.amount_minor,
+            facts_hash=decision.facts_hash,
+            decided_at=now,
+        )
+
+    def resolve_escalation(self, mandate_id: str, auth_id: str) -> None:
+        """The principal answered. Frees a pending slot, not the window count."""
+        mandate = self.mandates.get(mandate_id)
+        if mandate is not None:
+            self.escalation.resolve(mandate.principal_id, auth_id)
+
+    def _evaluate(self, req: AuthorizationRequest, auth_id: str = "") -> Decision:
         now = self.clock()
         mandate = self.mandates.get(req.mandate_id)
         agent = self.agents.get(req.agent_id)
@@ -144,6 +179,8 @@ class SpendGate:
             with self.ledger.begin(req.mandate_id, timeout=self.lock_timeout):
                 ctx = Context(**base, ledger=self.ledger.snapshot(req.mandate_id))
                 decision = decide(ctx)
+                if decision.outcome is Outcome.ESCALATED:
+                    decision = self._gate_escalation(mandate, decision, auth_id, now)
                 if decision.outcome is Outcome.APPROVED:
                     self.ledger.reserve(
                         req.mandate_id, _auth_key(req), decision.amount_minor, now,

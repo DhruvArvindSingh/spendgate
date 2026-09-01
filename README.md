@@ -24,7 +24,7 @@ payment tool or has to ask.
 | **Unauthorized value released** | **₹2,063,000** | **₹0** |
 | Hostile cases contained | 17/145 | **160/160** |
 | False refusals on 50 benign purchases | 0.0% | 0.0% |
-| p95 decision latency | 65.2 ms | 58.66 ms |
+| p95 decision latency | 64.73 ms | 58.98 ms |
 
 Arm A is a good-faith implementation of what most agent-payment systems do today:
 a per-transaction cap, a running monthly total, a prohibited-category list. Its
@@ -53,13 +53,13 @@ the first run scored it 15/15 for Arm A, which was wrong in the control's favour
 **The benign row is the control.** A system that refuses everything scores
 perfectly on containment and is useless, so the false-refusal rate sits beside the
 containment number rather than below it. All 50 benign purchases
-settled in both arms, and none of the 108 escalations landed
+settled in both arms, and none of the 88 escalations landed
 on one.
 
 ```
 $ python -m evaluation.run       # 210 cases x 2 arms, ~24s -> results/full.json
 $ python -m evaluation.report    # -> results/report.html
-$ python -m pytest               # 166 passed
+$ python -m pytest               # 178 passed
 $ python demo.py                 # spins up the merchant on a real socket
 ```
 
@@ -243,17 +243,27 @@ No `amount`. No `item`, `merchant`, or `currency`. A fully compromised agent emi
 exactly this. `test_agent_supplied_values_cannot_exist` is the tripwire: if a
 value field is ever added, that test fails.
 
-**37 rules, six stages, first failure wins.** Rules are a declarative table, not
-nested conditionals — which is what lets the suite enumerate them and assert each
-one has a test that trips it.
+**38 rules, five stages, first failure wins.** Rules are a declarative
+table, not nested conditionals — which is what lets the suite enumerate them and
+assert each one has a test that trips it. 33 are evaluated by the
+pure engine; the rest need state the engine deliberately does not hold
+(idempotency, the budget lock, the escalation budget).
 
 | Stage | Rules | Outcome |
 |---|---|---|
 | Identity & mandate validity | R01–R08 | refuse |
 | Fact integrity | R09–R16 | refuse |
 | Hard rails | R17–R24 | refuse |
-| Idempotency & concurrency | R25–R29 | refuse / replay |
+| Idempotency, concurrency & attention | R25–R29, R38 | refuse / replay |
 | Soft policy | R30–R37 | **ask the owner** |
+
+**R38 is the one that guards a resource that is not money.** Human attention is
+finite: someone shown thirty prompts an hour stops reading them and starts
+tapping approve, at which point every genuine escalation is worthless too. So
+escalations are themselves budgeted — five per hour, three outstanding at once,
+per principal — and an exhausted budget **refuses**, because a prompt that cannot
+be shown is a decision the principal did not make. In the corpus it fires 20
+times and drops total prompts raised from 108 to 88.
 
 The split that matters: a **hard rail** (₹5,000 per transaction) can be overridden
 by nobody, so tripping one refuses. A **soft policy** ("groceries under ₹2,000")
@@ -338,6 +348,7 @@ src/spendgate/
   rail.py         Razorpay REST adapter + an in-memory fake
   webhooks.py     HMAC verification over raw bytes, event dedup
   settlement.py   the money state machine
+  escalation.py   the attention budget behind R38
   evidence.py     signed dispute bundle
   mcp_server.py   MCP tool surface; the schema is the security boundary
 evaluation/
@@ -348,7 +359,7 @@ evaluation/
   llm.py          OpenRouter client for the LLM arm
   llm_agent.py    the two tool surfaces handed to a real model
   report.py       results/full.json -> a standalone HTML report
-tests/            166 tests; test_coverage.py asserts 37/37 rules are tripped
+tests/            178 tests; test_coverage.py asserts 38/38 rules are tripped
 results/          committed raw output
 demo.py           the whole stack, end to end
 ```
@@ -356,7 +367,7 @@ demo.py           the whole stack, end to end
 ## Run it
 
 ```bash
-python -m pytest                    # 166 tests
+python -m pytest                    # 178 tests
 python demo.py                      # the walkthrough, on a real socket
 python -m evaluation.run            # the corpus -> results/full.json
 python -m evaluation.report         # -> results/report.html
