@@ -19,11 +19,66 @@ from contextlib import contextmanager
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
+from pathlib import Path
+from typing import Protocol
 
 from .models import LedgerSnapshot, SettledTxn
 from .money import Paise
 
 GENESIS = "sha256:" + "0" * 64
+
+
+class Anchor(Protocol):
+    """Somewhere outside the ledger that remembers the head hash.
+
+    A hash chain on its own is NOT tamper-evident. An attacker who can rewrite
+    the log can recompute every entry's hash and repair every prev_hash link,
+    leaving a chain that verifies perfectly. Detection requires a head hash held
+    somewhere the attacker cannot edit — that is what this is for. Without an
+    anchor, verify_chain proves internal consistency and nothing more.
+    """
+
+    def record(self, mandate_id: str, seq: int, head: str) -> None: ...
+    def head(self, mandate_id: str) -> tuple[int, str] | None: ...
+
+
+class InMemoryAnchor:
+    """Same-process anchor. Useful in tests; NOT a security boundary in
+    production, where the sink has to be genuinely out of reach."""
+
+    def __init__(self) -> None:
+        self._heads: dict[str, tuple[int, str]] = {}
+
+    def record(self, mandate_id: str, seq: int, head: str) -> None:
+        self._heads[mandate_id] = (seq, head)
+
+    def head(self, mandate_id: str) -> tuple[int, str] | None:
+        return self._heads.get(mandate_id)
+
+
+class FileAnchor:
+    """Append-only file anchor. Models the real thing: a sink the writing
+    process can append to but is not expected to be able to rewrite."""
+
+    def __init__(self, path: str | Path) -> None:
+        self.path = Path(path)
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+
+    def record(self, mandate_id: str, seq: int, head: str) -> None:
+        with self.path.open("a", encoding="utf-8") as fh:
+            fh.write(json.dumps({"mandate_id": mandate_id, "seq": seq, "head": head}) + "\n")
+
+    def head(self, mandate_id: str) -> tuple[int, str] | None:
+        if not self.path.is_file():
+            return None
+        latest = None
+        for line in self.path.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            rec = json.loads(line)
+            if rec["mandate_id"] == mandate_id:
+                latest = (rec["seq"], rec["head"])
+        return latest
 
 
 class EntryKind(str, Enum):
@@ -109,9 +164,12 @@ class _Account:
 
 
 class InMemoryLedger:
-    def __init__(self) -> None:
+    def __init__(self, anchor: Anchor | None = None) -> None:
         self._accounts: dict[str, _Account] = {}
         self._guard = threading.Lock()
+        #: Optional. Without it, verify_chain can only prove internal
+        #: consistency — see the Anchor docstring.
+        self.anchor = anchor
 
     # ---------------------------------------------------------------- setup
     def open_account(self, mandate_id: str, budget_max: Paise, *, active_delegates: int = 1) -> None:
@@ -184,6 +242,8 @@ class InMemoryLedger:
             razorpay_ref=ref,
         )
         a.entries.append(entry)
+        if self.anchor is not None:
+            self.anchor.record(mandate_id, entry.seq, entry.hash)
         return entry
 
     def reserve(self, mandate_id: str, auth_id: str, amount: Paise, at: datetime,
@@ -240,17 +300,57 @@ class InMemoryLedger:
             return self._append(a, mandate_id, auth_id, EntryKind.CREDIT, amount, at)
 
     # ------------------------------------------------------------ integrity
+    def has_open_reservation(self, mandate_id: str, auth_id: str) -> bool:
+        """Whether a reservation is still outstanding.
+
+        The reconciler runs after crashes, so it must be able to ask rather than
+        assume: releasing twice, or releasing something already committed, would
+        otherwise raise from the one code path that exists to recover.
+        """
+        a = self._acct(mandate_id)
+        with a.lock:
+            return auth_id in a.open_reservations
+
     def entries(self, mandate_id: str) -> list[LedgerEntry]:
         return list(self._acct(mandate_id).entries)
 
     def verify_chain(self, mandate_id: str) -> tuple[bool, int | None]:
-        """Recompute the chain. Returns (ok, first_bad_seq)."""
+        """Recompute the chain. Returns (ok, first_bad_seq).
+
+        Internal consistency only. A rewrite that repairs every prev_hash passes
+        this — which is why an anchor exists. Use verify_against_anchor for the
+        property people mean when they say "tamper-evident".
+        """
         prev = GENESIS
         for e in self._acct(mandate_id).entries:
             if e.prev_hash != prev:
                 return False, e.seq
             prev = e.hash
         return True, None
+
+    def verify_against_anchor(self, mandate_id: str) -> tuple[bool, str]:
+        """Compare the chain head to the externally recorded one.
+
+        This is the check that survives a competent attacker: rewriting the log
+        changes the head, and the head is not in the log.
+        """
+        if self.anchor is None:
+            return False, "no anchor configured; tampering cannot be ruled out"
+        ok, bad = self.verify_chain(mandate_id)
+        if not ok:
+            return False, f"chain broken at seq {bad}"
+        recorded = self.anchor.head(mandate_id)
+        entries = self._acct(mandate_id).entries
+        if recorded is None:
+            return (True, "empty ledger, nothing to anchor yet") if not entries else (
+                False, "entries exist but the anchor recorded no head")
+        seq, head = recorded
+        if not entries:
+            return False, "anchor has a head but the ledger is empty"
+        if entries[-1].seq != seq or entries[-1].hash != head:
+            return False, (f"head mismatch: ledger {entries[-1].seq}/"
+                           f"{entries[-1].hash[:16]}… vs anchor {seq}/{head[:16]}…")
+        return True, "head matches the anchor"
 
     def check_invariant(self, mandate_id: str) -> None:
         """PRD 6.6. Asserted after every transition and every test.
@@ -269,3 +369,8 @@ class InMemoryLedger:
             assert a.budget_max - a.settled - a.reserved >= 0, "available went negative"
             ok, bad = self.verify_chain(mandate_id)
             assert ok, f"hash chain broken at seq {bad}"
+            # When an anchor exists, use it: verify_chain alone passes a
+            # rewrite that repaired every prev_hash (see its docstring).
+            if self.anchor is not None:
+                anchored, why = self.verify_against_anchor(mandate_id)
+                assert anchored, f"ledger diverged from its anchor: {why}"

@@ -358,3 +358,36 @@ def test_a_paid_order_still_settles_on_reconcile(rig):
     assert auth.state is AuthState.SETTLED
     assert ledger.snapshot(MANDATE).settled_minor == AMOUNT
     ledger.check_invariant(MANDATE)
+
+
+def test_reconcile_does_not_raise_when_the_reservation_is_already_gone(rig):
+    """The recovery path must be the last thing to crash. Found by the demo:
+    an escalated authorization has no reservation, and reconcile released
+    unconditionally."""
+    ledger, rail, s = rig
+    s.clock = lambda: NOW
+    auth = Authorization("aut_none", MANDATE, "cs_none", AMOUNT, MERCHANT)
+    auth.reserved_at = NOW
+    auth.to(AuthState.INDETERMINATE, "never reserved")
+    s.authorizations["aut_none"] = auth
+
+    auth = s.reconcile("aut_none")           # must not raise
+
+    assert auth.state is AuthState.FAILED
+    assert any("nothing held to release" in a for a in s.anomalies)
+    ledger.check_invariant(MANDATE)
+
+
+def test_a_double_release_is_reported_not_raised(rig):
+    """Two paths can reach the same authorization after a crash."""
+    ledger, rail, s = rig
+    auth = start(rig, auth_id="aut_dbl")
+    rail.fail_next = True
+    payment = rail.pay(auth.order_id)
+    deliver(rig, "payment.failed", payment, event_id="e1")
+    assert ledger.available(MANDATE) == BUDGET
+
+    released_again = s._release(auth, "duplicate path")
+    assert released_again is False
+    assert ledger.available(MANDATE) == BUDGET, "budget must not be credited twice"
+    ledger.check_invariant(MANDATE)

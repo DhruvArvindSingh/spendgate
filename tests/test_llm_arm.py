@@ -55,7 +55,7 @@ def test_client_refuses_without_a_key(monkeypatch):
     monkeypatch.delenv("OPENROUTER_API_KEY", raising=False)
     monkeypatch.delenv("OPENROUTER_KEY", raising=False)
     with pytest.raises(LlmUnavailable):
-        OpenRouter()._client = None or OpenRouter().client()
+        OpenRouter().client()
 
 
 def test_runner_exits_nonzero_without_a_key():

@@ -31,7 +31,8 @@ from spendgate import (  # noqa: E402
     AgentRecord, AuthorizationRequest, Constraint, InMemoryLedger, Mandate,
     Outcome, SpendGate, fmt, rupees,
 )
-from spendgate.acp import AcpFactResolver  # noqa: E402
+from spendgate.acp import AcpFactResolver
+from spendgate.ledger import InMemoryAnchor  # noqa: E402
 from spendgate.dotenv import find_and_load  # noqa: E402
 from spendgate.merchant import MERCHANT_ID, serve  # noqa: E402
 from spendgate.rail import RailError, RazorpayRail  # noqa: E402
@@ -73,7 +74,7 @@ def main() -> int:
     now = datetime.now(timezone.utc)
 
     with serve() as (url, mstate):
-        ledger = InMemoryLedger()
+        ledger = InMemoryLedger(anchor=InMemoryAnchor())
         ledger.open_account(MANDATE, rupees(15_000))
         earlier = now - timedelta(hours=3)
         ledger.reserve(MANDATE, "seed", rupees(500), earlier, MERCHANT_ID)

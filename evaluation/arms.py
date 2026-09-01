@@ -210,7 +210,9 @@ class SpendGateArm:
 def build_spendgate_arm(ctx: ArmContext, mandate, budget_minor: int) -> SpendGateArm:
     from spendgate import AgentRecord
 
-    ledger = InMemoryLedger()
+    from spendgate.ledger import InMemoryAnchor
+
+    ledger = InMemoryLedger(anchor=InMemoryAnchor())
     ledger.open_account(MANDATE, budget_minor)
     # A prior settled purchase two hours back, so the merchant is not first-seen
     # (R31) and the seed sits outside the aggregate window.

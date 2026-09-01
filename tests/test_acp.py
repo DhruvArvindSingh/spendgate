@@ -177,3 +177,33 @@ def test_create_is_idempotent(merchant):
     a = quote(url, "SPK-14", key="same-key")
     b = quote(url, "SPK-14", key="same-key")
     assert a == b, "same Idempotency-Key must not create a second session"
+
+
+def test_merchant_that_is_up_but_broken_is_treated_as_unavailable(merchant):
+    """R15 / A13. A 5xx is a different failure from an unreachable host, and it
+    must not fall through to parsing whatever the error body happened to be.
+    Found by mutation testing: nothing covered this path."""
+    url, state = merchant
+    sid = quote(url, "SPK-14")
+    resolver = AcpFactResolver(url, AGENT, state.secret)
+    assert resolver.resolve(sid).total_minor == rupees(1_200)
+
+    state.force_status = 500
+    with pytest.raises(FactsUnavailable):
+        resolver.resolve(sid)
+
+    state.force_status = 503
+    with pytest.raises(FactsUnavailable):
+        resolver.resolve(sid)
+
+
+def test_a_broken_merchant_denies_rather_than_approving(merchant):
+    """The consequence: fail closed, all the way through the pipeline."""
+    url, state = merchant
+    sid = quote(url, "SPK-14")
+    g = gate(url, state)
+    state.force_status = 500
+    _, d = g.authorize(AuthorizationRequest(MANDATE, sid, AGENT))
+    assert d.outcome is Outcome.DENIED
+    assert d.reason_code == "facts_unavailable"
+    assert g.ledger.snapshot(MANDATE).reserved_minor == 0

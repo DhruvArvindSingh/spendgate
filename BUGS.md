@@ -298,3 +298,52 @@ when you wrote it. Four green tests certified a field that the vendor rejects on
 sight. The fake is worth having — it makes the state machine testable — but it
 can only ever confirm your model of the rail, never correct it. That correction
 costs one real API call, and it is the cheapest call in the project.
+
+---
+
+## 10 · Mutation testing found a claim the code did not support
+
+**Audit pass, after Phase 4.**
+
+Fourteen deliberate mutations, each breaking one safety property, to see which
+ones the suite would notice. Twelve died immediately. One turned out to be an
+equivalent mutant — neutering the `>= 500` branch in the fact resolver changes
+nothing, because the `!= 200` guard below it raises anyway, and a genuinely
+fail-open mutation (fabricating facts on error) *was* caught. Fine.
+
+The last one was real, and it was not a test gap. It was a false claim.
+
+**Mutation:** change the ledger hash from `H(prev_hash ‖ entry)` to `H(entry)`.
+Tests still passed. Investigating why produced this, run against the *unmutated*
+code:
+
+```
+real chain, tamper one amount    -> (False, 3)      caught
+after repairing every prev_hash  -> (True, None)    NOT caught
+```
+
+A hash chain alone is not tamper-evident. An attacker who can rewrite the log
+recomputes each hash and repairs each `prev_hash`, and verification passes. The
+only test I had tampered with an amount and stopped there — the easy half.
+
+The README already said the invariant covered "log tampering". It did not. The
+claim had been written before the mechanism existed, and nothing contradicted it
+because the test was as weak as the design.
+
+**Fixed by building the missing half.** `Anchor` holds the head hash outside the
+ledger (`InMemoryAnchor` for tests, `FileAnchor` for an append-only sink);
+`verify_against_anchor` compares against it; `check_invariant` uses it when one
+is configured and refuses to imply the guarantee when one is not. The anchor is
+now wired into the demo, the evaluation and the live check — it was pointless
+sitting in the library while every runnable path went without it. Demo section 7
+performs the full rewrite on screen and gets caught.
+
+Two smaller things the same pass turned up: `reconcile` released a reservation
+unconditionally and raised `KeyError` when there was nothing held — in the one
+code path whose whole job is recovering after a crash — and the README's test
+count had drifted from the suite.
+
+**The lesson worth keeping:** tests written by the same person who wrote the
+design share its blind spots. Mutation testing does not — it asks whether the
+suite can *tell the difference*, and the answer pointed straight at a sentence I
+had believed for four days.

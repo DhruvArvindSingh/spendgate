@@ -24,7 +24,7 @@ payment tool or has to ask.
 | **Unauthorized value released** | **₹2,063,000** | **₹0** |
 | Hostile cases contained | 17/145 | **160/160** |
 | False refusals on 50 benign purchases | 0.0% | 0.0% |
-| p95 decision latency | 57.71 ms | 60.37 ms |
+| p95 decision latency | 65.2 ms | 58.66 ms |
 
 Arm A is a good-faith implementation of what most agent-payment systems do today:
 a per-transaction cap, a running monthly total, a prohibited-category list. Its
@@ -59,7 +59,7 @@ on one.
 ```
 $ python -m evaluation.run       # 210 cases x 2 arms, ~24s -> results/full.json
 $ python -m evaluation.report    # -> results/report.html
-$ python -m pytest               # 157 passed
+$ python -m pytest               # 166 passed
 $ python demo.py                 # spins up the merchant on a real socket
 ```
 
@@ -272,10 +272,20 @@ test:
 Σ COMMIT − Σ CREDIT + Σ open RESERVE  ≤  budget_max
 available = budget_max − settled − reserved  ≥  0
 chain_valid                                  # every hash links
+head == anchor.head                          # only when an anchor is configured
 ```
 
-One assertion covering double-spend, budget leakage from failed payments, refund
-accounting, and log tampering.
+One assertion covering double-spend, budget leakage from failed payments and
+refund accounting.
+
+**On tamper-evidence, precisely.** A hash chain by itself is *not* tamper-evident.
+An attacker who can rewrite the log can recompute every hash and repair every
+`prev_hash`, and `verify_chain` will pass it —
+`test_a_repaired_chain_defeats_internal_verification` proves that against this
+very code. Detection needs the head hash held somewhere the rewrite cannot reach,
+which is what `Anchor` is for. `check_invariant` uses it when one is configured
+and `verify_against_anchor` says so plainly when one is not. Mutation testing
+found this: the claim was in the README before the mechanism was in the code.
 
 ### The fact resolver
 
@@ -338,7 +348,7 @@ evaluation/
   llm.py          OpenRouter client for the LLM arm
   llm_agent.py    the two tool surfaces handed to a real model
   report.py       results/full.json -> a standalone HTML report
-tests/            157 tests; test_coverage.py asserts 37/37 rules are tripped
+tests/            166 tests; test_coverage.py asserts 37/37 rules are tripped
 results/          committed raw output
 demo.py           the whole stack, end to end
 ```
@@ -346,11 +356,19 @@ demo.py           the whole stack, end to end
 ## Run it
 
 ```bash
-python -m pytest             # 157 tests
-python demo.py               # the walkthrough, on a real socket
-python -m evaluation.run     # the corpus -> results/full.json
-python -m evaluation.report  # -> results/report.html
+python -m pytest                    # 166 tests
+python demo.py                      # the walkthrough, on a real socket
+python -m evaluation.run            # the corpus -> results/full.json
+python -m evaluation.report         # -> results/report.html
+python scripts/mutation_test.py     # can the suite tell the difference?
+python scripts/verify_credentials.py
+python scripts/live_rail_check.py   # needs rzp_test_* keys
 ```
+
+`mutation_test.py` breaks one safety property at a time and checks the suite
+notices. 13 of 14 mutations are killed; the fourteenth is a documented
+equivalent mutant. It is how [`BUGS.md`](BUGS.md) §10 was found — a claim in
+this README that the code did not support.
 
 Python 3.12+. The engine and ledger have no third-party dependencies; the HTTP
 boundary needs `httpx`, `fastapi` and `uvicorn`, and the LLM arm needs `openai`.

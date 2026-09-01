@@ -73,6 +73,9 @@ class MerchantState:
     api_key: str = "acp_test_key"
     hostile: bool = False
     reprice_to: int | None = None          # A6: change the price after quoting
+    #: Force a status on retrieve, to exercise the fail-closed path. A merchant
+    #: that is up but broken is a different failure from one that is unreachable.
+    force_status: int | None = None
     sessions: dict[str, Session] = field(default_factory=dict)
     idempotency: dict[str, str] = field(default_factory=dict)
     lock: threading.Lock = field(default_factory=threading.Lock)
@@ -185,6 +188,9 @@ def build_app(state: MerchantState | None = None) -> FastAPI:
     def retrieve(session_id: str, authorization: str = Header(None),
                  api_version: str = Header(None, alias="API-Version")):
         authorise(authorization, api_version)
+        if state.force_status is not None:
+            raise _err(state.force_status, "server_error", "server_error",
+                       "The merchant is having a bad day")
         s = state.sessions.get(session_id)
         if s is None:
             raise _err(404, "invalid_request", "session_not_found", "No such checkout session")

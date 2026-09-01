@@ -73,6 +73,8 @@ def build(
     escalation: dict | None = None,
     agent_transcript: str | None = None,
 ) -> EvidenceBundle:
+    anchored, anchor_note = (ledger.verify_against_anchor(mandate.mandate_id)
+                             if hasattr(ledger, "verify_against_anchor") else (False, "n/a"))
     entries = [e for e in ledger.entries(mandate.mandate_id)
                if e.authorization_id in (authorization_id, f"{mandate.mandate_id}:{facts.checkout_session_id}")]
     chain_ok, bad = ledger.verify_chain(mandate.mandate_id)
@@ -125,13 +127,17 @@ def build(
         "escalation": escalation,
         "settlement": settlement,
 
-        # Where this sits in the tamper-evident ledger.
+        # Where this sits in the ledger. chain_valid alone is internal
+        # consistency; a rewrite that repaired every prev_hash would still pass
+        # it. `anchored` is the claim that survives a competent attacker.
         "ledger": {
             "entries": [{"seq": e.seq, "kind": e.kind.value, "amount_minor": e.amount_minor,
                          "at": e.at, "hash": e.hash, "prev_hash": e.prev_hash}
                         for e in entries],
             "chain_valid": chain_ok,
             "first_bad_seq": bad,
+            "anchored": anchored,
+            "anchor_note": anchor_note,
         },
     }
     signature = hmac.new(secret.encode(), canonical(payload).encode(),

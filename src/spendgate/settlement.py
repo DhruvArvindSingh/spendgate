@@ -92,6 +92,19 @@ class Settlement:
     def _now(self) -> datetime:
         return self.clock()
 
+    def _release(self, auth: Authorization, why: str) -> bool:
+        """Release only if something is still held.
+
+        Reconciliation and webhook handling can both reach the same
+        authorization, and either may arrive after a crash. Asking first keeps
+        the recovery path from raising, which would be the worst place for it.
+        """
+        if not self.ledger.has_open_reservation(auth.mandate_id, auth.auth_id):
+            self._alert(f"{auth.auth_id}: nothing held to release ({why})")
+            return False
+        self.ledger.release(auth.mandate_id, auth.auth_id, self._now())
+        return True
+
     def _alert(self, message: str) -> None:
         self.anomalies.append(message)
         if callable(self.on_alert):
@@ -118,7 +131,7 @@ class Settlement:
                 # A refused request never moved money, so the budget is safe to
                 # return - the distinction the whole module turns on.
                 auth.to(AuthState.FAILED, f"order rejected: {exc}")
-                self.ledger.release(auth.mandate_id, auth.auth_id, self._now())
+                self._release(auth, "order rejected")
                 return auth
             auth.order_id = order["id"]
             auth.to(AuthState.EXECUTING, f"order {order['id']}")
@@ -200,7 +213,7 @@ class Settlement:
                 self.rail.refund(event.payment_id, captured)
             except RailError as exc:
                 self._alert(f"refund after mismatch failed: {exc}")
-            self.ledger.release(auth.mandate_id, auth.auth_id, self._now())
+            self._release(auth, "amount mismatch")
             return auth
 
         self.ledger.commit(
@@ -219,7 +232,7 @@ class Settlement:
             self._alert(f"late payment.failed on {auth.state.value} {auth.auth_id}")
             return auth
         auth.payment_id = event.payment_id
-        self.ledger.release(auth.mandate_id, auth.auth_id, self._now())
+        self._release(auth, "payment failed")
         auth.to(AuthState.FAILED, event.error_description or "payment failed")
         return auth
 
@@ -247,7 +260,7 @@ class Settlement:
 
             if auth.order_id is None:
                 # No order exists, so nothing could have been charged.
-                self.ledger.release(auth.mandate_id, auth.auth_id, self._now())
+                self._release(auth, "order was never created")
                 auth.to(AuthState.FAILED, "reconciled: order was never created")
                 return auth
 
@@ -265,7 +278,7 @@ class Settlement:
                 if captured["amount"] != auth.approved_minor:
                     auth.to(AuthState.MISMATCH, "reconciled with wrong amount")
                     self._alert(f"amount_mismatch on reconcile for {auth_id}")
-                    self.ledger.release(auth.mandate_id, auth.auth_id, self._now())
+                    self._release(auth, "reconciled with wrong amount")
                     return auth
                 self.ledger.commit(
                     auth.mandate_id, auth.auth_id, self._now(),
@@ -276,7 +289,7 @@ class Settlement:
                 return auth
 
             if payments and all(p.get("status") == "failed" for p in payments):
-                self.ledger.release(auth.mandate_id, auth.auth_id, self._now())
+                self._release(auth, "all attempts failed")
                 auth.to(AuthState.FAILED, "reconciled: all attempts failed")
                 return auth
 
@@ -291,7 +304,7 @@ class Settlement:
                         f"attempts); holding for another {remaining}s")
                 return auth
 
-            self.ledger.release(auth.mandate_id, auth.auth_id, self._now())
+            self._release(auth, "unpaid past the TTL")
             auth.to(AuthState.ABANDONED,
                     f"unpaid after {int(held_for)}s; reservation released. "
                     "The order stays payable — a late capture will be refunded.")

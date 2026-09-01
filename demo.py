@@ -23,7 +23,8 @@ from spendgate import (  # noqa: E402
     AgentRecord, AuthorizationRequest, Constraint, InMemoryLedger, Mandate,
     Outcome, SpendGate, fmt, rupees,
 )
-from spendgate.acp import AcpFactResolver  # noqa: E402
+from spendgate.acp import AcpFactResolver
+from spendgate.ledger import InMemoryAnchor  # noqa: E402
 from spendgate.merchant import CATALOG, MERCHANT_ID, serve  # noqa: E402
 from spendgate.rail import FakeRazorpay  # noqa: E402
 from spendgate.settlement import AuthState, Authorization, Settlement  # noqa: E402
@@ -50,7 +51,7 @@ class Demo:
     def __init__(self, url, mstate):
         self.clock = {"t": datetime.now(timezone.utc)}
         mstate.clock = lambda: self.clock["t"]      # one clock for the whole demo
-        self.ledger = InMemoryLedger()
+        self.ledger = InMemoryLedger(anchor=InMemoryAnchor())
         self.ledger.open_account(MANDATE, rupees(15_000))
         earlier = self.clock["t"] - timedelta(hours=2)
         self.ledger.reserve(MANDATE, "seed", rupees(500), earlier, MERCHANT_ID)
@@ -146,33 +147,43 @@ def main() -> int:
         print(f"  {D}Each split was legal on its own. The assembled pattern was not.")
         print(f"  Escalated, not refused — the owner may genuinely want the item.{E}")
 
+        # Sections 4-6 each get a clean world: the aggregate rule is stateful,
+        # so reusing one ledger would have earlier sections shadow later ones.
         # 4 -------------------------------------------------------------
         head("4 · A payment fails")
+        d = Demo(url, mstate)
         before = d.ledger.available(MANDATE)
         sid, dec = d.ask("RICE-5", "₹450 rice", key="rice")
         auth = d.settle.execute(
             Authorization(f"{MANDATE}:{sid}", MANDATE, sid, dec.amount_minor, MERCHANT_ID))
         held = d.ledger.available(MANDATE)
         auth = d.settle_it(sid, dec, fail=True) or auth
-        print(f"  {D}available  {fmt(before)} → {fmt(held)} {D}(held) → "
+        print(f"  {D}available  {fmt(before)} → {fmt(held)} (held) → "
               f"{G}{fmt(d.ledger.available(MANDATE))}{E}{D} (returned on {auth.state.value}){E}")
 
         # 5 -------------------------------------------------------------
         head("5 · A payment times out — outcome unknown")
+        d = Demo(url, mstate)
         sid, dec = d.ask("SPK-14", "₹1,200 speaker", key="tmo")
         d.rail.timeout_next = True
         auth = d.settle.execute(
             Authorization(f"{MANDATE}:{sid}", MANDATE, sid, dec.amount_minor, MERCHANT_ID))
-        held = d.ledger.snapshot(MANDATE)
-        print(f"  {D}state {Y}{auth.state.value}{E}{D}   reserved {fmt(held.reserved_minor)}"
-              f"   settled {fmt(held.settled_minor)}{E}")
+        snap = d.ledger.snapshot(MANDATE)
+        print(f"  {D}state {Y}{auth.state.value}{E}{D}   reserved {fmt(snap.reserved_minor)}"
+              f"   settled {fmt(snap.settled_minor)}{E}")
         print(f"  {D}Neither committed nor released. Releasing would invite a double-spend")
         print(f"  if it settles late; committing would invent a charge.{E}")
         auth = d.settle.reconcile(auth.auth_id)
-        print(f"  {D}reconciled via the rail → {auth.state.value}, budget returned{E}")
+        print(f"  {D}reconciled inside the TTL → {auth.state.value}{E}")
+        d.clock["t"] += timedelta(seconds=d.settle.reservation_ttl_seconds + 60)
+        auth.to(AuthState.INDETERMINATE, "retry past the TTL")
+        auth = d.settle.reconcile(auth.auth_id)
+        print(f"  {D}past the TTL → {auth.state.value}, budget "
+              f"{fmt(d.ledger.available(MANDATE))} returned{E}")
 
         # 6 -------------------------------------------------------------
         head("6 · The merchant captures more than was approved")
+        d = Demo(url, mstate)
         sid, dec = d.ask("RICE-5", "₹450 rice", key="mismatch")
         auth = d.settle_it(sid, dec, capture=rupees(9_000))
         print(f"  {D}state {R}{auth.state.value}{E}{D} — not settled, refunded, owner alerted{E}")
@@ -180,7 +191,30 @@ def main() -> int:
             print(f"  {R}!{E} {D}{a}{E}")
 
         # 7 -------------------------------------------------------------
-        head("7 · The ledger")
+        head("7 · Rewriting the ledger, and being caught")
+        import dataclasses
+        entries = d.ledger._acct(MANDATE).entries
+        pristine = list(entries)                    # to put the ledger back after
+        before = d.ledger.verify_against_anchor(MANDATE)
+        print(f"  {D}before        chain {d.ledger.verify_chain(MANDATE)[0]}   "
+              f"anchor {before[0]}{E}")
+        target = next(i for i, e in enumerate(entries) if e.kind.value == "COMMIT")
+        entries[target] = dataclasses.replace(entries[target], amount_minor=rupees(1))
+        print(f"  {D}edit entry {entries[target].seq} down to ₹1 …{E}")
+        print(f"  {D}chain now {d.ledger.verify_chain(MANDATE)[0]} — a naive edit is caught{E}")
+        for i in range(1, len(entries)):
+            entries[i] = dataclasses.replace(entries[i], prev_hash=entries[i - 1].hash)
+        ok_chain = d.ledger.verify_chain(MANDATE)[0]
+        ok_anchor, why = d.ledger.verify_against_anchor(MANDATE)
+        print(f"  {D}… then repair every prev_hash link{E}")
+        print(f"  chain  {G if ok_chain else R}{ok_chain}{E}  {D}← a hash chain alone is "
+              f"not enough{E}")
+        print(f"  anchor {G if not ok_anchor else R}{not ok_anchor} caught it{E}  {D}{why}{E}")
+        entries[:] = pristine                       # undo the tamper for section 8
+        assert d.ledger.verify_against_anchor(MANDATE)[0], "restore failed"
+
+        # 8 -------------------------------------------------------------
+        head("8 · The ledger")
         for e in d.ledger.entries(MANDATE):
             print(f"  {e.seq:>3}  {e.kind.value:<8} {fmt(e.amount_minor):>11}  {D}{e.hash[7:19]}…{E}")
         ok, bad = d.ledger.verify_chain(MANDATE)
