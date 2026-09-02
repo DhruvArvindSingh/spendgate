@@ -390,3 +390,40 @@ In the corpus it now fires 20 times and drops total prompts raised from 108 to
 One structural fix came with it: the rule count is now derived from the registry
 rather than asserted against a literal. `assert len(REGISTRY) == 37` in one file
 and "37 rules" in three others is exactly how a document drifts from its code.
+
+---
+
+## 12 · A test that greps for a line asserts the line exists, not that it works
+
+**Full audit, after the multi-model evaluation.**
+
+Six assertions in the suite checked source text rather than behaviour. Two of
+them were guarding properties the whole evaluation rests on, and one had already
+failed at exactly that job:
+
+`test_every_model_gets_its_own_merchant_state` grepped `run_models.py` for
+`mstate = MerchantState()`. The line was there. It also did nothing — the HTTP
+server holds the state it was *constructed* with, so those per-arm objects were
+never read by anything, and six models running in parallel shared one merchant's
+global flags. The test passed throughout.
+
+Replaced with tests that drive the real thing:
+
+- **`test_repricing_one_basket_leaves_another_alone`** quotes two baskets,
+  reprices one through the endpoint, and asserts the other is untouched. It
+  cannot pass while the global path exists.
+- **`test_cost_is_read_from_the_response_not_estimated`** feeds a response
+  through the recorder and checks the cost that comes out, including that a
+  response *without* a cost field adds nothing.
+- **`test_the_oracle_does_not_import_the_engine`** now imports the adjudicator
+  in a clean interpreter and inspects `sys.modules`, instead of searching for
+  import statements — an indirect import would never have shown up in a text
+  search. Verified by adding the import deliberately and watching it fail.
+
+Three genuinely dead methods were removed in the same pass (`fetch_payment_link`,
+`raised_in_window`, `to_json`). In a project whose pitch is that everything is
+tested, an untested method reads as an untested claim.
+
+**The lesson worth keeping:** a grep-style assertion tests a spelling. It will
+survive any refactor that keeps the words and loses the behaviour — which is the
+refactor most likely to break something. Where the property matters, drive it.

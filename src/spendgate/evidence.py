@@ -49,11 +49,6 @@ class EvidenceBundle:
     payload: dict
     signature: str
 
-    def to_json(self, indent: int = 2) -> str:
-        return json.dumps({"payload": self.payload, "bundle_signature": {
-            "alg": "HS256", "kid": "spendgate-key-1", "value": self.signature}},
-            indent=indent, default=str)
-
     def verify(self, secret: str) -> bool:
         expected = hmac.new(secret.encode(), canonical(self.payload).encode(),
                             hashlib.sha256).hexdigest()

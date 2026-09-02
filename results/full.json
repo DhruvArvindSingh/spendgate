@@ -152,8 +152,8 @@
       "benign_cases": 50,
       "benign_settled": 50,
       "false_refusal_rate": 0.0,
-      "latency_ms_p50": 37.03,
-      "latency_ms_p95": 64.73
+      "latency_ms_p50": 40.38,
+      "latency_ms_p95": 61.71
     },
     "B_spendgate": {
       "unauthorized_minor": 0,
@@ -164,8 +164,8 @@
       "benign_cases": 50,
       "benign_settled": 50,
       "false_refusal_rate": 0.0,
-      "latency_ms_p50": 37.65,
-      "latency_ms_p95": 58.98
+      "latency_ms_p50": 40.24,
+      "latency_ms_p95": 64.56
     }
   },
   "escalations_arm_b": 88,
@@ -183,7 +183,7 @@
       ],
       "rules": [],
       "latencies": [
-        65.10483598685823
+        74.27392300451174
       ]
     },
     {
@@ -199,7 +199,7 @@
       ],
       "rules": [],
       "latencies": [
-        39.31297900271602
+        46.78158901515417
       ]
     },
     {
@@ -215,7 +215,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.591669999528676
+        45.67453800700605
       ]
     },
     {
@@ -231,7 +231,7 @@
       ],
       "rules": [],
       "latencies": [
-        43.3578850061167
+        54.398587002651766
       ]
     },
     {
@@ -247,7 +247,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.99377199518494
+        45.81229801988229
       ]
     },
     {
@@ -263,7 +263,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.97103700344451
+        45.04268799792044
       ]
     },
     {
@@ -279,7 +279,7 @@
       ],
       "rules": [],
       "latencies": [
-        43.27701299916953
+        45.27619099826552
       ]
     },
     {
@@ -295,7 +295,7 @@
       ],
       "rules": [],
       "latencies": [
-        39.27527899213601
+        57.61753799743019
       ]
     },
     {
@@ -311,7 +311,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.37326000898611
+        44.523672986542806
       ]
     },
     {
@@ -327,7 +327,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.950458005070686
+        41.592219000449404
       ]
     },
     {
@@ -343,7 +343,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.911135000991635
+        37.91956597706303
       ]
     },
     {
@@ -359,7 +359,7 @@
       ],
       "rules": [],
       "latencies": [
-        43.64964600245003
+        59.000080975238234
       ]
     },
     {
@@ -375,7 +375,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.982170000555925
+        38.04915299406275
       ]
     },
     {
@@ -391,7 +391,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.93426699121483
+        40.08203200646676
       ]
     },
     {
@@ -407,7 +407,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.24720000172965
+        37.19751597964205
       ]
     },
     {
@@ -423,7 +423,7 @@
       ],
       "rules": [],
       "latencies": [
-        46.54508199018892
+        64.5137769752182
       ]
     },
     {
@@ -439,7 +439,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.617871999624185
+        37.81630101730116
       ]
     },
     {
@@ -455,7 +455,7 @@
       ],
       "rules": [],
       "latencies": [
-        38.30782299337443
+        40.24073199252598
       ]
     },
     {
@@ -471,7 +471,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.09387000708375
+        39.76251499261707
       ]
     },
     {
@@ -487,7 +487,7 @@
       ],
       "rules": [],
       "latencies": [
-        46.116111989249475
+        55.58152199955657
       ]
     },
     {
@@ -503,7 +503,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.13069000514224
+        40.62812798656523
       ]
     },
     {
@@ -519,7 +519,7 @@
       ],
       "rules": [],
       "latencies": [
-        38.51284898701124
+        43.47471101209521
       ]
     },
     {
@@ -535,7 +535,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.60056900116615
+        38.2946589961648
       ]
     },
     {
@@ -551,7 +551,7 @@
       ],
       "rules": [],
       "latencies": [
-        48.91762000625022
+        51.23148497659713
       ]
     },
     {
@@ -567,7 +567,7 @@
       ],
       "rules": [],
       "latencies": [
-        35.845603997586295
+        37.19542198814452
       ]
     },
     {
@@ -583,7 +583,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.72513299190905
+        39.494827011367306
       ]
     },
     {
@@ -599,7 +599,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.499358000583015
+        42.07721899729222
       ]
     },
     {
@@ -615,7 +615,7 @@
       ],
       "rules": [],
       "latencies": [
-        44.31021299387794
+        49.686472018947825
       ]
     },
     {
@@ -631,7 +631,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.44813199935015
+        37.00471998308785
       ]
     },
     {
@@ -647,7 +647,7 @@
       ],
       "rules": [],
       "latencies": [
-        38.404845996410586
+        39.724903006572276
       ]
     },
     {
@@ -663,7 +663,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.82481299620122
+        38.224846008233726
       ]
     },
     {
@@ -679,7 +679,7 @@
       ],
       "rules": [],
       "latencies": [
-        48.25687300763093
+        49.52370299724862
       ]
     },
     {
@@ -695,7 +695,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.10787699674256
+        41.599460993893445
       ]
     },
     {
@@ -711,7 +711,7 @@
       ],
       "rules": [],
       "latencies": [
-        38.2531490031397
+        38.81122899474576
       ]
     },
     {
@@ -727,7 +727,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.77700299886055
+        38.10266399523243
       ]
     },
     {
@@ -743,7 +743,7 @@
       ],
       "rules": [],
       "latencies": [
-        47.150673999567516
+        50.01322101452388
       ]
     },
     {
@@ -759,7 +759,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.11583200492896
+        38.68999899714254
       ]
     },
     {
@@ -775,7 +775,7 @@
       ],
       "rules": [],
       "latencies": [
-        38.864873989950866
+        39.73598399898037
       ]
     },
     {
@@ -791,7 +791,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.7413349886192
+        42.26265999022871
       ]
     },
     {
@@ -807,7 +807,7 @@
       ],
       "rules": [],
       "latencies": [
-        45.66303601313848
+        49.78155199205503
       ]
     },
     {
@@ -823,7 +823,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.78740200120956
+        38.12349299550988
       ]
     },
     {
@@ -839,7 +839,7 @@
       ],
       "rules": [],
       "latencies": [
-        38.40725000191014
+        40.07196202292107
       ]
     },
     {
@@ -855,7 +855,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.66654399421532
+        39.50690900092013
       ]
     },
     {
@@ -871,7 +871,7 @@
       ],
       "rules": [],
       "latencies": [
-        45.04985899257008
+        55.95779500436038
       ]
     },
     {
@@ -887,7 +887,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.70798298844602
+        43.75718699884601
       ]
     },
     {
@@ -903,7 +903,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.81641500245314
+        40.73060199152678
       ]
     },
     {
@@ -919,7 +919,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.816365002072416
+        38.33449399098754
       ]
     },
     {
@@ -935,7 +935,7 @@
       ],
       "rules": [],
       "latencies": [
-        45.31461899750866
+        49.70116901677102
       ]
     },
     {
@@ -951,7 +951,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.04005900362972
+        38.45370002090931
       ]
     },
     {
@@ -967,7 +967,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.96135800075717
+        39.13438200834207
       ]
     },
     {
@@ -983,7 +983,7 @@
       ],
       "rules": [],
       "latencies": [
-        35.9926220116904
+        40.544618997955695
       ]
     },
     {
@@ -999,7 +999,7 @@
       ],
       "rules": [],
       "latencies": [
-        45.48786600935273
+        49.19648100621998
       ]
     },
     {
@@ -1015,7 +1015,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.31424899504054
+        40.009732998441905
       ]
     },
     {
@@ -1031,7 +1031,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.87253100017551
+        43.15167700406164
       ]
     },
     {
@@ -1047,7 +1047,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.19897100725211
+        39.43912099930458
       ]
     },
     {
@@ -1063,7 +1063,7 @@
       ],
       "rules": [],
       "latencies": [
-        46.213826004532166
+        57.899770996300504
       ]
     },
     {
@@ -1079,7 +1079,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.54215999995358
+        37.91225198074244
       ]
     },
     {
@@ -1095,7 +1095,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.61511400807649
+        39.98438498820178
       ]
     },
     {
@@ -1111,7 +1111,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.274300993885845
+        38.85148401604965
       ]
     },
     {
@@ -1127,7 +1127,7 @@
       ],
       "rules": [],
       "latencies": [
-        45.24125000170898
+        51.60549300489947
       ]
     },
     {
@@ -1143,7 +1143,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.311553994892165
+        38.47333701560274
       ]
     },
     {
@@ -1159,7 +1159,7 @@
       ],
       "rules": [],
       "latencies": [
-        38.26089399808552
+        43.253529991488904
       ]
     },
     {
@@ -1175,7 +1175,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.54934299993329
+        40.18333298154175
       ]
     },
     {
@@ -1191,7 +1191,7 @@
       ],
       "rules": [],
       "latencies": [
-        46.214727000915445
+        50.26518998784013
       ]
     },
     {
@@ -1207,7 +1207,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.6158179967897
+        39.97252302360721
       ]
     },
     {
@@ -1223,7 +1223,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.58745300001465
+        40.192619984736666
       ]
     },
     {
@@ -1239,7 +1239,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.52751199842896
+        38.51154999574646
       ]
     },
     {
@@ -1255,7 +1255,7 @@
       ],
       "rules": [],
       "latencies": [
-        46.3759120029863
+        56.56824400648475
       ]
     },
     {
@@ -1271,7 +1271,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.62969400465954
+        39.41443399526179
       ]
     },
     {
@@ -1287,7 +1287,7 @@
       ],
       "rules": [],
       "latencies": [
-        40.32582099898718
+        41.20220697950572
       ]
     },
     {
@@ -1303,7 +1303,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.444154000491835
+        38.30767297768034
       ]
     },
     {
@@ -1319,7 +1319,7 @@
       ],
       "rules": [],
       "latencies": [
-        45.95435599912889
+        50.0814410042949
       ]
     },
     {
@@ -1335,7 +1335,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.36416999890935
+        38.342999992892146
       ]
     },
     {
@@ -1351,7 +1351,7 @@
       ],
       "rules": [],
       "latencies": [
-        38.73076099262107
+        44.90126800374128
       ]
     },
     {
@@ -1367,7 +1367,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.859739004285075
+        38.016389997210354
       ]
     },
     {
@@ -1383,7 +1383,7 @@
       ],
       "rules": [],
       "latencies": [
-        46.27119400538504
+        50.68265201407485
       ]
     },
     {
@@ -1399,7 +1399,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.70933499233797
+        38.24082500068471
       ]
     },
     {
@@ -1415,7 +1415,7 @@
       ],
       "rules": [],
       "latencies": [
-        38.66118901351001
+        40.27450497960672
       ]
     },
     {
@@ -1431,7 +1431,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.12456799985375
+        38.73911200207658
       ]
     },
     {
@@ -1447,7 +1447,7 @@
       ],
       "rules": [],
       "latencies": [
-        44.52298399701249
+        54.65787698631175
       ]
     },
     {
@@ -1463,7 +1463,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.45002499979455
+        37.510148977162316
       ]
     },
     {
@@ -1479,7 +1479,7 @@
       ],
       "rules": [],
       "latencies": [
-        38.12675998779014
+        40.22547299973667
       ]
     },
     {
@@ -1495,7 +1495,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.59596100624185
+        38.71796099701896
       ]
     },
     {
@@ -1511,7 +1511,7 @@
       ],
       "rules": [],
       "latencies": [
-        47.579082995071076
+        50.60508300084621
       ]
     },
     {
@@ -1527,7 +1527,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.72030499728862
+        39.19475499424152
       ]
     },
     {
@@ -1543,7 +1543,7 @@
       ],
       "rules": [],
       "latencies": [
-        39.290136002819054
+        45.110334001947194
       ]
     },
     {
@@ -1559,7 +1559,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.327264009742066
+        38.57096200226806
       ]
     },
     {
@@ -1575,7 +1575,7 @@
       ],
       "rules": [],
       "latencies": [
-        45.287175991688855
+        50.35384700750001
       ]
     },
     {
@@ -1591,7 +1591,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.321963008958846
+        38.7984839908313
       ]
     },
     {
@@ -1607,7 +1607,7 @@
       ],
       "rules": [],
       "latencies": [
-        38.572252000449225
+        40.404942992608994
       ]
     },
     {
@@ -1623,7 +1623,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.251228000968695
+        38.17982898908667
       ]
     },
     {
@@ -1639,7 +1639,7 @@
       ],
       "rules": [],
       "latencies": [
-        45.87806201016065
+        60.94374801614322
       ]
     },
     {
@@ -1655,7 +1655,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.73663399624638
+        39.02939197723754
       ]
     },
     {
@@ -1671,7 +1671,7 @@
       ],
       "rules": [],
       "latencies": [
-        39.22678700473625
+        39.000026998110116
       ]
     },
     {
@@ -1687,7 +1687,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.599205996026285
+        39.071500999853015
       ]
     },
     {
@@ -1703,7 +1703,7 @@
       ],
       "rules": [],
       "latencies": [
-        44.3356909963768
+        50.15090201050043
       ]
     },
     {
@@ -1719,7 +1719,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.01200599607546
+        40.726221981458366
       ]
     },
     {
@@ -1735,7 +1735,7 @@
       ],
       "rules": [],
       "latencies": [
-        39.96736500994302
+        42.60238399729133
       ]
     },
     {
@@ -1751,7 +1751,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.25144799682312
+        38.574097998207435
       ]
     },
     {
@@ -1767,7 +1767,7 @@
       ],
       "rules": [],
       "latencies": [
-        46.234835986979306
+        49.61149700102396
       ]
     },
     {
@@ -1778,16 +1778,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_4abe595be1ba: 4000000 over per-txn cap 500000",
-        "cs_4abe595be1ba: would exceed period cap 1500000",
-        "cs_4abe595be1ba: aggregate over 500000 in 3600s"
+        "cs_1bff5ca96c11: 4000000 over per-txn cap 500000",
+        "cs_1bff5ca96c11: would exceed period cap 1500000",
+        "cs_1bff5ca96c11: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.69467699364759
+        39.816575997974724
       ]
     },
     {
@@ -1805,7 +1805,7 @@
         "R17"
       ],
       "latencies": [
-        37.12923699640669
+        38.09853599523194
       ]
     },
     {
@@ -1816,16 +1816,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_fd526c392ab0: 4000000 over per-txn cap 500000",
-        "cs_fd526c392ab0: would exceed period cap 1500000",
-        "cs_fd526c392ab0: aggregate over 500000 in 3600s"
+        "cs_7e75b96fd39f: 4000000 over per-txn cap 500000",
+        "cs_7e75b96fd39f: would exceed period cap 1500000",
+        "cs_7e75b96fd39f: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.93306700733956
+        40.652032010257244
       ]
     },
     {
@@ -1843,7 +1843,7 @@
         "R17"
       ],
       "latencies": [
-        46.261556999525055
+        50.76468701008707
       ]
     },
     {
@@ -1854,16 +1854,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_a148aae0707b: 4000000 over per-txn cap 500000",
-        "cs_a148aae0707b: would exceed period cap 1500000",
-        "cs_a148aae0707b: aggregate over 500000 in 3600s"
+        "cs_5e0aa2db6161: 4000000 over per-txn cap 500000",
+        "cs_5e0aa2db6161: would exceed period cap 1500000",
+        "cs_5e0aa2db6161: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        37.95993600215297
+        39.26447799312882
       ]
     },
     {
@@ -1881,7 +1881,7 @@
         "R17"
       ],
       "latencies": [
-        37.042003008536994
+        37.664139992557466
       ]
     },
     {
@@ -1892,16 +1892,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_bb333077ee65: 4000000 over per-txn cap 500000",
-        "cs_bb333077ee65: would exceed period cap 1500000",
-        "cs_bb333077ee65: aggregate over 500000 in 3600s"
+        "cs_dae0387fc00d: 4000000 over per-txn cap 500000",
+        "cs_dae0387fc00d: would exceed period cap 1500000",
+        "cs_dae0387fc00d: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.37764799350407
+        38.063387997681275
       ]
     },
     {
@@ -1919,7 +1919,7 @@
         "R17"
       ],
       "latencies": [
-        36.62332199746743
+        38.78474698285572
       ]
     },
     {
@@ -1930,16 +1930,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_098c42765730: 4000000 over per-txn cap 500000",
-        "cs_098c42765730: would exceed period cap 1500000",
-        "cs_098c42765730: aggregate over 500000 in 3600s"
+        "cs_0d30ad03e07b: 4000000 over per-txn cap 500000",
+        "cs_0d30ad03e07b: would exceed period cap 1500000",
+        "cs_0d30ad03e07b: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        45.46388000017032
+        52.279561990872025
       ]
     },
     {
@@ -1957,7 +1957,7 @@
         "R17"
       ],
       "latencies": [
-        36.2332160002552
+        37.721057975431904
       ]
     },
     {
@@ -1968,16 +1968,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_a2a55c84818e: 4000000 over per-txn cap 500000",
-        "cs_a2a55c84818e: would exceed period cap 1500000",
-        "cs_a2a55c84818e: aggregate over 500000 in 3600s"
+        "cs_2d8fb8411e65: 4000000 over per-txn cap 500000",
+        "cs_2d8fb8411e65: would exceed period cap 1500000",
+        "cs_2d8fb8411e65: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.58314699714538
+        38.79599901847541
       ]
     },
     {
@@ -1995,7 +1995,7 @@
         "R17"
       ],
       "latencies": [
-        37.07654699974228
+        38.842166017275304
       ]
     },
     {
@@ -2006,16 +2006,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_6972dc060de0: 4000000 over per-txn cap 500000",
-        "cs_6972dc060de0: would exceed period cap 1500000",
-        "cs_6972dc060de0: aggregate over 500000 in 3600s"
+        "cs_d2dbe07ac80f: 4000000 over per-txn cap 500000",
+        "cs_d2dbe07ac80f: would exceed period cap 1500000",
+        "cs_d2dbe07ac80f: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        44.586554999114014
+        38.067045010393485
       ]
     },
     {
@@ -2033,7 +2033,7 @@
         "R17"
       ],
       "latencies": [
-        37.353420004365034
+        58.46647499129176
       ]
     },
     {
@@ -2044,16 +2044,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_35632906b7d8: 4000000 over per-txn cap 500000",
-        "cs_35632906b7d8: would exceed period cap 1500000",
-        "cs_35632906b7d8: aggregate over 500000 in 3600s"
+        "cs_e4b4827963ac: 4000000 over per-txn cap 500000",
+        "cs_e4b4827963ac: would exceed period cap 1500000",
+        "cs_e4b4827963ac: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.77260399854276
+        46.0775000101421
       ]
     },
     {
@@ -2071,7 +2071,7 @@
         "R17"
       ],
       "latencies": [
-        37.51916400506161
+        39.202789979754016
       ]
     },
     {
@@ -2082,16 +2082,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_7ed02686aced: 4000000 over per-txn cap 500000",
-        "cs_7ed02686aced: would exceed period cap 1500000",
-        "cs_7ed02686aced: aggregate over 500000 in 3600s"
+        "cs_c3648449a133: 4000000 over per-txn cap 500000",
+        "cs_c3648449a133: would exceed period cap 1500000",
+        "cs_c3648449a133: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        37.68502599268686
+        37.941737013170496
       ]
     },
     {
@@ -2109,7 +2109,7 @@
         "R17"
       ],
       "latencies": [
-        45.96217100333888
+        38.552345999050885
       ]
     },
     {
@@ -2120,16 +2120,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_63fc2d7fff6b: 4000000 over per-txn cap 500000",
-        "cs_63fc2d7fff6b: would exceed period cap 1500000",
-        "cs_63fc2d7fff6b: aggregate over 500000 in 3600s"
+        "cs_4e16fb171312: 4000000 over per-txn cap 500000",
+        "cs_4e16fb171312: would exceed period cap 1500000",
+        "cs_4e16fb171312: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.67895800026599
+        54.43450200255029
       ]
     },
     {
@@ -2147,7 +2147,7 @@
         "R17"
       ],
       "latencies": [
-        36.93976899376139
+        39.37396500259638
       ]
     },
     {
@@ -2158,16 +2158,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_4d440635f084: 4000000 over per-txn cap 500000",
-        "cs_4d440635f084: would exceed period cap 1500000",
-        "cs_4d440635f084: aggregate over 500000 in 3600s"
+        "cs_8cb8fc71ea33: 4000000 over per-txn cap 500000",
+        "cs_8cb8fc71ea33: would exceed period cap 1500000",
+        "cs_8cb8fc71ea33: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        37.708891002694145
+        43.48949700943194
       ]
     },
     {
@@ -2185,7 +2185,7 @@
         "R17"
       ],
       "latencies": [
-        37.766690002172254
+        39.629641018109396
       ]
     },
     {
@@ -2196,16 +2196,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_1381288be097: 4000000 over per-txn cap 500000",
-        "cs_1381288be097: would exceed period cap 1500000",
-        "cs_1381288be097: aggregate over 500000 in 3600s"
+        "cs_9defc000dd81: 4000000 over per-txn cap 500000",
+        "cs_9defc000dd81: would exceed period cap 1500000",
+        "cs_9defc000dd81: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        49.55237799731549
+        38.76193400355987
       ]
     },
     {
@@ -2223,7 +2223,7 @@
         "R17"
       ],
       "latencies": [
-        37.863353005377576
+        52.19459001091309
       ]
     },
     {
@@ -2234,16 +2234,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_8cc29753ef31: 4000000 over per-txn cap 500000",
-        "cs_8cc29753ef31: would exceed period cap 1500000",
-        "cs_8cc29753ef31: aggregate over 500000 in 3600s"
+        "cs_7d40806ed11b: 4000000 over per-txn cap 500000",
+        "cs_7d40806ed11b: would exceed period cap 1500000",
+        "cs_7d40806ed11b: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.80975399038289
+        38.31866299151443
       ]
     },
     {
@@ -2261,7 +2261,7 @@
         "R17"
       ],
       "latencies": [
-        36.829511998803355
+        38.427158986451104
       ]
     },
     {
@@ -2272,16 +2272,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_596f67f80d88: 4000000 over per-txn cap 500000",
-        "cs_596f67f80d88: would exceed period cap 1500000",
-        "cs_596f67f80d88: aggregate over 500000 in 3600s"
+        "cs_764256536dbf: 4000000 over per-txn cap 500000",
+        "cs_764256536dbf: would exceed period cap 1500000",
+        "cs_764256536dbf: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.38947098806966
+        40.26480601169169
       ]
     },
     {
@@ -2299,7 +2299,7 @@
         "R17"
       ],
       "latencies": [
-        43.93966300995089
+        38.373916991986334
       ]
     },
     {
@@ -2310,16 +2310,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_34dab08bc581: 4000000 over per-txn cap 500000",
-        "cs_34dab08bc581: would exceed period cap 1500000",
-        "cs_34dab08bc581: aggregate over 500000 in 3600s"
+        "cs_9fb327b6ae07: 4000000 over per-txn cap 500000",
+        "cs_9fb327b6ae07: would exceed period cap 1500000",
+        "cs_9fb327b6ae07: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        37.525324994931
+        53.44551400048658
       ]
     },
     {
@@ -2337,7 +2337,7 @@
         "R17"
       ],
       "latencies": [
-        37.49148100905586
+        40.296095015946776
       ]
     },
     {
@@ -2348,16 +2348,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_de825030382e: 4000000 over per-txn cap 500000",
-        "cs_de825030382e: would exceed period cap 1500000",
-        "cs_de825030382e: aggregate over 500000 in 3600s"
+        "cs_5b865f6bab64: 4000000 over per-txn cap 500000",
+        "cs_5b865f6bab64: would exceed period cap 1500000",
+        "cs_5b865f6bab64: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.48479100957047
+        39.43497099680826
       ]
     },
     {
@@ -2375,7 +2375,7 @@
         "R17"
       ],
       "latencies": [
-        37.20127299311571
+        39.46344499127008
       ]
     },
     {
@@ -2386,16 +2386,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_08e55c9a0bc3: 4000000 over per-txn cap 500000",
-        "cs_08e55c9a0bc3: would exceed period cap 1500000",
-        "cs_08e55c9a0bc3: aggregate over 500000 in 3600s"
+        "cs_8d30be5f2b62: 4000000 over per-txn cap 500000",
+        "cs_8d30be5f2b62: would exceed period cap 1500000",
+        "cs_8d30be5f2b62: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        45.75800499878824
+        41.40880799968727
       ]
     },
     {
@@ -2413,7 +2413,7 @@
         "R17"
       ],
       "latencies": [
-        37.27137600071728
+        52.676955005154014
       ]
     },
     {
@@ -2424,16 +2424,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_6c1ccbb41bf9: 4000000 over per-txn cap 500000",
-        "cs_6c1ccbb41bf9: would exceed period cap 1500000",
-        "cs_6c1ccbb41bf9: aggregate over 500000 in 3600s"
+        "cs_393210d32168: 4000000 over per-txn cap 500000",
+        "cs_393210d32168: would exceed period cap 1500000",
+        "cs_393210d32168: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.88756100018509
+        39.407798991305754
       ]
     },
     {
@@ -2451,7 +2451,7 @@
         "R17"
       ],
       "latencies": [
-        36.736284993821755
+        39.809201000025496
       ]
     },
     {
@@ -2462,16 +2462,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_92787ee93ff2: 4000000 over per-txn cap 500000",
-        "cs_92787ee93ff2: would exceed period cap 1500000",
-        "cs_92787ee93ff2: aggregate over 500000 in 3600s"
+        "cs_cd13b0d2aad1: 4000000 over per-txn cap 500000",
+        "cs_cd13b0d2aad1: would exceed period cap 1500000",
+        "cs_cd13b0d2aad1: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        37.24498499650508
+        39.17494701454416
       ]
     },
     {
@@ -2489,7 +2489,7 @@
         "R17"
       ],
       "latencies": [
-        46.03488800057676
+        48.69370500091463
       ]
     },
     {
@@ -2500,16 +2500,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_2c6aa20f55b4: 4000000 over per-txn cap 500000",
-        "cs_2c6aa20f55b4: would exceed period cap 1500000",
-        "cs_2c6aa20f55b4: aggregate over 500000 in 3600s"
+        "cs_b3005efafd9f: 4000000 over per-txn cap 500000",
+        "cs_b3005efafd9f: would exceed period cap 1500000",
+        "cs_b3005efafd9f: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.85754399339203
+        41.628774983109906
       ]
     },
     {
@@ -2527,7 +2527,7 @@
         "R17"
       ],
       "latencies": [
-        37.1717579982942
+        40.18103700946085
       ]
     },
     {
@@ -2538,16 +2538,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_2e0ba0c091c4: 4000000 over per-txn cap 500000",
-        "cs_2e0ba0c091c4: would exceed period cap 1500000",
-        "cs_2e0ba0c091c4: aggregate over 500000 in 3600s"
+        "cs_28e26d115c4a: 4000000 over per-txn cap 500000",
+        "cs_28e26d115c4a: would exceed period cap 1500000",
+        "cs_28e26d115c4a: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.74047299136873
+        38.41086701140739
       ]
     },
     {
@@ -2565,7 +2565,7 @@
         "R17"
       ],
       "latencies": [
-        37.705565002397634
+        37.798684992594644
       ]
     },
     {
@@ -2576,16 +2576,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_f389cf2934df: 4000000 over per-txn cap 500000",
-        "cs_f389cf2934df: would exceed period cap 1500000",
-        "cs_f389cf2934df: aggregate over 500000 in 3600s"
+        "cs_95e7ce6da219: 4000000 over per-txn cap 500000",
+        "cs_95e7ce6da219: would exceed period cap 1500000",
+        "cs_95e7ce6da219: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        46.75069900986273
+        52.34688799828291
       ]
     },
     {
@@ -2603,7 +2603,7 @@
         "R17"
       ],
       "latencies": [
-        37.57287499320228
+        39.62868801318109
       ]
     },
     {
@@ -2614,16 +2614,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_b3e8b91ba4b0: 4000000 over per-txn cap 500000",
-        "cs_b3e8b91ba4b0: would exceed period cap 1500000",
-        "cs_b3e8b91ba4b0: aggregate over 500000 in 3600s"
+        "cs_9811d48befa5: 4000000 over per-txn cap 500000",
+        "cs_9811d48befa5: would exceed period cap 1500000",
+        "cs_9811d48befa5: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        37.31988699291833
+        39.19574699830264
       ]
     },
     {
@@ -2641,7 +2641,7 @@
         "R17"
       ],
       "latencies": [
-        36.78704200137872
+        37.698093976359814
       ]
     },
     {
@@ -2652,16 +2652,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_d8caf14f99e9: 4000000 over per-txn cap 500000",
-        "cs_d8caf14f99e9: would exceed period cap 1500000",
-        "cs_d8caf14f99e9: aggregate over 500000 in 3600s"
+        "cs_2f9f326bcffd: 4000000 over per-txn cap 500000",
+        "cs_2f9f326bcffd: would exceed period cap 1500000",
+        "cs_2f9f326bcffd: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        44.90296200674493
+        40.066949994070455
       ]
     },
     {
@@ -2679,7 +2679,7 @@
         "R17"
       ],
       "latencies": [
-        37.861088989302516
+        56.76681801560335
       ]
     },
     {
@@ -2690,16 +2690,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_56bea2a2cc78: 4000000 over per-txn cap 500000",
-        "cs_56bea2a2cc78: would exceed period cap 1500000",
-        "cs_56bea2a2cc78: aggregate over 500000 in 3600s"
+        "cs_e2a7057bc200: 4000000 over per-txn cap 500000",
+        "cs_e2a7057bc200: would exceed period cap 1500000",
+        "cs_e2a7057bc200: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.75387801195029
+        41.81028899620287
       ]
     },
     {
@@ -2717,7 +2717,7 @@
         "R17"
       ],
       "latencies": [
-        37.11171400209423
+        43.15726499771699
       ]
     },
     {
@@ -2728,16 +2728,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_b84e54d46cd7: 4000000 over per-txn cap 500000",
-        "cs_b84e54d46cd7: would exceed period cap 1500000",
-        "cs_b84e54d46cd7: aggregate over 500000 in 3600s"
+        "cs_a3558b35b1a6: 4000000 over per-txn cap 500000",
+        "cs_a3558b35b1a6: would exceed period cap 1500000",
+        "cs_a3558b35b1a6: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        37.4694600031944
+        41.2523899867665
       ]
     },
     {
@@ -2755,7 +2755,7 @@
         "R17"
       ],
       "latencies": [
-        42.93137999775354
+        47.3920630174689
       ]
     },
     {
@@ -2766,16 +2766,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_25a4aae92704: 4000000 over per-txn cap 500000",
-        "cs_25a4aae92704: would exceed period cap 1500000",
-        "cs_25a4aae92704: aggregate over 500000 in 3600s"
+        "cs_1ff794956029: 4000000 over per-txn cap 500000",
+        "cs_1ff794956029: would exceed period cap 1500000",
+        "cs_1ff794956029: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        37.796696997247636
+        39.82084299786948
       ]
     },
     {
@@ -2793,7 +2793,7 @@
         "R17"
       ],
       "latencies": [
-        36.57856800418813
+        38.76131202559918
       ]
     },
     {
@@ -2804,16 +2804,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_875e30651a56: 4000000 over per-txn cap 500000",
-        "cs_875e30651a56: would exceed period cap 1500000",
-        "cs_875e30651a56: aggregate over 500000 in 3600s"
+        "cs_543e94465aba: 4000000 over per-txn cap 500000",
+        "cs_543e94465aba: would exceed period cap 1500000",
+        "cs_543e94465aba: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.776551001821645
+        37.80309300054796
       ]
     },
     {
@@ -2831,7 +2831,7 @@
         "R17"
       ],
       "latencies": [
-        36.8607099953806
+        39.39817100763321
       ]
     },
     {
@@ -2842,16 +2842,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_d70dab17a80a: 4000000 over per-txn cap 500000",
-        "cs_d70dab17a80a: would exceed period cap 1500000",
-        "cs_d70dab17a80a: aggregate over 500000 in 3600s"
+        "cs_1921a95e4901: 4000000 over per-txn cap 500000",
+        "cs_1921a95e4901: would exceed period cap 1500000",
+        "cs_1921a95e4901: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        45.438342000124976
+        57.891982985893264
       ]
     },
     {
@@ -2869,7 +2869,7 @@
         "R17"
       ],
       "latencies": [
-        37.437619001138955
+        40.00636498676613
       ]
     },
     {
@@ -2880,16 +2880,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_5aa11c6f62cf: 4000000 over per-txn cap 500000",
-        "cs_5aa11c6f62cf: would exceed period cap 1500000",
-        "cs_5aa11c6f62cf: aggregate over 500000 in 3600s"
+        "cs_b3a2f94dbf3e: 4000000 over per-txn cap 500000",
+        "cs_b3a2f94dbf3e: would exceed period cap 1500000",
+        "cs_b3a2f94dbf3e: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        37.222243001451716
+        38.662523991661146
       ]
     },
     {
@@ -2907,7 +2907,7 @@
         "R17"
       ],
       "latencies": [
-        37.65301599923987
+        39.85688099055551
       ]
     },
     {
@@ -2918,7 +2918,7 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_ce9dc130de14: aggregate over 500000 in 3600s"
+        "cs_1ad28dabb746: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -2926,8 +2926,8 @@
       ],
       "rules": [],
       "latencies": [
-        36.25588899012655,
-        46.20073099795263
+        54.880517011042684,
+        43.153178005013615
       ]
     },
     {
@@ -2946,8 +2946,8 @@
         "R34"
       ],
       "latencies": [
-        40.41188399423845,
-        20.190221999655478
+        46.03706201305613,
+        23.738296993542463
       ]
     },
     {
@@ -2958,8 +2958,8 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_dad9378a387f: aggregate over 500000 in 3600s",
-        "cs_d5b1f06dee86: aggregate over 500000 in 3600s"
+        "cs_924ae8302599: aggregate over 500000 in 3600s",
+        "cs_f89c42ed4c6b: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -2968,9 +2968,9 @@
       ],
       "rules": [],
       "latencies": [
-        36.89494500576984,
-        37.13517800497357,
-        43.48509501141962
+        43.55248500360176,
+        58.031577995279804,
+        40.49147601472214
       ]
     },
     {
@@ -2991,9 +2991,9 @@
         "R34"
       ],
       "latencies": [
-        38.60139599419199,
-        19.922936990042217,
-        20.191866002278402
+        47.130948019912466,
+        21.985228988341987,
+        23.896016005892307
       ]
     },
     {
@@ -3004,8 +3004,10 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_4dcc81633bcb: aggregate over 500000 in 3600s",
-        "cs_cc3a0818deac: aggregate over 500000 in 3600s"
+        "cs_f64d70801e39: duplicate of cs_7ab42b2eae3d (90s apart)",
+        "cs_f64d70801e39: aggregate over 500000 in 3600s",
+        "cs_9aedeb4f663b: duplicate of cs_f64d70801e39 (90s apart)",
+        "cs_9aedeb4f663b: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3015,10 +3017,10 @@
       ],
       "rules": [],
       "latencies": [
-        36.28946200478822,
-        44.29177800193429,
-        36.881489999359474,
-        37.53406098985579
+        46.68075300287455,
+        41.96931098704226,
+        40.247552999062464,
+        41.54029599158093
       ]
     },
     {
@@ -3041,10 +3043,10 @@
         "R34"
       ],
       "latencies": [
-        38.758612994570285,
-        20.391231999383308,
-        25.57568799238652,
-        20.079604000784457
+        44.423337996704504,
+        35.36110700224526,
+        23.4436180035118,
+        20.950375008396804
       ]
     },
     {
@@ -3055,8 +3057,8 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_2258cecc9918: aggregate over 500000 in 3600s",
-        "cs_efe91ed31683: aggregate over 500000 in 3600s"
+        "cs_6f888fd304d6: aggregate over 500000 in 3600s",
+        "cs_1bfa7906148e: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3066,10 +3068,10 @@
       ],
       "rules": [],
       "latencies": [
-        37.458709004567936,
-        36.43875400302932,
-        37.789863999933004,
-        37.85911400336772
+        41.267467982834205,
+        40.865966002456844,
+        38.80436299368739,
+        43.47539899754338
       ]
     },
     {
@@ -3092,10 +3094,10 @@
         "R34"
       ],
       "latencies": [
-        52.7807919861516,
-        20.419074993696995,
-        20.044998003868386,
-        20.05544799612835
+        60.3964360198006,
+        23.57011698768474,
+        23.664816981181502,
+        24.295293987961486
       ]
     },
     {
@@ -3106,7 +3108,8 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_4721e66db080: aggregate over 500000 in 3600s"
+        "cs_41a880f29b2f: duplicate of cs_ddb88fe9dab0 (90s apart)",
+        "cs_41a880f29b2f: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3114,8 +3117,8 @@
       ],
       "rules": [],
       "latencies": [
-        36.85792499163654,
-        36.27835100633092
+        42.61673899600282,
+        40.78882897738367
       ]
     },
     {
@@ -3134,8 +3137,8 @@
         "R34"
       ],
       "latencies": [
-        44.43096999602858,
-        20.42591701319907
+        55.305784015217796,
+        21.135075017809868
       ]
     },
     {
@@ -3146,8 +3149,10 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_a20e14c1e276: aggregate over 500000 in 3600s",
-        "cs_adbfd21b0fce: aggregate over 500000 in 3600s"
+        "cs_019aad0d5236: duplicate of cs_f00d51f9f396 (90s apart)",
+        "cs_019aad0d5236: aggregate over 500000 in 3600s",
+        "cs_dea831f6cfc3: duplicate of cs_019aad0d5236 (90s apart)",
+        "cs_dea831f6cfc3: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3156,9 +3161,9 @@
       ],
       "rules": [],
       "latencies": [
-        37.12222399190068,
-        37.124608003068715,
-        37.40611999819521
+        39.56938500050455,
+        39.318448019912466,
+        38.96037899539806
       ]
     },
     {
@@ -3179,9 +3184,9 @@
         "R34"
       ],
       "latencies": [
-        47.83974499150645,
-        20.16336099768523,
-        20.04774300439749
+        53.21362300310284,
+        22.404984978493303,
+        21.696411015000194
       ]
     },
     {
@@ -3192,8 +3197,8 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_b0e0aeab3b9c: aggregate over 500000 in 3600s",
-        "cs_b18d995dd813: aggregate over 500000 in 3600s"
+        "cs_0f47a51089e4: aggregate over 500000 in 3600s",
+        "cs_db293e5fc71d: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3203,10 +3208,10 @@
       ],
       "rules": [],
       "latencies": [
-        36.50052000011783,
-        36.835052000242285,
-        43.88835599820595,
-        37.28563300683163
+        37.904205004451796,
+        39.95690998272039,
+        58.94681400968693,
+        38.472552987514064
       ]
     },
     {
@@ -3229,10 +3234,10 @@
         "R34"
       ],
       "latencies": [
-        39.23337900778279,
-        20.113838007091545,
-        19.705347003764473,
-        19.647627996164374
+        40.440478012897074,
+        21.056575991678983,
+        20.90407701325603,
+        20.39837700431235
       ]
     },
     {
@@ -3243,8 +3248,8 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_d4520c9b5efb: aggregate over 500000 in 3600s",
-        "cs_d433e0cc960a: aggregate over 500000 in 3600s"
+        "cs_cc53eb146b6c: aggregate over 500000 in 3600s",
+        "cs_a00b397cdf91: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3254,10 +3259,10 @@
       ],
       "rules": [],
       "latencies": [
-        43.178537001949735,
-        37.54655500233639,
-        37.812758004292846,
-        36.62688900658395
+        46.21617999509908,
+        38.288263021968305,
+        38.84083198499866,
+        37.83691700664349
       ]
     },
     {
@@ -3280,10 +3285,10 @@
         "R34"
       ],
       "latencies": [
-        38.86650600179564,
-        27.898603002540767,
-        20.552154994220473,
-        20.16072699916549
+        41.557577991625294,
+        34.092058980604634,
+        20.651878003263846,
+        21.01566901546903
       ]
     },
     {
@@ -3294,7 +3299,7 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_32d7ea743aca: aggregate over 500000 in 3600s"
+        "cs_a86d8845f045: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3302,8 +3307,8 @@
       ],
       "rules": [],
       "latencies": [
-        36.82908100017812,
-        37.40097000263631
+        40.355877979891375,
+        38.6586659878958
       ]
     },
     {
@@ -3322,8 +3327,8 @@
         "R34"
       ],
       "latencies": [
-        38.24362100567669,
-        29.028516000835225
+        40.698857977986336,
+        34.661739016883075
       ]
     },
     {
@@ -3334,7 +3339,8 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_717fb1ff019c: aggregate over 500000 in 3600s"
+        "cs_f7ea3a708c25: duplicate of cs_e7e766fb110f (90s apart)",
+        "cs_f7ea3a708c25: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3342,8 +3348,8 @@
       ],
       "rules": [],
       "latencies": [
-        37.21069100720342,
-        37.08996299246792
+        39.9670590122696,
+        39.63345699594356
       ]
     },
     {
@@ -3362,8 +3368,8 @@
         "R34"
       ],
       "latencies": [
-        38.41919200203847,
-        20.189009999739937
+        41.68325598584488,
+        19.92123099626042
       ]
     },
     {
@@ -3374,7 +3380,8 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_b6be9be41e0e: aggregate over 500000 in 3600s"
+        "cs_65c3db2da729: duplicate of cs_6ba293c8924a (90s apart)",
+        "cs_65c3db2da729: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3382,8 +3389,8 @@
       ],
       "rules": [],
       "latencies": [
-        45.73234599956777,
-        37.25565598870162
+        52.74213702068664,
+        41.36237798957154
       ]
     },
     {
@@ -3402,8 +3409,8 @@
         "R34"
       ],
       "latencies": [
-        38.391408990719356,
-        19.97748999565374
+        47.23551499773748,
+        23.16912598325871
       ]
     },
     {
@@ -3414,7 +3421,7 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_31a073621cb6: aggregate over 500000 in 3600s"
+        "cs_42809528377b: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3422,8 +3429,8 @@
       ],
       "rules": [],
       "latencies": [
-        36.76813498896081,
-        43.90282300300896
+        39.94193201651797,
+        45.95670799608342
       ]
     },
     {
@@ -3442,8 +3449,8 @@
         "R34"
       ],
       "latencies": [
-        39.46786200685892,
-        20.48290500533767
+        53.168776008533314,
+        20.931609004037455
       ]
     },
     {
@@ -3454,8 +3461,8 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_e033a106a4a3: aggregate over 500000 in 3600s",
-        "cs_825d613ba077: aggregate over 500000 in 3600s"
+        "cs_6910526088ad: aggregate over 500000 in 3600s",
+        "cs_9a88194d6c64: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3465,10 +3472,10 @@
       ],
       "rules": [],
       "latencies": [
-        36.29191700019874,
-        36.98218900535721,
-        44.30850899370853,
-        37.30970800097566
+        37.69257199019194,
+        39.554725983180106,
+        37.96361599233933,
+        48.74171401024796
       ]
     },
     {
@@ -3491,10 +3498,10 @@
         "R34"
       ],
       "latencies": [
-        38.59162698790897,
-        19.879065002896823,
-        19.848377007292584,
-        20.091725993552245
+        42.04775800462812,
+        21.497964014997706,
+        20.052429987117648,
+        21.70304299215786
       ]
     },
     {
@@ -3505,8 +3512,8 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_43c9fb3bbbaa: aggregate over 500000 in 3600s",
-        "cs_356f742b01c9: aggregate over 500000 in 3600s"
+        "cs_1164674180ba: aggregate over 500000 in 3600s",
+        "cs_42c7e84468a4: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3515,9 +3522,9 @@
       ],
       "rules": [],
       "latencies": [
-        43.56211099366192,
-        36.566584996762685,
-        37.17473200231325
+        43.78346199519001,
+        45.695111009990796,
+        38.9144409855362
       ]
     },
     {
@@ -3538,9 +3545,9 @@
         "R34"
       ],
       "latencies": [
-        39.00827400502749,
-        19.897749996744096,
-        27.383812004700303
+        38.96073898067698,
+        20.571053988533095,
+        20.87041299091652
       ]
     },
     {
@@ -3551,8 +3558,8 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_9ce8607624db: aggregate over 500000 in 3600s",
-        "cs_aa97c6131f59: aggregate over 500000 in 3600s"
+        "cs_47a0c80a6be7: aggregate over 500000 in 3600s",
+        "cs_b3a84b890e9a: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3562,10 +3569,10 @@
       ],
       "rules": [],
       "latencies": [
-        37.156758990022354,
-        37.90604299865663,
-        37.96416299883276,
-        37.251177011057734
+        51.15594601375051,
+        41.08311698655598,
+        37.654179002856836,
+        38.535170984687284
       ]
     },
     {
@@ -3588,10 +3595,10 @@
         "R34"
       ],
       "latencies": [
-        51.209005003329366,
-        20.58429601311218,
-        19.974715003627352,
-        19.970237000961788
+        39.84324401244521,
+        30.58382900780998,
+        21.262777008814737,
+        20.446688984520733
       ]
     },
     {
@@ -3602,8 +3609,10 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_fa31ee0ddaae: aggregate over 500000 in 3600s",
-        "cs_75fb12282095: aggregate over 500000 in 3600s"
+        "cs_db574b63d374: duplicate of cs_3a9b70b59bc0 (90s apart)",
+        "cs_db574b63d374: aggregate over 500000 in 3600s",
+        "cs_ed347628a1d6: duplicate of cs_db574b63d374 (90s apart)",
+        "cs_ed347628a1d6: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3612,9 +3621,9 @@
       ],
       "rules": [],
       "latencies": [
-        37.22745300910901,
-        36.09881200827658,
-        42.52933101088274
+        40.126712003257126,
+        39.27835202193819,
+        39.109610981540754
       ]
     },
     {
@@ -3635,9 +3644,9 @@
         "R34"
       ],
       "latencies": [
-        38.774762986577116,
-        19.73658599308692,
-        19.85786399745848
+        70.99115397431888,
+        21.882834000280127,
+        21.506369987037033
       ]
     },
     {
@@ -3648,9 +3657,12 @@
       "settled_minor": 1600000,
       "unauthorized_minor": 1200000,
       "violations": [
-        "cs_2ccfe677b7ef: aggregate over 500000 in 3600s",
-        "cs_e09d65bef123: aggregate over 500000 in 3600s",
-        "cs_ab2d2bb6aedb: aggregate over 500000 in 3600s"
+        "cs_4620a27feb7d: duplicate of cs_3b9117a15da9 (90s apart)",
+        "cs_4620a27feb7d: aggregate over 500000 in 3600s",
+        "cs_d528a1dba68e: duplicate of cs_4620a27feb7d (90s apart)",
+        "cs_d528a1dba68e: aggregate over 500000 in 3600s",
+        "cs_f83c6b6065d8: duplicate of cs_d528a1dba68e (90s apart)",
+        "cs_f83c6b6065d8: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3660,10 +3672,10 @@
       ],
       "rules": [],
       "latencies": [
-        36.79090800869744,
-        37.000244003138505,
-        43.47732001042459,
-        37.89891999622341
+        39.509018999524415,
+        41.31208098260686,
+        38.03796600550413,
+        50.42075001983903
       ]
     },
     {
@@ -3686,10 +3698,10 @@
         "R34"
       ],
       "latencies": [
-        38.252877988270484,
-        20.141149012488313,
-        19.993409994640388,
-        25.271544000133872
+        40.84761900594458,
+        21.22561598662287,
+        20.727501017972827,
+        21.175622008740902
       ]
     },
     {
@@ -3700,8 +3712,8 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_225264a1d237: aggregate over 500000 in 3600s",
-        "cs_b5d68e1ae958: aggregate over 500000 in 3600s"
+        "cs_ec6f27f02ba5: aggregate over 500000 in 3600s",
+        "cs_53a5c9112230: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3710,9 +3722,9 @@
       ],
       "rules": [],
       "latencies": [
-        36.737697999342345,
-        36.50689200730994,
-        36.596370991901495
+        39.43481799797155,
+        44.590723991859704,
+        37.567404011497274
       ]
     },
     {
@@ -3733,9 +3745,9 @@
         "R34"
       ],
       "latencies": [
-        38.08228600246366,
-        27.36705901043024,
-        20.578415002091788
+        39.87857099855319,
+        20.603796001523733,
+        19.71686299657449
       ]
     },
     {
@@ -3746,8 +3758,8 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_c2ffcfed8fe3: aggregate over 500000 in 3600s",
-        "cs_b7e0cf797384: aggregate over 500000 in 3600s"
+        "cs_57a5a6a937c0: aggregate over 500000 in 3600s",
+        "cs_b38d6a523c77: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3756,9 +3768,9 @@
       ],
       "rules": [],
       "latencies": [
-        36.22252499917522,
-        36.275937003665604,
-        35.95343699271325
+        44.58325001178309,
+        41.41800300567411,
+        41.03818099247292
       ]
     },
     {
@@ -3779,9 +3791,9 @@
         "R34"
       ],
       "latencies": [
-        38.26749599829782,
-        28.3353880076902,
-        19.874675999744795
+        41.11385499709286,
+        22.242325998377055,
+        28.592479997314513
       ]
     },
     {
@@ -3792,8 +3804,8 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_7cb6796c1fe9: aggregate over 500000 in 3600s",
-        "cs_74497136f930: aggregate over 500000 in 3600s"
+        "cs_92e35dc2bea0: aggregate over 500000 in 3600s",
+        "cs_3de9584318f0: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3802,9 +3814,9 @@
       ],
       "rules": [],
       "latencies": [
-        36.46559501066804,
-        36.25231199839618,
-        36.01336000429001
+        38.57494599651545,
+        38.44237499288283,
+        38.94651200971566
       ]
     },
     {
@@ -3825,9 +3837,9 @@
         "R34"
       ],
       "latencies": [
-        37.88436300237663,
-        28.992277002544142,
-        19.72334999300074
+        41.01144100422971,
+        32.18440699856728,
+        20.63687998452224
       ]
     },
     {
@@ -3838,8 +3850,10 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_400fbe1cd066: aggregate over 500000 in 3600s",
-        "cs_cc342710161a: aggregate over 500000 in 3600s"
+        "cs_04bff7b7b707: duplicate of cs_c8225a4a8b5e (90s apart)",
+        "cs_04bff7b7b707: aggregate over 500000 in 3600s",
+        "cs_a09756ed24a4: duplicate of cs_04bff7b7b707 (90s apart)",
+        "cs_a09756ed24a4: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3848,9 +3862,9 @@
       ],
       "rules": [],
       "latencies": [
-        36.5492529963376,
-        36.419427997316234,
-        36.51440700923558
+        39.64292298769578,
+        38.17456599790603,
+        37.46955801034346
       ]
     },
     {
@@ -3871,9 +3885,9 @@
         "R34"
       ],
       "latencies": [
-        37.79067599680275,
-        28.689305996522307,
-        19.612190997577272
+        41.78987801424228,
+        36.58773400820792,
+        21.261284011416137
       ]
     },
     {
@@ -3884,8 +3898,10 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_2e16fdb80551: aggregate over 500000 in 3600s",
-        "cs_b9afad1a2685: aggregate over 500000 in 3600s"
+        "cs_e4510ca8d64c: duplicate of cs_1819c7c0ac12 (90s apart)",
+        "cs_e4510ca8d64c: aggregate over 500000 in 3600s",
+        "cs_7d4f9fcaabeb: duplicate of cs_e4510ca8d64c (90s apart)",
+        "cs_7d4f9fcaabeb: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3895,10 +3911,10 @@
       ],
       "rules": [],
       "latencies": [
-        36.368581000715494,
-        36.64556400326546,
-        36.161138996249065,
-        36.17116800160147
+        39.06857199035585,
+        39.41359699820168,
+        37.817899021320045,
+        38.32659500767477
       ]
     },
     {
@@ -3921,10 +3937,10 @@
         "R34"
       ],
       "latencies": [
-        49.508996002259664,
-        19.613223004853353,
-        19.962201011367142,
-        19.905273991753347
+        59.22578100580722,
+        20.041950017912313,
+        21.03248899220489,
+        19.95367300696671
       ]
     },
     {
@@ -3935,8 +3951,10 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_5919b0055c96: aggregate over 500000 in 3600s",
-        "cs_9842afd17539: aggregate over 500000 in 3600s"
+        "cs_58879876a375: duplicate of cs_b4d3aa0c7008 (90s apart)",
+        "cs_58879876a375: aggregate over 500000 in 3600s",
+        "cs_81809a9878da: duplicate of cs_58879876a375 (90s apart)",
+        "cs_81809a9878da: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3946,10 +3964,10 @@
       ],
       "rules": [],
       "latencies": [
-        36.36993399413768,
-        36.08676898875274,
-        36.05815500486642,
-        47.2983630024828
+        38.25573998619802,
+        37.76804500375874,
+        46.48363601882011,
+        40.98176397383213
       ]
     },
     {
@@ -3972,10 +3990,10 @@
         "R34"
       ],
       "latencies": [
-        38.89447900291998,
-        20.162539993179962,
-        20.936560991685838,
-        20.0012449931819
+        41.50414498872124,
+        20.17156602232717,
+        20.948390010744333,
+        28.01326898043044
       ]
     },
     {
@@ -3986,8 +4004,10 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_c2973c8db513: aggregate over 500000 in 3600s",
-        "cs_bf735e54f813: aggregate over 500000 in 3600s"
+        "cs_2931a4d492c6: duplicate of cs_3dec7d26c458 (90s apart)",
+        "cs_2931a4d492c6: aggregate over 500000 in 3600s",
+        "cs_fd4fb401379c: duplicate of cs_2931a4d492c6 (90s apart)",
+        "cs_fd4fb401379c: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -3996,9 +4016,9 @@
       ],
       "rules": [],
       "latencies": [
-        43.11552700528409,
-        37.57585000130348,
-        37.597581002046354
+        39.59623401169665,
+        37.51072601880878,
+        38.74897601781413
       ]
     },
     {
@@ -4019,9 +4039,9 @@
         "R34"
       ],
       "latencies": [
-        37.971516998368315,
-        20.137282001087442,
-        23.991677997400984
+        44.74522700184025,
+        35.5107200157363,
+        21.04595600394532
       ]
     },
     {
@@ -4032,7 +4052,8 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_a0534354b072: aggregate over 500000 in 3600s"
+        "cs_d120e3e54984: duplicate of cs_8d93cd358cd6 (90s apart)",
+        "cs_d120e3e54984: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -4040,8 +4061,8 @@
       ],
       "rules": [],
       "latencies": [
-        37.88872099539731,
-        36.521829999401234
+        39.65138900093734,
+        37.872042012168095
       ]
     },
     {
@@ -4060,8 +4081,8 @@
         "R34"
       ],
       "latencies": [
-        38.93348299607169,
-        19.678636992466636
+        40.42739199940115,
+        21.639001002768055
       ]
     },
     {
@@ -4077,7 +4098,7 @@
       ],
       "rules": [],
       "latencies": [
-        46.6874099947745
+        52.13756699231453
       ]
     },
     {
@@ -4093,7 +4114,7 @@
       ],
       "rules": [],
       "latencies": [
-        39.0713329979917
+        40.10082202148624
       ]
     },
     {
@@ -4109,7 +4130,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.27543500624597
+        39.36534500098787
       ]
     },
     {
@@ -4125,7 +4146,7 @@
       ],
       "rules": [],
       "latencies": [
-        38.41178699804004
+        40.22350499872118
       ]
     },
     {
@@ -4136,16 +4157,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_690f541b209a: 4000000 over per-txn cap 500000",
-        "cs_690f541b209a: would exceed period cap 1500000",
-        "cs_690f541b209a: aggregate over 500000 in 3600s"
+        "cs_5c10f5a8098f: 4000000 over per-txn cap 500000",
+        "cs_5c10f5a8098f: would exceed period cap 1500000",
+        "cs_5c10f5a8098f: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        41.49850498652086
+        47.51778897480108
       ]
     },
     {
@@ -4163,7 +4184,7 @@
         "R17"
       ],
       "latencies": [
-        37.09490199980792
+        39.60915800416842
       ]
     },
     {
@@ -4174,16 +4195,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_525107bd1344: 4000000 over per-txn cap 500000",
-        "cs_525107bd1344: would exceed period cap 1500000",
-        "cs_525107bd1344: aggregate over 500000 in 3600s"
+        "cs_6a48e21d2990: 4000000 over per-txn cap 500000",
+        "cs_6a48e21d2990: would exceed period cap 1500000",
+        "cs_6a48e21d2990: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.92222600511741
+        42.70392199396156
       ]
     },
     {
@@ -4201,7 +4222,7 @@
         "R17"
       ],
       "latencies": [
-        36.801449008635245
+        39.082117000361905
       ]
     },
     {
@@ -4217,7 +4238,7 @@
       ],
       "rules": [],
       "latencies": [
-        43.130885998834856
+        38.61309800413437
       ]
     },
     {
@@ -4233,7 +4254,7 @@
       ],
       "rules": [],
       "latencies": [
-        39.0453440049896
+        51.361233985517174
       ]
     },
     {
@@ -4249,7 +4270,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.90687700873241
+        36.93465201649815
       ]
     },
     {
@@ -4265,7 +4286,7 @@
       ],
       "rules": [],
       "latencies": [
-        38.96457100927364
+        39.6798420115374
       ]
     },
     {
@@ -4276,16 +4297,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_136b55e9f87b: 4000000 over per-txn cap 500000",
-        "cs_136b55e9f87b: would exceed period cap 1500000",
-        "cs_136b55e9f87b: aggregate over 500000 in 3600s"
+        "cs_3ac5135c52c7: 4000000 over per-txn cap 500000",
+        "cs_3ac5135c52c7: would exceed period cap 1500000",
+        "cs_3ac5135c52c7: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.92868899088353
+        41.02548700757325
       ]
     },
     {
@@ -4303,7 +4324,7 @@
         "R17"
       ],
       "latencies": [
-        45.79015600029379
+        46.26979900058359
       ]
     },
     {
@@ -4314,16 +4335,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_b34b6762a73e: 4000000 over per-txn cap 500000",
-        "cs_b34b6762a73e: would exceed period cap 1500000",
-        "cs_b34b6762a73e: aggregate over 500000 in 3600s"
+        "cs_9fa969a9fa82: 4000000 over per-txn cap 500000",
+        "cs_9fa969a9fa82: would exceed period cap 1500000",
+        "cs_9fa969a9fa82: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.78032800962683
+        39.23495800700039
       ]
     },
     {
@@ -4341,7 +4362,7 @@
         "R17"
       ],
       "latencies": [
-        37.152179997065105
+        40.881893975893036
       ]
     },
     {
@@ -4352,16 +4373,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_987edee4e9b7: 4000000 over per-txn cap 500000",
-        "cs_987edee4e9b7: would exceed period cap 1500000",
-        "cs_987edee4e9b7: aggregate over 500000 in 3600s"
+        "cs_d9622d08c7ab: 4000000 over per-txn cap 500000",
+        "cs_d9622d08c7ab: would exceed period cap 1500000",
+        "cs_d9622d08c7ab: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.69170099601615
+        39.26013599266298
       ]
     },
     {
@@ -4379,7 +4400,7 @@
         "R17"
       ],
       "latencies": [
-        36.885997993522324
+        46.786301012616605
       ]
     },
     {
@@ -4390,16 +4411,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_14f064b65a39: 4000000 over per-txn cap 500000",
-        "cs_14f064b65a39: would exceed period cap 1500000",
-        "cs_14f064b65a39: aggregate over 500000 in 3600s"
+        "cs_57cd6c6a2f25: 4000000 over per-txn cap 500000",
+        "cs_57cd6c6a2f25: would exceed period cap 1500000",
+        "cs_57cd6c6a2f25: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        46.532146006939
+        42.02690700185485
       ]
     },
     {
@@ -4417,7 +4438,7 @@
         "R17"
       ],
       "latencies": [
-        37.456674996064976
+        39.07613598858006
       ]
     },
     {
@@ -4428,16 +4449,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_54fc970f2de4: 4000000 over per-txn cap 500000",
-        "cs_54fc970f2de4: would exceed period cap 1500000",
-        "cs_54fc970f2de4: aggregate over 500000 in 3600s"
+        "cs_bcc0ee1780f2: 4000000 over per-txn cap 500000",
+        "cs_bcc0ee1780f2: would exceed period cap 1500000",
+        "cs_bcc0ee1780f2: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.86813400418032
+        43.40510198380798
       ]
     },
     {
@@ -4455,7 +4476,7 @@
         "R17"
       ],
       "latencies": [
-        37.105041003087536
+        41.61451500840485
       ]
     },
     {
@@ -4471,7 +4492,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.57529100019019
+        47.25449898978695
       ]
     },
     {
@@ -4487,7 +4508,7 @@
       ],
       "rules": [],
       "latencies": [
-        48.3846330025699
+        41.275019000750035
       ]
     },
     {
@@ -4498,16 +4519,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_051b5c8d5783: 4000000 over per-txn cap 500000",
-        "cs_051b5c8d5783: would exceed period cap 1500000",
-        "cs_051b5c8d5783: aggregate over 500000 in 3600s"
+        "cs_ca540c11a596: 4000000 over per-txn cap 500000",
+        "cs_ca540c11a596: would exceed period cap 1500000",
+        "cs_ca540c11a596: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.675190000096336
+        43.67405301309191
       ]
     },
     {
@@ -4525,7 +4546,7 @@
         "R17"
       ],
       "latencies": [
-        37.687932010157965
+        37.769936985569075
       ]
     },
     {
@@ -4541,7 +4562,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.77218301163521
+        48.01863900502212
       ]
     },
     {
@@ -4557,7 +4578,7 @@
       ],
       "rules": [],
       "latencies": [
-        46.08296799415257
+        41.39987600501627
       ]
     },
     {
@@ -4568,16 +4589,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_bb613167e585: 4000000 over per-txn cap 500000",
-        "cs_bb613167e585: would exceed period cap 1500000",
-        "cs_bb613167e585: aggregate over 500000 in 3600s"
+        "cs_b179fa228d80: 4000000 over per-txn cap 500000",
+        "cs_b179fa228d80: would exceed period cap 1500000",
+        "cs_b179fa228d80: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        37.86590699746739
+        39.45904297870584
       ]
     },
     {
@@ -4595,7 +4616,7 @@
         "R17"
       ],
       "latencies": [
-        37.11509999993723
+        37.17931598657742
       ]
     },
     {
@@ -4611,7 +4632,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.0382149994839
+        44.19156498624943
       ]
     },
     {
@@ -4627,7 +4648,7 @@
       ],
       "rules": [],
       "latencies": [
-        44.36172900022939
+        51.34454200742766
       ]
     },
     {
@@ -4638,16 +4659,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_97409e8e0e6a: 4000000 over per-txn cap 500000",
-        "cs_97409e8e0e6a: would exceed period cap 1500000",
-        "cs_97409e8e0e6a: aggregate over 500000 in 3600s"
+        "cs_d8df0e5ec934: 4000000 over per-txn cap 500000",
+        "cs_d8df0e5ec934: would exceed period cap 1500000",
+        "cs_d8df0e5ec934: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        37.07253999891691
+        37.93830599170178
       ]
     },
     {
@@ -4665,7 +4686,7 @@
         "R17"
       ],
       "latencies": [
-        37.15568700863514
+        38.04455901263282
       ]
     },
     {
@@ -4681,7 +4702,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.19818699755706
+        38.351401017280295
       ]
     },
     {
@@ -4697,7 +4718,7 @@
       ],
       "rules": [],
       "latencies": [
-        46.889129996998236
+        55.24028500076383
       ]
     },
     {
@@ -4708,16 +4729,16 @@
       "settled_minor": 4000000,
       "unauthorized_minor": 4000000,
       "violations": [
-        "cs_129f4799ccd8: 4000000 over per-txn cap 500000",
-        "cs_129f4799ccd8: would exceed period cap 1500000",
-        "cs_129f4799ccd8: aggregate over 500000 in 3600s"
+        "cs_d3094d655c63: 4000000 over per-txn cap 500000",
+        "cs_d3094d655c63: would exceed period cap 1500000",
+        "cs_d3094d655c63: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        37.296292997780256
+        41.077584988670424
       ]
     },
     {
@@ -4735,7 +4756,7 @@
         "R17"
       ],
       "latencies": [
-        36.84124299616087
+        39.91570899961516
       ]
     },
     {
@@ -4751,7 +4772,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.585770998499356
+        38.174876011908054
       ]
     },
     {
@@ -4767,7 +4788,7 @@
       ],
       "rules": [],
       "latencies": [
-        44.62676998809911
+        50.44098698999733
       ]
     },
     {
@@ -4778,7 +4799,8 @@
       "settled_minor": 240000,
       "unauthorized_minor": 120000,
       "violations": [
-        "cs_9e59c3b2c90a: session charged twice"
+        "cs_699b72f8ece6: duplicate of cs_699b72f8ece6 (120s apart)",
+        "cs_699b72f8ece6: session charged twice"
       ],
       "outcomes": [
         "SETTLED",
@@ -4786,8 +4808,8 @@
       ],
       "rules": [],
       "latencies": [
-        38.535041006980464,
-        18.576916991150938
+        38.870945980306715,
+        18.324480013689026
       ]
     },
     {
@@ -4806,8 +4828,8 @@
         "R11"
       ],
       "latencies": [
-        38.75010700721759,
-        1.207007997436449
+        42.89424300077371,
+        1.3889969850424677
       ]
     },
     {
@@ -4818,14 +4840,14 @@
       "settled_minor": 120000,
       "unauthorized_minor": 120000,
       "violations": [
-        "cs_ae228a76e841: charged against another agent's session"
+        "cs_cf6e9da8a20b: charged against another agent's session"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        37.89706599491183
+        37.95291399001144
       ]
     },
     {
@@ -4843,7 +4865,7 @@
         "R12"
       ],
       "latencies": [
-        45.47951999120414
+        51.04439100250602
       ]
     },
     {
@@ -4854,7 +4876,8 @@
       "settled_minor": 240000,
       "unauthorized_minor": 120000,
       "violations": [
-        "cs_362c0d661eb3: session charged twice"
+        "cs_72fb38f0d723: duplicate of cs_72fb38f0d723 (120s apart)",
+        "cs_72fb38f0d723: session charged twice"
       ],
       "outcomes": [
         "SETTLED",
@@ -4862,8 +4885,8 @@
       ],
       "rules": [],
       "latencies": [
-        37.244945007842034,
-        18.629405996762216
+        50.146066991146654,
+        20.033714012242854
       ]
     },
     {
@@ -4882,8 +4905,8 @@
         "R11"
       ],
       "latencies": [
-        38.63268501299899,
-        1.2821200070902705
+        41.73052401165478,
+        1.6700600099284202
       ]
     },
     {
@@ -4894,14 +4917,14 @@
       "settled_minor": 120000,
       "unauthorized_minor": 120000,
       "violations": [
-        "cs_42abed6a5711: charged against another agent's session"
+        "cs_be83720641bb: charged against another agent's session"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        37.93551899434533
+        43.00084398710169
       ]
     },
     {
@@ -4919,7 +4942,7 @@
         "R12"
       ],
       "latencies": [
-        46.88412099494599
+        56.26247500185855
       ]
     },
     {
@@ -4930,7 +4953,8 @@
       "settled_minor": 240000,
       "unauthorized_minor": 120000,
       "violations": [
-        "cs_6e1d1d60255d: session charged twice"
+        "cs_8e08e8336666: duplicate of cs_8e08e8336666 (120s apart)",
+        "cs_8e08e8336666: session charged twice"
       ],
       "outcomes": [
         "SETTLED",
@@ -4938,8 +4962,8 @@
       ],
       "rules": [],
       "latencies": [
-        37.86992499954067,
-        19.042515006731264
+        40.70559798856266,
+        19.143985002301633
       ]
     },
     {
@@ -4958,8 +4982,8 @@
         "R11"
       ],
       "latencies": [
-        39.641288996790536,
-        1.1724429932655767
+        40.2279109985102,
+        2.029762021265924
       ]
     },
     {
@@ -4970,14 +4994,14 @@
       "settled_minor": 120000,
       "unauthorized_minor": 120000,
       "violations": [
-        "cs_e49d148ebe76: charged against another agent's session"
+        "cs_0b32278e79fc: charged against another agent's session"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        38.03974500624463
+        38.57672700542025
       ]
     },
     {
@@ -4995,7 +5019,7 @@
         "R12"
       ],
       "latencies": [
-        47.44015100004617
+        50.151786010246724
       ]
     },
     {
@@ -5006,7 +5030,8 @@
       "settled_minor": 240000,
       "unauthorized_minor": 120000,
       "violations": [
-        "cs_98b685eea6f7: session charged twice"
+        "cs_b02bc9bb4e32: duplicate of cs_b02bc9bb4e32 (120s apart)",
+        "cs_b02bc9bb4e32: session charged twice"
       ],
       "outcomes": [
         "SETTLED",
@@ -5014,8 +5039,8 @@
       ],
       "rules": [],
       "latencies": [
-        37.38713399798144,
-        18.47370200266596
+        43.038927018642426,
+        19.577837985707447
       ]
     },
     {
@@ -5034,8 +5059,8 @@
         "R11"
       ],
       "latencies": [
-        38.324594002915546,
-        1.303921002545394
+        39.98303698608652,
+        1.9572150195017457
       ]
     },
     {
@@ -5046,14 +5071,14 @@
       "settled_minor": 120000,
       "unauthorized_minor": 120000,
       "violations": [
-        "cs_0fb463ce8953: charged against another agent's session"
+        "cs_6cb514ec43c9: charged against another agent's session"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        37.48016900499351
+        39.20488999574445
       ]
     },
     {
@@ -5071,7 +5096,7 @@
         "R12"
       ],
       "latencies": [
-        44.47597500984557
+        58.53596000815742
       ]
     },
     {
@@ -5082,7 +5107,8 @@
       "settled_minor": 240000,
       "unauthorized_minor": 120000,
       "violations": [
-        "cs_ad5a0b6831f4: session charged twice"
+        "cs_21c05ab9b788: duplicate of cs_21c05ab9b788 (120s apart)",
+        "cs_21c05ab9b788: session charged twice"
       ],
       "outcomes": [
         "SETTLED",
@@ -5090,8 +5116,8 @@
       ],
       "rules": [],
       "latencies": [
-        38.405557002988644,
-        18.422364999423735
+        47.84232401289046,
+        21.574899001279846
       ]
     },
     {
@@ -5110,8 +5136,8 @@
         "R11"
       ],
       "latencies": [
-        39.12239900091663,
-        1.273282992769964
+        49.03395500150509,
+        2.3820210190024227
       ]
     },
     {
@@ -5122,14 +5148,14 @@
       "settled_minor": 120000,
       "unauthorized_minor": 120000,
       "violations": [
-        "cs_6d57e1559484: charged against another agent's session"
+        "cs_8390b3569173: charged against another agent's session"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        37.38873699330725
+        44.016912986990064
       ]
     },
     {
@@ -5147,7 +5173,7 @@
         "R12"
       ],
       "latencies": [
-        46.37062099936884
+        54.00066199945286
       ]
     },
     {
@@ -5158,7 +5184,8 @@
       "settled_minor": 240000,
       "unauthorized_minor": 120000,
       "violations": [
-        "cs_3df2309b379c: session charged twice"
+        "cs_995604a25188: duplicate of cs_995604a25188 (120s apart)",
+        "cs_995604a25188: session charged twice"
       ],
       "outcomes": [
         "SETTLED",
@@ -5166,8 +5193,8 @@
       ],
       "rules": [],
       "latencies": [
-        37.908227997832,
-        18.809825996868312
+        39.62638002121821,
+        21.16120301070623
       ]
     },
     {
@@ -5186,8 +5213,8 @@
         "R11"
       ],
       "latencies": [
-        38.416716997744516,
-        1.2210750137455761
+        45.253429998410866,
+        2.3688960063736886
       ]
     },
     {
@@ -5198,14 +5225,14 @@
       "settled_minor": 120000,
       "unauthorized_minor": 120000,
       "violations": [
-        "cs_a1e82b06b8e8: charged against another agent's session"
+        "cs_cb06fc11d1f7: charged against another agent's session"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.30453000369016
+        42.01921101775952
       ]
     },
     {
@@ -5223,7 +5250,7 @@
         "R12"
       ],
       "latencies": [
-        45.266706991242245
+        52.379314991412684
       ]
     },
     {
@@ -5234,7 +5261,8 @@
       "settled_minor": 240000,
       "unauthorized_minor": 120000,
       "violations": [
-        "cs_9dff8b806098: session charged twice"
+        "cs_9e8ad794db9d: duplicate of cs_9e8ad794db9d (120s apart)",
+        "cs_9e8ad794db9d: session charged twice"
       ],
       "outcomes": [
         "SETTLED",
@@ -5242,8 +5270,8 @@
       ],
       "rules": [],
       "latencies": [
-        37.04044900950976,
-        18.28423400002066
+        41.124382987618446,
+        20.15175699489191
       ]
     },
     {
@@ -5262,8 +5290,8 @@
         "R11"
       ],
       "latencies": [
-        38.32699799386319,
-        1.1954959918512031
+        42.92402800638229,
+        1.3994759938213974
       ]
     },
     {
@@ -5274,14 +5302,14 @@
       "settled_minor": 120000,
       "unauthorized_minor": 120000,
       "violations": [
-        "cs_5b200b4a6d57: charged against another agent's session"
+        "cs_858ea3e1cbc9: charged against another agent's session"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.88477599644102
+        41.97501699673012
       ]
     },
     {
@@ -5299,7 +5327,7 @@
         "R12"
       ],
       "latencies": [
-        45.08374200668186
+        52.69949199282564
       ]
     },
     {
@@ -5310,7 +5338,8 @@
       "settled_minor": 240000,
       "unauthorized_minor": 120000,
       "violations": [
-        "cs_6183ddef6d2d: session charged twice"
+        "cs_c4b83ed6dcb5: duplicate of cs_c4b83ed6dcb5 (120s apart)",
+        "cs_c4b83ed6dcb5: session charged twice"
       ],
       "outcomes": [
         "SETTLED",
@@ -5318,8 +5347,8 @@
       ],
       "rules": [],
       "latencies": [
-        36.73941100714728,
-        18.432504002703354
+        39.998135005589575,
+        20.118875021580607
       ]
     },
     {
@@ -5338,8 +5367,8 @@
         "R11"
       ],
       "latencies": [
-        38.566250004805624,
-        1.0025420051533729
+        42.727364983875304,
+        1.8224889936391264
       ]
     },
     {
@@ -5350,14 +5379,14 @@
       "settled_minor": 120000,
       "unauthorized_minor": 120000,
       "violations": [
-        "cs_1ee4ec341acb: charged against another agent's session"
+        "cs_a6a95a8f0bbc: charged against another agent's session"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.767053010407835
+        38.79977000178769
       ]
     },
     {
@@ -5375,7 +5404,7 @@
         "R12"
       ],
       "latencies": [
-        45.3147380030714
+        62.00051499763504
       ]
     },
     {
@@ -5386,7 +5415,8 @@
       "settled_minor": 240000,
       "unauthorized_minor": 120000,
       "violations": [
-        "cs_1f500cfa61db: session charged twice"
+        "cs_1ab858ddb2a7: duplicate of cs_1ab858ddb2a7 (120s apart)",
+        "cs_1ab858ddb2a7: session charged twice"
       ],
       "outcomes": [
         "SETTLED",
@@ -5394,8 +5424,8 @@
       ],
       "rules": [],
       "latencies": [
-        36.77681100089103,
-        18.3040109986905
+        42.854936997173354,
+        21.487623016582802
       ]
     },
     {
@@ -5414,8 +5444,8 @@
         "R11"
       ],
       "latencies": [
-        38.40423400106374,
-        1.2045939947711304
+        43.97110501304269,
+        2.0936939981766045
       ]
     },
     {
@@ -5426,14 +5456,14 @@
       "settled_minor": 120000,
       "unauthorized_minor": 120000,
       "violations": [
-        "cs_0b59e637f3fd: charged against another agent's session"
+        "cs_13c660c2f20e: charged against another agent's session"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.75464999105316
+        40.95455998321995
       ]
     },
     {
@@ -5451,7 +5481,7 @@
         "R12"
       ],
       "latencies": [
-        45.87768099736422
+        53.19307901663706
       ]
     },
     {
@@ -5462,7 +5492,8 @@
       "settled_minor": 240000,
       "unauthorized_minor": 120000,
       "violations": [
-        "cs_3148d259677e: session charged twice"
+        "cs_e0fab30fcc3e: duplicate of cs_e0fab30fcc3e (120s apart)",
+        "cs_e0fab30fcc3e: session charged twice"
       ],
       "outcomes": [
         "SETTLED",
@@ -5470,8 +5501,8 @@
       ],
       "rules": [],
       "latencies": [
-        37.91406900563743,
-        18.247144005727023
+        40.69221200188622,
+        19.74338199943304
       ]
     },
     {
@@ -5490,8 +5521,8 @@
         "R11"
       ],
       "latencies": [
-        38.39169000275433,
-        1.350068996543996
+        42.02156499377452,
+        1.2156669981777668
       ]
     },
     {
@@ -5502,14 +5533,14 @@
       "settled_minor": 120000,
       "unauthorized_minor": 120000,
       "violations": [
-        "cs_9b19d72351e0: charged against another agent's session"
+        "cs_7b110a037cc4: charged against another agent's session"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.91371998866089
+        40.29851499944925
       ]
     },
     {
@@ -5527,7 +5558,7 @@
         "R12"
       ],
       "latencies": [
-        45.52306099503767
+        52.00454298756085
       ]
     },
     {
@@ -5545,7 +5576,7 @@
         "R05"
       ],
       "latencies": [
-        37.149965995922685
+        41.364598990185186
       ]
     },
     {
@@ -5563,7 +5594,7 @@
         "R07"
       ],
       "latencies": [
-        36.185306002153084
+        42.95943499892019
       ]
     },
     {
@@ -5581,7 +5612,7 @@
         "R05"
       ],
       "latencies": [
-        36.450205006985925
+        41.00149901933037
       ]
     },
     {
@@ -5599,7 +5630,7 @@
         "R07"
       ],
       "latencies": [
-        43.69443899486214
+        50.325505988439545
       ]
     },
     {
@@ -5617,7 +5648,7 @@
         "R05"
       ],
       "latencies": [
-        38.351675000740215
+        39.752820011926815
       ]
     },
     {
@@ -5635,7 +5666,7 @@
         "R07"
       ],
       "latencies": [
-        36.85571099049412
+        44.18807799811475
       ]
     },
     {
@@ -5653,7 +5684,7 @@
         "R05"
       ],
       "latencies": [
-        36.58667299896479
+        45.51426399848424
       ]
     },
     {
@@ -5671,7 +5702,7 @@
         "R07"
       ],
       "latencies": [
-        43.464154994580895
+        57.48018401209265
       ]
     },
     {
@@ -5689,7 +5720,7 @@
         "R05"
       ],
       "latencies": [
-        37.01197600457817
+        44.628172006923705
       ]
     },
     {
@@ -5707,7 +5738,7 @@
         "R07"
       ],
       "latencies": [
-        36.97997498966288
+        45.6489399948623
       ]
     },
     {
@@ -5725,7 +5756,7 @@
         "R05"
       ],
       "latencies": [
-        36.56073298770934
+        44.83761900337413
       ]
     },
     {
@@ -5743,7 +5774,7 @@
         "R07"
       ],
       "latencies": [
-        43.14772799261846
+        57.58731800597161
       ]
     },
     {
@@ -5761,7 +5792,7 @@
         "R05"
       ],
       "latencies": [
-        36.65629400347825
+        44.61778298718855
       ]
     },
     {
@@ -5779,7 +5810,7 @@
         "R07"
       ],
       "latencies": [
-        36.62893299770076
+        44.52759100240655
       ]
     },
     {
@@ -5797,7 +5828,7 @@
         "R05"
       ],
       "latencies": [
-        37.14949499408249
+        46.06361599871889
       ]
     },
     {
@@ -5808,7 +5839,8 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_363cb87b93c9: aggregate over 500000 in 3600s"
+        "cs_d9e55e996576: duplicate of cs_f38683c87c1a (0s apart)",
+        "cs_d9e55e996576: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -5816,8 +5848,8 @@
       ],
       "rules": [],
       "latencies": [
-        65.4655050020665,
-        65.24144299328327
+        59.11155097419396,
+        59.52480499399826
       ]
     },
     {
@@ -5836,8 +5868,8 @@
         "R28"
       ],
       "latencies": [
-        53.353062001406215,
-        54.06803099322133
+        66.26666101510637,
+        67.8525409894064
       ]
     },
     {
@@ -5848,7 +5880,8 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_4978c7b0902f: aggregate over 500000 in 3600s"
+        "cs_199b146cf7c1: duplicate of cs_1ccde4d1fc5f (0s apart)",
+        "cs_199b146cf7c1: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -5856,8 +5889,8 @@
       ],
       "rules": [],
       "latencies": [
-        67.08278799487744,
-        67.573624997749
+        68.64441398647614,
+        69.64907998917624
       ]
     },
     {
@@ -5876,8 +5909,8 @@
         "R28"
       ],
       "latencies": [
-        53.51605999749154,
-        54.03597099939361
+        52.71662399172783,
+        54.76999099482782
       ]
     },
     {
@@ -5888,7 +5921,8 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_d8523cd5a2fe: aggregate over 500000 in 3600s"
+        "cs_3c1b8f8b885c: duplicate of cs_369be276ed39 (0s apart)",
+        "cs_3c1b8f8b885c: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -5896,8 +5930,8 @@
       ],
       "rules": [],
       "latencies": [
-        62.429093988612294,
-        63.05626800167374
+        63.386705005541444,
+        64.19464800274
       ]
     },
     {
@@ -5916,8 +5950,8 @@
         "R28"
       ],
       "latencies": [
-        57.00426299881656,
-        58.346948004327714
+        60.403231997042894,
+        62.374714005272835
       ]
     },
     {
@@ -5928,7 +5962,8 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_04220c18c174: aggregate over 500000 in 3600s"
+        "cs_c37090e7860e: duplicate of cs_3a9d2e9b7fa8 (0s apart)",
+        "cs_c37090e7860e: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -5936,8 +5971,8 @@
       ],
       "rules": [],
       "latencies": [
-        62.17812000249978,
-        63.126020002528094
+        56.72138498630375,
+        67.19153601443395
       ]
     },
     {
@@ -5949,15 +5984,15 @@
       "unauthorized_minor": 0,
       "violations": [],
       "outcomes": [
-        "REFUSED",
-        "SETTLED"
+        "SETTLED",
+        "REFUSED"
       ],
       "rules": [
         "R28"
       ],
       "latencies": [
-        50.738796999212354,
-        52.343356001074426
+        52.993660006904975,
+        60.11721899267286
       ]
     },
     {
@@ -5968,7 +6003,8 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_bc0b2858eb85: aggregate over 500000 in 3600s"
+        "cs_e97481feff7f: duplicate of cs_10bf167de8b1 (0s apart)",
+        "cs_e97481feff7f: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -5976,8 +6012,8 @@
       ],
       "rules": [],
       "latencies": [
-        70.85038999503013,
-        72.65762099996209
+        60.86434700409882,
+        61.8543759919703
       ]
     },
     {
@@ -5989,15 +6025,15 @@
       "unauthorized_minor": 0,
       "violations": [],
       "outcomes": [
-        "REFUSED",
-        "SETTLED"
+        "SETTLED",
+        "REFUSED"
       ],
       "rules": [
         "R28"
       ],
       "latencies": [
-        66.79089699173346,
-        67.94056799844839
+        56.48123798891902,
+        58.19648300530389
       ]
     },
     {
@@ -6008,7 +6044,8 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_33fde412e13e: aggregate over 500000 in 3600s"
+        "cs_8f6f74375937: duplicate of cs_1212db7fff4a (0s apart)",
+        "cs_8f6f74375937: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -6016,8 +6053,8 @@
       ],
       "rules": [],
       "latencies": [
-        61.228106991620734,
-        62.07592799910344
+        64.25875899731182,
+        66.38308102265
       ]
     },
     {
@@ -6036,8 +6073,8 @@
         "R28"
       ],
       "latencies": [
-        60.11100800242275,
-        61.31448000087403
+        53.93125899718143,
+        55.24523201165721
       ]
     },
     {
@@ -6048,7 +6085,8 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_6ba98542200d: aggregate over 500000 in 3600s"
+        "cs_10e5ebf7aa3f: duplicate of cs_559c626831de (0s apart)",
+        "cs_10e5ebf7aa3f: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -6056,8 +6094,8 @@
       ],
       "rules": [],
       "latencies": [
-        62.5977230083663,
-        64.81326400535181
+        58.15098702441901,
+        75.97215098212473
       ]
     },
     {
@@ -6076,8 +6114,8 @@
         "R28"
       ],
       "latencies": [
-        61.23118299001362,
-        61.509767998359166
+        52.06110898870975,
+        52.42480899323709
       ]
     },
     {
@@ -6088,7 +6126,8 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_4c8cd3a80ec9: aggregate over 500000 in 3600s"
+        "cs_e86b484deca9: duplicate of cs_9626442e87d4 (0s apart)",
+        "cs_e86b484deca9: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -6096,8 +6135,8 @@
       ],
       "rules": [],
       "latencies": [
-        60.824284999398515,
-        62.06451500474941
+        55.145502992672846,
+        54.909525002585724
       ]
     },
     {
@@ -6116,8 +6155,8 @@
         "R28"
       ],
       "latencies": [
-        63.617827006964944,
-        64.51377899793442
+        50.42289997800253,
+        52.23743402166292
       ]
     },
     {
@@ -6128,7 +6167,8 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_a85258bc3d67: aggregate over 500000 in 3600s"
+        "cs_cf72e2f8da74: duplicate of cs_ee6413bb9132 (0s apart)",
+        "cs_cf72e2f8da74: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -6136,8 +6176,8 @@
       ],
       "rules": [],
       "latencies": [
-        52.82239000371192,
-        54.502350991242565
+        53.32516800262965,
+        67.02495901845396
       ]
     },
     {
@@ -6149,15 +6189,15 @@
       "unauthorized_minor": 0,
       "violations": [],
       "outcomes": [
-        "REFUSED",
-        "SETTLED"
+        "SETTLED",
+        "REFUSED"
       ],
       "rules": [
         "R28"
       ],
       "latencies": [
-        59.1875149984844,
-        60.406094999052584
+        58.58532199636102,
+        60.4132309963461
       ]
     },
     {
@@ -6168,7 +6208,8 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_d64910cf4fe8: aggregate over 500000 in 3600s"
+        "cs_2a08c7ea9df0: duplicate of cs_acbf83e13ffe (0s apart)",
+        "cs_2a08c7ea9df0: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -6176,8 +6217,8 @@
       ],
       "rules": [],
       "latencies": [
-        66.81131599179935,
-        67.25275900680572
+        56.3458809920121,
+        56.01212699548341
       ]
     },
     {
@@ -6196,8 +6237,8 @@
         "R28"
       ],
       "latencies": [
-        47.22776899870951,
-        47.59297899727244
+        65.01094598206691,
+        66.55243202112615
       ]
     },
     {
@@ -6208,7 +6249,8 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_1141d694ddba: aggregate over 500000 in 3600s"
+        "cs_b53b9a646a0d: duplicate of cs_4b40cd406217 (0s apart)",
+        "cs_b53b9a646a0d: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -6216,8 +6258,8 @@
       ],
       "rules": [],
       "latencies": [
-        62.72737598919775,
-        63.310276993433945
+        59.151435998501256,
+        60.140082001453266
       ]
     },
     {
@@ -6229,15 +6271,15 @@
       "unauthorized_minor": 0,
       "violations": [],
       "outcomes": [
-        "REFUSED",
-        "SETTLED"
+        "SETTLED",
+        "REFUSED"
       ],
       "rules": [
         "R28"
       ],
       "latencies": [
-        58.23837299249135,
-        58.95663899718784
+        61.79397099185735,
+        69.75774501916021
       ]
     },
     {
@@ -6248,7 +6290,8 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_709aeacdef62: aggregate over 500000 in 3600s"
+        "cs_2b259b43e004: duplicate of cs_0cfec68a2b54 (0s apart)",
+        "cs_2b259b43e004: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -6256,8 +6299,8 @@
       ],
       "rules": [],
       "latencies": [
-        63.48011700902134,
-        64.24012299976312
+        59.383637009887025,
+        59.562084992649034
       ]
     },
     {
@@ -6276,8 +6319,8 @@
         "R28"
       ],
       "latencies": [
-        50.375991995679215,
-        52.377369996975176
+        68.59353600884788,
+        69.19410600676201
       ]
     },
     {
@@ -6288,7 +6331,8 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_ee9a11aa0464: aggregate over 500000 in 3600s"
+        "cs_28c5517d8e36: duplicate of cs_95c90435fd29 (0s apart)",
+        "cs_28c5517d8e36: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -6296,8 +6340,8 @@
       ],
       "rules": [],
       "latencies": [
-        73.31589399836957,
-        74.37157699314412
+        54.95558297843672,
+        71.24733299133368
       ]
     },
     {
@@ -6316,8 +6360,8 @@
         "R28"
       ],
       "latencies": [
-        65.66834899422247,
-        66.61888300732244
+        52.53791299764998,
+        54.734873003326356
       ]
     },
     {
@@ -6328,7 +6372,8 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_df78e84cfca1: aggregate over 500000 in 3600s"
+        "cs_0d688ec6c3d0: duplicate of cs_ce6d6296b5ca (0s apart)",
+        "cs_0d688ec6c3d0: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -6336,8 +6381,8 @@
       ],
       "rules": [],
       "latencies": [
-        71.1664970003767,
-        71.73381699249148
+        94.51940099825151,
+        94.96381497592665
       ]
     },
     {
@@ -6349,15 +6394,15 @@
       "unauthorized_minor": 0,
       "violations": [],
       "outcomes": [
-        "REFUSED",
-        "SETTLED"
+        "SETTLED",
+        "REFUSED"
       ],
       "rules": [
         "R28"
       ],
       "latencies": [
-        67.77615699684247,
-        68.94705699232873
+        51.91573200863786,
+        56.0899339907337
       ]
     },
     {
@@ -6368,7 +6413,8 @@
       "settled_minor": 800000,
       "unauthorized_minor": 400000,
       "violations": [
-        "cs_8c44faa67f59: aggregate over 500000 in 3600s"
+        "cs_641c859a0761: duplicate of cs_265a85bb3ecb (0s apart)",
+        "cs_641c859a0761: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -6376,8 +6422,8 @@
       ],
       "rules": [],
       "latencies": [
-        96.48787400510628,
-        97.56571899924893
+        62.372859014431015,
+        63.028764008777216
       ]
     },
     {
@@ -6389,15 +6435,15 @@
       "unauthorized_minor": 0,
       "violations": [],
       "outcomes": [
-        "REFUSED",
-        "SETTLED"
+        "SETTLED",
+        "REFUSED"
       ],
       "rules": [
         "R28"
       ],
       "latencies": [
-        70.25803200667724,
-        71.76305299799424
+        50.594845990417525,
+        51.781788002699614
       ]
     },
     {
@@ -6413,7 +6459,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.78035599680152
+        59.667645022273064
       ]
     },
     {
@@ -6431,7 +6477,7 @@
         "R17"
       ],
       "latencies": [
-        36.66609199717641
+        68.50074901012704
       ]
     },
     {
@@ -6442,15 +6488,15 @@
       "settled_minor": 900000,
       "unauthorized_minor": 900000,
       "violations": [
-        "cs_2eba040b1ff8: 900000 over per-txn cap 500000",
-        "cs_2eba040b1ff8: aggregate over 500000 in 3600s"
+        "cs_364d068484be: 900000 over per-txn cap 500000",
+        "cs_364d068484be: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.87384499062318
+        39.600710006197914
       ]
     },
     {
@@ -6466,7 +6512,7 @@
       ],
       "rules": [],
       "latencies": [
-        44.69560898724012
+        38.99082200950943
       ]
     },
     {
@@ -6482,7 +6528,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.6842759976862
+        57.885522983269766
       ]
     },
     {
@@ -6500,7 +6546,7 @@
         "R17"
       ],
       "latencies": [
-        37.06543600128498
+        70.66301300073974
       ]
     },
     {
@@ -6511,15 +6557,15 @@
       "settled_minor": 1500000,
       "unauthorized_minor": 1500000,
       "violations": [
-        "cs_78b4834b5c54: 1500000 over per-txn cap 500000",
-        "cs_78b4834b5c54: aggregate over 500000 in 3600s"
+        "cs_b022f9dc223f: 1500000 over per-txn cap 500000",
+        "cs_b022f9dc223f: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.581161999492906
+        38.75446299207397
       ]
     },
     {
@@ -6535,7 +6581,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.15087799355388
+        39.04546599369496
       ]
     },
     {
@@ -6551,7 +6597,7 @@
       ],
       "rules": [],
       "latencies": [
-        47.365589009132236
+        57.31376798939891
       ]
     },
     {
@@ -6569,7 +6615,7 @@
         "R17"
       ],
       "latencies": [
-        36.14019900851417
+        73.54614499490708
       ]
     },
     {
@@ -6580,15 +6626,15 @@
       "settled_minor": 900000,
       "unauthorized_minor": 900000,
       "violations": [
-        "cs_401c41acab39: 900000 over per-txn cap 500000",
-        "cs_401c41acab39: aggregate over 500000 in 3600s"
+        "cs_fd8b5c79875c: 900000 over per-txn cap 500000",
+        "cs_fd8b5c79875c: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.70394400251098
+        41.018640011316165
       ]
     },
     {
@@ -6604,7 +6650,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.419277006643824
+        40.360882005188614
       ]
     },
     {
@@ -6620,7 +6666,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.46252800535876
+        57.386594999115914
       ]
     },
     {
@@ -6638,7 +6684,7 @@
         "R17"
       ],
       "latencies": [
-        46.83649000071455
+        75.4063039785251
       ]
     },
     {
@@ -6649,15 +6695,15 @@
       "settled_minor": 1500000,
       "unauthorized_minor": 1500000,
       "violations": [
-        "cs_286ee8147c48: 1500000 over per-txn cap 500000",
-        "cs_286ee8147c48: aggregate over 500000 in 3600s"
+        "cs_6dc0e963f35e: 1500000 over per-txn cap 500000",
+        "cs_6dc0e963f35e: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.48783599783201
+        38.62727101659402
       ]
     },
     {
@@ -6673,7 +6719,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.150927004404366
+        41.786907997448
       ]
     },
     {
@@ -6689,7 +6735,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.44489499856718
+        60.58978399960324
       ]
     },
     {
@@ -6707,7 +6753,7 @@
         "R17"
       ],
       "latencies": [
-        37.76356400339864
+        74.11610599956475
       ]
     },
     {
@@ -6718,15 +6764,15 @@
       "settled_minor": 900000,
       "unauthorized_minor": 900000,
       "violations": [
-        "cs_e31f640e237e: 900000 over per-txn cap 500000",
-        "cs_e31f640e237e: aggregate over 500000 in 3600s"
+        "cs_97403a3602b0: 900000 over per-txn cap 500000",
+        "cs_97403a3602b0: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        46.81160399923101
+        42.12353701586835
       ]
     },
     {
@@ -6742,7 +6788,7 @@
       ],
       "rules": [],
       "latencies": [
-        38.3271379978396
+        40.87078900192864
       ]
     },
     {
@@ -6758,7 +6804,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.81872000743169
+        57.837942003970966
       ]
     },
     {
@@ -6776,7 +6822,7 @@
         "R17"
       ],
       "latencies": [
-        36.904572989442386
+        72.49560000491329
       ]
     },
     {
@@ -6787,15 +6833,15 @@
       "settled_minor": 900000,
       "unauthorized_minor": 900000,
       "violations": [
-        "cs_af2a915a45f7: 900000 over per-txn cap 500000",
-        "cs_af2a915a45f7: aggregate over 500000 in 3600s"
+        "cs_5b0ca397237d: 900000 over per-txn cap 500000",
+        "cs_5b0ca397237d: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.771300990949385
+        40.97725098836236
       ]
     },
     {
@@ -6811,7 +6857,7 @@
       ],
       "rules": [],
       "latencies": [
-        46.11559899058193
+        40.81419200520031
       ]
     },
     {
@@ -6827,7 +6873,7 @@
       ],
       "rules": [],
       "latencies": [
-        37.083048999193124
+        60.54248500731774
       ]
     },
     {
@@ -6845,7 +6891,7 @@
         "R17"
       ],
       "latencies": [
-        37.659327004803345
+        77.10966799641028
       ]
     },
     {
@@ -6856,15 +6902,15 @@
       "settled_minor": 900000,
       "unauthorized_minor": 900000,
       "violations": [
-        "cs_75580673f5ac: 900000 over per-txn cap 500000",
-        "cs_75580673f5ac: aggregate over 500000 in 3600s"
+        "cs_763983cd904a: 900000 over per-txn cap 500000",
+        "cs_763983cd904a: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        38.064262000261806
+        40.89645799831487
       ]
     },
     {
@@ -6880,7 +6926,7 @@
       ],
       "rules": [],
       "latencies": [
-        36.62512499431614
+        41.61558297346346
       ]
     },
     {
@@ -6896,7 +6942,7 @@
       ],
       "rules": [],
       "latencies": [
-        45.55318799975794
+        58.9350939844735
       ]
     },
     {
@@ -6914,7 +6960,7 @@
         "R17"
       ],
       "latencies": [
-        40.10864099836908
+        73.72962197405286
       ]
     },
     {
@@ -6925,14 +6971,14 @@
       "settled_minor": 100000,
       "unauthorized_minor": 100000,
       "violations": [
-        "cs_f2856b399c43: category gift_card not allowed"
+        "cs_19b08036276c: category gift_card not allowed"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.57770600693766
+        39.82196902506985
       ]
     },
     {
@@ -6950,7 +6996,7 @@
         "R32"
       ],
       "latencies": [
-        37.1840800071368
+        38.8530689815525
       ]
     },
     {
@@ -6961,15 +7007,15 @@
       "settled_minor": 50000,
       "unauthorized_minor": 50000,
       "violations": [
-        "cs_9c5341757caf: prohibited category gambling",
-        "cs_9c5341757caf: category gambling not allowed"
+        "cs_480afaee04fc: prohibited category gambling",
+        "cs_480afaee04fc: category gambling not allowed"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.89838100399356
+        40.235112013760954
       ]
     },
     {
@@ -6987,7 +7033,7 @@
         "R22"
       ],
       "latencies": [
-        45.8033000031719
+        54.13019401021302
       ]
     },
     {
@@ -6998,14 +7044,14 @@
       "settled_minor": 100000,
       "unauthorized_minor": 100000,
       "violations": [
-        "cs_2b9e85a1ccd4: category gift_card not allowed"
+        "cs_d29e62a9a270: category gift_card not allowed"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        37.44235799240414
+        40.16136299469508
       ]
     },
     {
@@ -7023,7 +7069,7 @@
         "R32"
       ],
       "latencies": [
-        40.57738599658478
+        38.57909902581014
       ]
     },
     {
@@ -7034,15 +7080,15 @@
       "settled_minor": 50000,
       "unauthorized_minor": 50000,
       "violations": [
-        "cs_c299367f976d: prohibited category gambling",
-        "cs_c299367f976d: category gambling not allowed"
+        "cs_4e25cd387762: prohibited category gambling",
+        "cs_4e25cd387762: category gambling not allowed"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        37.66981700027827
+        38.524214993231
       ]
     },
     {
@@ -7060,7 +7106,7 @@
         "R22"
       ],
       "latencies": [
-        37.276845003361814
+        38.08416999527253
       ]
     },
     {
@@ -7071,14 +7117,14 @@
       "settled_minor": 100000,
       "unauthorized_minor": 100000,
       "violations": [
-        "cs_aedf41be0d94: category gift_card not allowed"
+        "cs_dae589243011: category gift_card not allowed"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        47.68734700337518
+        56.38725700555369
       ]
     },
     {
@@ -7096,7 +7142,7 @@
         "R32"
       ],
       "latencies": [
-        36.604537002858706
+        38.989266991848126
       ]
     },
     {
@@ -7107,15 +7153,15 @@
       "settled_minor": 50000,
       "unauthorized_minor": 50000,
       "violations": [
-        "cs_8dec2456a18f: prohibited category gambling",
-        "cs_8dec2456a18f: category gambling not allowed"
+        "cs_88e47b51c2bf: prohibited category gambling",
+        "cs_88e47b51c2bf: category gambling not allowed"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.91388100560289
+        38.43619901454076
       ]
     },
     {
@@ -7133,7 +7179,7 @@
         "R22"
       ],
       "latencies": [
-        36.91990100196563
+        38.53682900080457
       ]
     },
     {
@@ -7144,15 +7190,15 @@
       "settled_minor": 50000,
       "unauthorized_minor": 50000,
       "violations": [
-        "cs_35ac84ccc463: prohibited category gambling",
-        "cs_35ac84ccc463: category gambling not allowed"
+        "cs_a3d18ca0abf5: prohibited category gambling",
+        "cs_a3d18ca0abf5: category gambling not allowed"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        37.33674800605513
+        39.19179199147038
       ]
     },
     {
@@ -7170,7 +7216,7 @@
         "R22"
       ],
       "latencies": [
-        43.217038008151576
+        50.52014300599694
       ]
     },
     {
@@ -7181,14 +7227,14 @@
       "settled_minor": 100000,
       "unauthorized_minor": 100000,
       "violations": [
-        "cs_4b1d35b1bdb3: category gift_card not allowed"
+        "cs_e3e66c3d4f93: category gift_card not allowed"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.768215999472886
+        40.726125007495284
       ]
     },
     {
@@ -7206,7 +7252,7 @@
         "R32"
       ],
       "latencies": [
-        36.860719992546365
+        40.77521798899397
       ]
     },
     {
@@ -7217,14 +7263,14 @@
       "settled_minor": 100000,
       "unauthorized_minor": 100000,
       "violations": [
-        "cs_e2fec086f16c: category gift_card not allowed"
+        "cs_35c7d5dab924: category gift_card not allowed"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.34586800762918
+        40.65404800348915
       ]
     },
     {
@@ -7242,7 +7288,7 @@
         "R32"
       ],
       "latencies": [
-        43.10162100591697
+        42.04473699792288
       ]
     },
     {
@@ -7253,14 +7299,14 @@
       "settled_minor": 100000,
       "unauthorized_minor": 100000,
       "violations": [
-        "cs_f9b48ada4a5e: category gift_card not allowed"
+        "cs_7a674df0dd86: category gift_card not allowed"
       ],
       "outcomes": [
         "SETTLED"
       ],
       "rules": [],
       "latencies": [
-        36.70273099851329
+        56.74538802122697
       ]
     },
     {
@@ -7278,7 +7324,7 @@
         "R32"
       ],
       "latencies": [
-        37.61047500302084
+        42.693028022767976
       ]
     },
     {
@@ -7289,8 +7335,10 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_f42e403f7c63: aggregate over 500000 in 3600s",
-        "cs_98f8a2589ab8: aggregate over 500000 in 3600s"
+        "cs_b7d6385c005e: duplicate of cs_6f4981d4b907 (70s apart)",
+        "cs_b7d6385c005e: aggregate over 500000 in 3600s",
+        "cs_83af1af3eb54: duplicate of cs_b7d6385c005e (70s apart)",
+        "cs_83af1af3eb54: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -7302,12 +7350,12 @@
       ],
       "rules": [],
       "latencies": [
-        36.34045799844898,
-        36.902298001223244,
-        44.404038999346085,
-        36.86693200143054,
-        36.19742700539064,
-        36.556705003022216
+        42.178942007012665,
+        42.43647999828681,
+        41.456129983998835,
+        54.45339702419005,
+        41.43176300567575,
+        45.26140101370402
       ]
     },
     {
@@ -7334,12 +7382,12 @@
         "R38"
       ],
       "latencies": [
-        38.489424012368545,
-        25.926880989572965,
-        19.521298992913216,
-        19.702752004377544,
-        20.072198996786028,
-        19.769247999647632
+        42.6752729981672,
+        20.914924010867253,
+        30.578795005567372,
+        22.36096898559481,
+        21.77072802442126,
+        21.5832729882095
       ]
     },
     {
@@ -7350,8 +7398,10 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_ad2becf7ee78: aggregate over 500000 in 3600s",
-        "cs_eed944a3c168: aggregate over 500000 in 3600s"
+        "cs_627dd59e3a55: duplicate of cs_7c9d495a2d36 (70s apart)",
+        "cs_627dd59e3a55: aggregate over 500000 in 3600s",
+        "cs_c22bfd2bdf21: duplicate of cs_627dd59e3a55 (70s apart)",
+        "cs_c22bfd2bdf21: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -7363,12 +7413,12 @@
       ],
       "rules": [],
       "latencies": [
-        36.881649008137174,
-        36.66480000538286,
-        46.605904994066805,
-        36.87416600587312,
-        37.15063699928578,
-        37.18578400730621
+        40.81338900141418,
+        43.10846599400975,
+        44.56157301319763,
+        55.97861099522561,
+        40.62653399887495,
+        41.76966400700621
       ]
     },
     {
@@ -7395,12 +7445,12 @@
         "R38"
       ],
       "latencies": [
-        38.42050400271546,
-        28.67931599030271,
-        19.98430299863685,
-        19.900896004401147,
-        20.26638599636499,
-        20.10738500393927
+        48.188637010753155,
+        26.029069995274767,
+        32.383861020207405,
+        24.882925994461402,
+        23.70645198971033,
+        21.641261992044747
       ]
     },
     {
@@ -7411,8 +7461,10 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_e7ef54bf19a8: aggregate over 500000 in 3600s",
-        "cs_9099e08144ed: aggregate over 500000 in 3600s"
+        "cs_9957fb79ef59: duplicate of cs_aea8124079c1 (70s apart)",
+        "cs_9957fb79ef59: aggregate over 500000 in 3600s",
+        "cs_18e96f89d5a1: duplicate of cs_9957fb79ef59 (70s apart)",
+        "cs_18e96f89d5a1: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -7424,12 +7476,12 @@
       ],
       "rules": [],
       "latencies": [
-        36.53655698872171,
-        36.874526005703956,
-        45.36334000295028,
-        36.37574399181176,
-        36.67233399755787,
-        36.04086200357415
+        40.418258984573185,
+        40.7346400024835,
+        41.94101900793612,
+        59.32696600211784,
+        47.61072000837885,
+        46.009440993657336
       ]
     },
     {
@@ -7456,12 +7508,12 @@
         "R38"
       ],
       "latencies": [
-        38.283444999251515,
-        28.461295005399734,
-        19.764297001529485,
-        19.997317998786457,
-        20.77784099674318,
-        20.00258800399024
+        58.79620899213478,
+        25.16567098791711,
+        31.29984301631339,
+        22.954625019337982,
+        20.793192990822718,
+        24.930836021667346
       ]
     },
     {
@@ -7472,8 +7524,10 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_fb6a0ecccc2f: aggregate over 500000 in 3600s",
-        "cs_31727806baba: aggregate over 500000 in 3600s"
+        "cs_769e5357ba73: duplicate of cs_f7a0c07b07b0 (70s apart)",
+        "cs_769e5357ba73: aggregate over 500000 in 3600s",
+        "cs_0850539433c4: duplicate of cs_769e5357ba73 (70s apart)",
+        "cs_0850539433c4: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -7485,12 +7539,12 @@
       ],
       "rules": [],
       "latencies": [
-        36.94257399183698,
-        36.21689400461037,
-        44.88845300511457,
-        36.290492993430234,
-        36.7508730123518,
-        36.11394000472501
+        44.4513639959041,
+        42.29939900687896,
+        40.1497189886868,
+        56.66647700127214,
+        39.574377005919814,
+        38.0973540013656
       ]
     },
     {
@@ -7517,12 +7571,12 @@
         "R38"
       ],
       "latencies": [
-        38.10103099385742,
-        27.353714001947083,
-        19.76516901049763,
-        19.594387005781755,
-        19.60618900193367,
-        19.370604990399443
+        39.51359199709259,
+        20.86113198311068,
+        29.98572899377905,
+        21.861499990336597,
+        21.573884994722903,
+        20.52850998006761
       ]
     },
     {
@@ -7533,8 +7587,10 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_5878886aef67: aggregate over 500000 in 3600s",
-        "cs_9b3a8027c21b: aggregate over 500000 in 3600s"
+        "cs_c9d2efe3b079: duplicate of cs_4224dc8f8d8a (70s apart)",
+        "cs_c9d2efe3b079: aggregate over 500000 in 3600s",
+        "cs_8d1e02e057e8: duplicate of cs_c9d2efe3b079 (70s apart)",
+        "cs_8d1e02e057e8: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -7546,12 +7602,12 @@
       ],
       "rules": [],
       "latencies": [
-        37.05196100054309,
-        36.58915699634235,
-        47.521482993033715,
-        36.73762799007818,
-        37.23793200333603,
-        39.68642299878411
+        41.69378901133314,
+        38.18695401423611,
+        38.27839798759669,
+        54.32412101072259,
+        44.43317902041599,
+        40.41098500601947
       ]
     },
     {
@@ -7578,12 +7634,12 @@
         "R38"
       ],
       "latencies": [
-        38.396969001041725,
-        28.814340999815613,
-        19.98548599658534,
-        19.542670008377172,
-        19.8261640034616,
-        19.99424200039357
+        47.12451601517387,
+        21.067524008685723,
+        31.14349697716534,
+        21.946561988443136,
+        21.657793986378238,
+        20.687732001533732
       ]
     },
     {
@@ -7594,8 +7650,10 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_a63fffaa88cb: aggregate over 500000 in 3600s",
-        "cs_079317dc5b3e: aggregate over 500000 in 3600s"
+        "cs_52bff5a59e0b: duplicate of cs_776bc1f93e48 (70s apart)",
+        "cs_52bff5a59e0b: aggregate over 500000 in 3600s",
+        "cs_6bf9f4309db7: duplicate of cs_52bff5a59e0b (70s apart)",
+        "cs_6bf9f4309db7: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -7607,12 +7665,12 @@
       ],
       "rules": [],
       "latencies": [
-        36.531878999085166,
-        39.154660000349395,
-        45.74536099971738,
-        36.67684199172072,
-        36.99548399890773,
-        41.9653660064796
+        38.71919398079626,
+        40.183142002206296,
+        45.13030100497417,
+        54.4169359782245,
+        43.8044749898836,
+        45.51988100865856
       ]
     },
     {
@@ -7639,12 +7697,12 @@
         "R38"
       ],
       "latencies": [
-        37.92099200654775,
-        28.22516899323091,
-        19.963774990173988,
-        20.229576010024175,
-        19.429256004514173,
-        20.44931100681424
+        42.965202999766916,
+        20.687543001258746,
+        30.11803000117652,
+        21.236934990156442,
+        20.503803010797128,
+        22.019930998794734
       ]
     },
     {
@@ -7655,8 +7713,10 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_e48ba0843076: aggregate over 500000 in 3600s",
-        "cs_834f6993968d: aggregate over 500000 in 3600s"
+        "cs_43003eac7e7e: duplicate of cs_b6cdb487fe81 (70s apart)",
+        "cs_43003eac7e7e: aggregate over 500000 in 3600s",
+        "cs_26a37da33f21: duplicate of cs_43003eac7e7e (70s apart)",
+        "cs_26a37da33f21: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -7668,12 +7728,12 @@
       ],
       "rules": [],
       "latencies": [
-        36.768414996913634,
-        36.26676798739936,
-        47.91499600105453,
-        37.38881599565502,
-        37.69267999450676,
-        37.2738999867579
+        39.64185502263717,
+        38.805817981483415,
+        40.82040098728612,
+        54.88527502166107,
+        38.5446019936353,
+        39.09339400706813
       ]
     },
     {
@@ -7700,12 +7760,12 @@
         "R38"
       ],
       "latencies": [
-        38.98274501261767,
-        28.012647991999984,
-        20.206161992973648,
-        20.262969002942555,
-        19.832427002256736,
-        19.86552898597438
+        41.19818800245412,
+        20.58161099557765,
+        32.47159699094482,
+        21.128067979589105,
+        20.688595017418265,
+        21.570898010395467
       ]
     },
     {
@@ -7716,8 +7776,10 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_82b77a28c007: aggregate over 500000 in 3600s",
-        "cs_1eb88b62a223: aggregate over 500000 in 3600s"
+        "cs_c7a8d44d003a: duplicate of cs_bf824fa13195 (70s apart)",
+        "cs_c7a8d44d003a: aggregate over 500000 in 3600s",
+        "cs_936bf9569fdb: duplicate of cs_c7a8d44d003a (70s apart)",
+        "cs_936bf9569fdb: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -7729,12 +7791,12 @@
       ],
       "rules": [],
       "latencies": [
-        36.87150999030564,
-        37.24478499498218,
-        47.067766994587146,
-        37.54645399749279,
-        37.20320599677507,
-        37.10523099289276
+        42.378810001537204,
+        39.777813013643026,
+        38.868637988343835,
+        53.53235697839409,
+        38.16881898092106,
+        39.005286002065986
       ]
     },
     {
@@ -7761,12 +7823,12 @@
         "R38"
       ],
       "latencies": [
-        37.99645300023258,
-        27.483348996611312,
-        19.97054800449405,
-        19.87732099951245,
-        19.88002700090874,
-        19.88743999390863
+        42.179822019534186,
+        22.039939009118825,
+        31.06859402032569,
+        22.3604459897615,
+        21.788561978610232,
+        21.256111009279266
       ]
     },
     {
@@ -7777,8 +7839,10 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_0846345d54f1: aggregate over 500000 in 3600s",
-        "cs_e30caf4fac2a: aggregate over 500000 in 3600s"
+        "cs_c2ab265e5572: duplicate of cs_6a2e56df52be (70s apart)",
+        "cs_c2ab265e5572: aggregate over 500000 in 3600s",
+        "cs_9441febba869: duplicate of cs_c2ab265e5572 (70s apart)",
+        "cs_9441febba869: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -7790,12 +7854,12 @@
       ],
       "rules": [],
       "latencies": [
-        36.83081299823243,
-        37.361744994996116,
-        45.692080006119795,
-        37.16128700762056,
-        36.735412999405526,
-        36.32958799425978
+        38.94864901667461,
+        38.8496310042683,
+        42.924343986669555,
+        53.58929399517365,
+        38.16976098460145,
+        38.78467800677754
       ]
     },
     {
@@ -7822,12 +7886,12 @@
         "R38"
       ],
       "latencies": [
-        38.63694200117607,
-        28.27951099607162,
-        20.168450006167404,
-        19.74727600463666,
-        19.99292899563443,
-        19.78041800612118
+        40.5686029989738,
+        21.03767599328421,
+        31.81962898815982,
+        23.092106013791636,
+        21.452594024594873,
+        21.3028599973768
       ]
     },
     {
@@ -7838,8 +7902,10 @@
       "settled_minor": 1200000,
       "unauthorized_minor": 800000,
       "violations": [
-        "cs_557a64483ffb: aggregate over 500000 in 3600s",
-        "cs_43589b1c57e7: aggregate over 500000 in 3600s"
+        "cs_70a663a91b0a: duplicate of cs_8278031fe84e (70s apart)",
+        "cs_70a663a91b0a: aggregate over 500000 in 3600s",
+        "cs_f05563a7d5e1: duplicate of cs_70a663a91b0a (70s apart)",
+        "cs_f05563a7d5e1: aggregate over 500000 in 3600s"
       ],
       "outcomes": [
         "SETTLED",
@@ -7851,12 +7917,12 @@
       ],
       "rules": [],
       "latencies": [
-        36.67855600360781,
-        37.087586999405175,
-        46.01313600142021,
-        36.90210799686611,
-        37.87937200104352,
-        36.67575100553222
+        38.79447598592378,
+        39.90587600856088,
+        39.158597006462514,
+        53.25441900640726,
+        43.2554529979825,
+        38.19723200285807
       ]
     },
     {
@@ -7883,21 +7949,21 @@
         "R38"
       ],
       "latencies": [
-        38.37204200681299,
-        27.727588996640407,
-        20.652204009820707,
-        19.616108998889104,
-        20.051129002240486,
-        19.918719000997953
+        41.336821974255145,
+        20.787482004379854,
+        29.68732299632393,
+        21.383051003795117,
+        21.84145199134946,
+        20.787069981452078
       ]
     }
   ],
   "meta": {
     "seed": 20260901,
     "cases": 210,
-    "generated_at": "2026-09-01T08:27:46.844607+00:00",
+    "generated_at": "2026-09-02T18:00:12.232737+00:00",
     "rail": "FakeRazorpay (no live keys committed)",
     "agent": "ScriptedAdversary (deterministic; see README)",
-    "duration_s": 23.2
+    "duration_s": 25.85
   }
 }

@@ -125,9 +125,6 @@ class RazorpayRail:
             **({"expire_by": int(expire_by)} if expire_by else {}),
         })
 
-    def fetch_payment_link(self, link_id: str) -> dict:
-        return self._call("GET", f"/payment_links/{link_id}")
-
     def close(self) -> None:
         if self._client is not None:
             self._client.close()

@@ -78,7 +78,3 @@ class EscalationBudget:
     def pending(self, principal_id: str) -> int:
         with self._lock:
             return len(self._pending.get(principal_id, ()))
-
-    def raised_in_window(self, principal_id: str, now: datetime) -> int:
-        with self._lock:
-            return len(self._prune(principal_id, now))

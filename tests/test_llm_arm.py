@@ -191,27 +191,69 @@ def test_model_list_is_pinned_not_aliased():
         assert label
 
 
-def test_repricing_is_per_session_not_global():
-    """Models run in parallel against one merchant server. A global "hostile"
-    flag would let one model's repricing attack corrupt another's basket —
-    and an earlier version did exactly that, silently, because the per-arm
-    MerchantState objects it created were never the ones the server read.
+def test_repricing_one_basket_leaves_another_alone():
+    """Models run in parallel against one merchant. A global "hostile" flag let
+    one model's repricing attack corrupt another's basket — and the test that
+    was supposed to catch it passed by grepping for a source line that existed
+    and did nothing. So this one drives the real endpoint instead.
     """
-    merchant = (ROOT / "src" / "spendgate" / "merchant.py").read_text()
-    assert "force_total" in merchant, "reprice must live on the Session"
-    assert "/{session_id}/reprice" in merchant
+    import httpx
 
-    arms = (ROOT / "evaluation" / "arms.py").read_text()
-    assert "self.mstate.hostile = a.reprice_to" not in arms, \
-        "prepare() must not drive repricing through global merchant state"
+    from spendgate.acp import AcpFactResolver
+    from spendgate.merchant import serve
+
+    with serve() as (url, state):
+        headers = {"Authorization": "Bearer agt_a", "API-Version": "2026-04-17"}
+
+        def quote(key):
+            r = httpx.post(f"{url}/checkout_sessions",
+                           json={"items": [{"id": "SPK-14", "quantity": 1}]},
+                           headers={**headers, "Idempotency-Key": key})
+            r.raise_for_status()
+            return r.json()["id"]
+
+        victim, bystander = quote("k-victim"), quote("k-bystander")
+        resolver = AcpFactResolver(url, "agt_a", state.secret)
+        assert resolver.resolve(victim).total_minor == 120_000
+        assert resolver.resolve(bystander).total_minor == 120_000
+
+        httpx.post(f"{url}/checkout_sessions/{victim}/reprice",
+                   json={"amount": 900_000}, headers=headers).raise_for_status()
+
+        assert resolver.resolve(victim).total_minor == 900_000, "the attack lands"
+        assert resolver.resolve(bystander).total_minor == 120_000, \
+            "and touches nothing else — a concurrent model is unaffected"
 
 
-def test_cost_is_reported_not_estimated():
-    """The cost column has to come from OpenRouter's accounting. Estimating it
-    from token counts and a price list would make that column fiction."""
-    src = (ROOT / "evaluation" / "llm.py").read_text()
-    assert '"usage": {"include": True}' in src
-    assert "def _record" in src
+def test_cost_is_read_from_the_response_not_estimated():
+    """The cost column must come from OpenRouter's own accounting. Estimating it
+    from token counts and a price list would make that column fiction, so this
+    feeds a response through the recorder and checks what comes out."""
+    from evaluation.llm import OpenRouter
+
+    class FakeUsage:
+        prompt_tokens = 1234
+        completion_tokens = 56
+        model_extra = {"cost": 0.0431}
+
+    class FakeResp:
+        usage = FakeUsage()
+
+    client = OpenRouter()
+    client._record(FakeResp())
+    assert client.usage.cost_usd == 0.0431, "cost is taken from the response"
+    assert client.usage.prompt == 1234 and client.usage.completion == 56
+    assert client.usage.calls == 1
+
+    class NoCost:
+        class usage:
+            prompt_tokens = 10
+            completion_tokens = 2
+            model_extra = {}
+
+    client._record(NoCost())
+    assert client.usage.calls == 2
+    assert client.usage.cost_usd == 0.0431, "a response without cost adds none"
 
 
 # ------------------------------------------------------------ merging runs

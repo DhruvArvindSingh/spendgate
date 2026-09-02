@@ -24,7 +24,7 @@ payment tool or has to ask.
 | **Unauthorized value released** | **₹2,063,000** | **₹0** |
 | Hostile cases contained | 17/145 | **160/160** |
 | False refusals on 50 benign purchases | 0.0% | 0.0% |
-| p95 decision latency | 64.73 ms | 58.98 ms |
+| p95 decision latency | 61.71 ms | 64.56 ms |
 
 Arm A is a good-faith implementation of what most agent-payment systems do today:
 a per-transaction cap, a running monthly total, a prohibited-category list. Its

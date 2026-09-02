@@ -104,11 +104,30 @@ def test_a_session_charged_twice():
 
 
 def test_the_oracle_does_not_import_the_engine():
-    """If the adjudicator used the rule engine, the evaluation would be circular."""
-    src = (Path(__file__).resolve().parent.parent / "evaluation" / "oracle.py").read_text()
-    for forbidden in ("from spendgate.rules", "from spendgate.engine",
-                      "import spendgate.rules", "import spendgate.engine"):
-        assert forbidden not in src, f"oracle must not depend on {forbidden!r}"
+    """If the adjudicator used the rule engine, the evaluation would be circular.
+
+    Checked by importing it in a clean interpreter and inspecting sys.modules,
+    rather than grepping the source — an indirect import would not show up in a
+    text search, and this is the claim the whole evaluation rests on.
+    """
+    import subprocess
+    import sys
+
+    root = Path(__file__).resolve().parent.parent
+    probe = (
+        "import sys; sys.path[:0] = ['.', 'src'];"
+        "import evaluation.oracle;"
+        "bad = [m for m in sys.modules"
+        " if m in ('spendgate.rules', 'spendgate.engine')];"
+        "print(','.join(bad))"
+    )
+    out = subprocess.run([sys.executable, "-c", probe], cwd=root,
+                         capture_output=True, text=True, timeout=60)
+    assert out.returncode == 0, out.stderr[-400:]
+    assert out.stdout.strip() == "", (
+        f"the adjudicator pulled in {out.stdout.strip()} — the evaluation would "
+        "be marking its own exam"
+    )
 
 
 def test_a_clean_run_totals_zero():
