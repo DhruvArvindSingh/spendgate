@@ -1,0 +1,44 @@
+{
+  "S1Problem": {
+    "target": 47,
+    "got": 46.5,
+    "pace": 4.17,
+    "anim_s": 13.9,
+    "wait_s": 7.9
+  },
+  "S2Where": {
+    "target": 31,
+    "got": 30.7,
+    "pace": 2.58,
+    "anim_s": 11.2,
+    "wait_s": 7.7
+  },
+  "S3How": {
+    "target": 61,
+    "got": 60.7,
+    "pace": 4.48,
+    "anim_s": 19.2,
+    "wait_s": 9.3
+  },
+  "S4Edges": {
+    "target": 86,
+    "got": 85.4,
+    "pace": 3.27,
+    "anim_s": 26.1,
+    "wait_s": 18.3
+  },
+  "S5Results": {
+    "target": 56,
+    "got": 55.7,
+    "pace": 3.78,
+    "anim_s": 12.4,
+    "wait_s": 11.5
+  },
+  "S6Limits": {
+    "target": 36,
+    "got": 36.1,
+    "pace": 3.43,
+    "anim_s": 10.4,
+    "wait_s": 7.5
+  }
+}

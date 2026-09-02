@@ -24,3 +24,8 @@ htmlcov/
 .vscode/
 .idea/
 .DS_Store
+
+# Manim
+.venv-manim/
+video/media/
+video/out/
