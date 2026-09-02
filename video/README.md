@@ -9,6 +9,21 @@ with a webcam in the corner.
 ./render.sh final    # 1080p60, then stitched to out/spendgate.mp4
 ```
 
+## Layout, and why it is not hand-positioned
+
+The first cut of this video had eleven collisions — headings sitting on diagrams,
+captions stacked on each other, text running off the right edge. Every one had
+the same cause: content placed at guessed absolute coordinates.
+
+Nothing sets an absolute y any more. A scene builds a group; `place()` fits it
+into the band bounded by the heading above and the webcam below, and centres it
+there. Too-big content shrinks, sparse content grows to fill. Overlap is not
+something to be careful about — it is unrepresentable.
+
+`panel()` sizes a card to its content rather than the reverse, and `table_row()`
+allocates real columns with gaps rather than measuring one cell from the left and
+another from the right until they meet in the middle.
+
 ## How it is put together
 
 Six scenes, rendered as separate files and stitched at the end. That is
