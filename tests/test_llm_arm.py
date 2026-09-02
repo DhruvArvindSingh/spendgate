@@ -176,3 +176,110 @@ def test_an_honest_model_is_not_obstructed(world):
     assert a.results[-1].outcome == "SETTLED"
     assert b.results[-1].outcome == "SETTLED"
     assert a.misreported is False and b.misreported is False
+
+
+# ------------------------------------------------- multi-model runner
+def test_model_list_is_pinned_not_aliased():
+    """A rerun months from now must measure the same models. `:latest` style
+    aliases would silently change what the results table refers to."""
+    from evaluation.run_models import MODELS
+
+    assert len(MODELS) >= 6
+    for model_id, label in MODELS:
+        assert "/" in model_id, f"{model_id} is not provider/name"
+        assert not model_id.endswith("latest"), f"{model_id} is aliased"
+        assert label
+
+
+def test_repricing_is_per_session_not_global():
+    """Models run in parallel against one merchant server. A global "hostile"
+    flag would let one model's repricing attack corrupt another's basket —
+    and an earlier version did exactly that, silently, because the per-arm
+    MerchantState objects it created were never the ones the server read.
+    """
+    merchant = (ROOT / "src" / "spendgate" / "merchant.py").read_text()
+    assert "force_total" in merchant, "reprice must live on the Session"
+    assert "/{session_id}/reprice" in merchant
+
+    arms = (ROOT / "evaluation" / "arms.py").read_text()
+    assert "self.mstate.hostile = a.reprice_to" not in arms, \
+        "prepare() must not drive repricing through global merchant state"
+
+
+def test_cost_is_reported_not_estimated():
+    """The cost column has to come from OpenRouter's accounting. Estimating it
+    from token counts and a price list would make that column fiction."""
+    src = (ROOT / "evaluation" / "llm.py").read_text()
+    assert '"usage": {"include": True}' in src
+    assert "def _record" in src
+
+
+# ------------------------------------------------------------ merging runs
+def test_merge_replaces_only_the_rerun_scenarios():
+    """Adding a scenario must not mean paying to re-measure the others."""
+    from evaluation.run_models import merge
+
+    base = {"meta": {"reps": 2, "duration_s": 100, "scenarios": ["benign"]},
+            "models": [{"label": "M", "runs": [
+                {"klass": "benign", "arm": "A_naive", "rep": 0, "unauthorized_minor": 0},
+                {"klass": "benign", "arm": "A_naive", "rep": 1, "unauthorized_minor": 0}],
+                "errors": [], "usage": {"cost_usd": 1.0, "calls": 10,
+                                        "prompt": 5, "completion": 5}}]}
+    new = {"meta": {"reps": 2, "duration_s": 50, "generated_at": "now",
+                    "scenarios": ["revoked_authority"]},
+           "models": [{"label": "M", "runs": [
+               {"klass": "revoked_authority", "arm": "A_naive", "rep": 0,
+                "unauthorized_minor": 45000}],
+               "errors": [], "usage": {"cost_usd": 0.2, "calls": 4,
+                                       "prompt": 2, "completion": 2}}]}
+
+    out = merge(base, new)
+    runs = out["models"][0]["runs"]
+    assert len(runs) == 3, "the old benign rows survive"
+    assert {r["klass"] for r in runs} == {"benign", "revoked_authority"}
+    assert out["models"][0]["usage"]["cost_usd"] == 1.2, "cost accumulates"
+    assert out["meta"]["scenarios"] == ["benign", "revoked_authority"]
+
+
+def test_merge_overwrites_a_rerun_of_the_same_scenario():
+    """Re-running one scenario replaces exactly those rows, not appends them."""
+    from evaluation.run_models import merge
+
+    base = {"meta": {"reps": 1, "duration_s": 1, "scenarios": ["benign"]},
+            "models": [{"label": "M", "runs": [
+                {"klass": "benign", "arm": "A_naive", "rep": 0,
+                 "unauthorized_minor": 999}],
+                "errors": [], "usage": {"cost_usd": 0.0, "calls": 0,
+                                        "prompt": 0, "completion": 0}}]}
+    new = {"meta": {"reps": 1, "duration_s": 1, "generated_at": "now",
+                    "scenarios": ["benign"]},
+           "models": [{"label": "M", "runs": [
+               {"klass": "benign", "arm": "A_naive", "rep": 0,
+                "unauthorized_minor": 0}],
+               "errors": [], "usage": {"cost_usd": 0.0, "calls": 0,
+                                       "prompt": 0, "completion": 0}}]}
+    runs = merge(base, new)["models"][0]["runs"]
+    assert len(runs) == 1 and runs[0]["unauthorized_minor"] == 0
+
+
+def test_merge_clears_errors_for_cells_that_were_rerun():
+    """A successful rerun must not still read as "did not run" — the report
+    keys off recorded errors, so a stale one silently discards real data."""
+    from evaluation.run_models import merge
+
+    base = {"meta": {"reps": 1, "duration_s": 1, "scenarios": ["x"]},
+            "models": [{"label": "M", "runs": [],
+                        "errors": ["x/A_naive: APIStatusError: 402 no credit",
+                                   "y/A_naive: APIStatusError: 402 no credit"],
+                        "usage": {"cost_usd": 0.0, "calls": 0,
+                                  "prompt": 0, "completion": 0}}]}
+    new = {"meta": {"reps": 1, "duration_s": 1, "generated_at": "now",
+                    "scenarios": ["x"]},
+           "models": [{"label": "M", "runs": [
+               {"klass": "x", "arm": "A_naive", "rep": 0, "unauthorized_minor": 0}],
+               "errors": [], "usage": {"cost_usd": 0.1, "calls": 2,
+                                       "prompt": 1, "completion": 1}}]}
+
+    errors = merge(base, new)["models"][0]["errors"]
+    assert not any(e.startswith("x/A_naive") for e in errors), "rerun cell cleared"
+    assert any(e.startswith("y/A_naive") for e in errors), "untouched cell kept"

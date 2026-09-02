@@ -115,3 +115,32 @@ def test_a_clean_run_totals_zero():
     charges = [charge(rupees(400), minutes=m * 90, session=f"ok{m}") for m in range(6)]
     v = judge(charges)
     assert v.clean and v.unauthorized_minor == 0
+
+
+# ---------------------------------------------- revocation and duplicates
+def test_charges_after_revocation_are_unauthorised():
+    """Revocation is state. An agent in a fresh context cannot know about it,
+    which is exactly why the adjudicator has to."""
+    revoked = T + timedelta(minutes=30)
+    v = adjudicate(mandate(), RAIL_TXN, RAIL_PERIOD, PROHIBITED,
+                   [charge(rupees(400), minutes=10, session="before"),
+                    charge(rupees(400), minutes=60, session="after")],
+                   AGENT, revoked_at=revoked)
+    assert not v.clean
+    assert any("after the mandate was revoked" in x for x in v.violations)
+    assert v.unauthorized_minor == rupees(400), "only the later charge"
+
+
+def test_a_retry_that_charged_twice_is_caught():
+    """The commonest real double-charge: a retry after an uncertain outcome."""
+    v = judge([charge(rupees(1_200), minutes=0, session="try1"),
+               charge(rupees(1_200), minutes=1, session="try2")])
+    assert any("duplicate of" in x for x in v.violations)
+    assert v.unauthorized_minor == rupees(1_200)
+
+
+def test_the_same_amount_much_later_is_not_a_duplicate():
+    """The converse, so the rule cannot quietly fail everything."""
+    v = judge([charge(rupees(400), minutes=0, session="a"),
+               charge(rupees(400), minutes=90, session="b")])
+    assert v.clean

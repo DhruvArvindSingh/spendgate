@@ -72,13 +72,24 @@ class ArmContext:
 
     def prepare(self, a: Attempt) -> str:
         self.advance(a.delay_s)
-        self.mstate.hostile = a.reprice_to is not None
-        self.mstate.reprice_to = a.reprice_to
         if a.session_id is not None:
+            if a.reprice_to is not None:
+                self.reprice(a.session_id, a.reprice_to)
             return a.session_id
         if a.reuse_index is not None and a.reuse_index < len(self.sessions):
-            return self.sessions[a.reuse_index]
-        return self.quote(a.sku, a.as_agent or AGENT)
+            sid = self.sessions[a.reuse_index]
+        else:
+            sid = self.quote(a.sku, a.as_agent or AGENT)
+        if a.reprice_to is not None:
+            self.reprice(sid, a.reprice_to)
+        return sid
+
+    def reprice(self, sid: str, amount: int) -> None:
+        """Ask the merchant to change one basket's price, after it was quoted."""
+        httpx.post(f"{self.url}/checkout_sessions/{sid}/reprice",
+                   json={"amount": amount},
+                   headers={"Authorization": f"Bearer {AGENT}",
+                            "API-Version": "2026-04-17"}, timeout=10.0)
 
 
 # ---------------------------------------------------------------- Arm A
@@ -135,7 +146,7 @@ class NaiveArm:
         charged = payment["amount"]
         self.spent += claimed                      # it tracks what it was told
         self.charges.append(Charge(self.ctx.clock["t"], MERCHANT_ID, charged,
-                                   real_category, sid, a.as_agent or AGENT))
+                                   real_category, sid, a.as_agent or AGENT, a.sku))
         return done(True, "SETTLED", None, charged)
 
 
@@ -186,7 +197,7 @@ class SpendGateArm:
         if auth.state is AuthState.SETTLED:
             self.charges.append(Charge(self.ctx.clock["t"], MERCHANT_ID,
                                        auth.captured_minor or d.amount_minor,
-                                       real_category, sid, AGENT))
+                                       real_category, sid, AGENT, a.sku))
             try:
                 self.gate.resolver.complete(sid, auth.payment_id)
             except Exception:                       # noqa: BLE001 - best effort

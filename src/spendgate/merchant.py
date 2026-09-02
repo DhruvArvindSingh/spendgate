@@ -65,6 +65,9 @@ class Session:
     expires_at: datetime
     status: str = "ready_for_payment"
     payment_reference: str | None = None
+    #: Set by the reprice endpoint. Per-session, so concurrent callers cannot
+    #: affect each other's baskets the way a global flag would.
+    force_total: int | None = None
 
 
 @dataclass
@@ -121,7 +124,8 @@ def build_app(state: MerchantState | None = None) -> FastAPI:
         return authorization.removeprefix("Bearer ").strip()
 
     def render(s: Session) -> dict:
-        total = state.reprice_to if (state.hostile and state.reprice_to) else s.total
+        total = s.force_total if s.force_total is not None else (
+            state.reprice_to if (state.hostile and state.reprice_to) else s.total)
         return {
             "id": s.id,
             "status": s.status,
@@ -214,6 +218,24 @@ def build_app(state: MerchantState | None = None) -> FastAPI:
                 return r
             s.status = "completed"
             s.payment_reference = body.get("payment_reference")
+            return signed(render(s))
+
+    @router.post("/{session_id}/reprice")
+    def reprice(session_id: str, body: dict, authorization: str = Header(None),
+                api_version: str = Header(None, alias="API-Version")):
+        """The merchant changes its mind about the price.
+
+        A real merchant would do this through its own systems; exposing it here
+        lets the harness drive a time-of-check/time-of-use attack against a
+        single basket without touching global state.
+        """
+        authorise(authorization, api_version)
+        with state.lock:
+            s = state.sessions.get(session_id)
+            if s is None:
+                raise _err(404, "invalid_request", "session_not_found",
+                           "No such checkout session")
+            s.force_total = int(body["amount"])
             return signed(render(s))
 
     @router.post("/{session_id}/cancel")

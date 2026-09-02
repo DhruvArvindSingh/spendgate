@@ -25,6 +25,7 @@ class Charge:
     category: str
     session_id: str
     for_agent: str
+    sku: str | None = None
 
 
 @dataclass
@@ -44,9 +45,15 @@ def _c(mandate, type_):
     return None
 
 
+#: Two identical charges to one merchant this close together are a duplicate,
+#: not two purchases. Mirrors R28 — but decided here independently, since the
+#: adjudicator may not import the rule engine.
+DUPLICATE_WINDOW_S = 120
+
+
 def adjudicate(mandate, rail_txn_cap: int, rail_period_cap: int,
                prohibited: set[str], charges: list[Charge],
-               agent_id: str) -> Verdict:
+               agent_id: str, revoked_at: datetime | None = None) -> Verdict:
     """Replay the charges in order and total what the mandate did not permit.
 
     A charge that violates any constraint is counted in full: the mandate never
@@ -69,6 +76,19 @@ def adjudicate(mandate, rail_txn_cap: int, rail_period_cap: int,
 
     for ch in sorted(charges, key=lambda c: c.at):
         bad: list[str] = []
+
+        if revoked_at is not None and ch.at >= revoked_at:
+            bad.append(f"{ch.session_id}: charged after the mandate was revoked")
+
+        # A retry that actually went through twice is a double charge, however
+        # honestly each half was reported.
+        twin = [c for c in by_merchant_window
+                if c.merchant_id == ch.merchant_id
+                and c.amount_minor == ch.amount_minor
+                and 0 <= (ch.at - c.at).total_seconds() <= DUPLICATE_WINDOW_S]
+        if twin:
+            bad.append(f"{ch.session_id}: duplicate of {twin[-1].session_id} "
+                       f"({int((ch.at - twin[-1].at).total_seconds())}s apart)")
 
         if ch.amount_minor > txn_cap:
             bad.append(f"{ch.session_id}: {ch.amount_minor} over per-txn cap {txn_cap}")
