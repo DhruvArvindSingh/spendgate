@@ -29,3 +29,11 @@ htmlcov/
 .venv-manim/
 video/media/
 video/out/
+video/tools/trace/
+
+# Generated narration. The manifest stays: it is what fit_pace.py solves the
+# scene timings against, so the SEGMENTS in each scene file are explicable
+# without the 25MB of audio that produced them.
+video/audio/*.wav
+video/audio/s[0-9]/
+

@@ -11,12 +11,13 @@ set -euo pipefail
 cd "$(dirname "$0")"
 PY=../.venv-manim/bin/python
 SCENES=(s1_problem.py:S1Problem s2_where.py:S2Where s3_how.py:S3How
-        s4_edges.py:S4Edges s5_results.py:S5Results s6_limits.py:S6Limits)
+        s4_edges.py:S4Edges s5_results.py:S5Results s6_proof.py:S6Proof
+        s7_limits.py:S7Limits)
 
 case "${1:-draft}" in
   check) "$PY" -m manim -sqm layout_check.py LayoutCheck; exit 0 ;;
-  draft) FLAGS="-qm" ;;
-  final) FLAGS="-qh --fps 60" ;;
+  draft) FLAGS="-qm"; QDIR=720p30 ;;
+  final) FLAGS="-qh --fps 60"; QDIR=1080p60 ;;
   *) echo "usage: $0 {check|draft|final}"; exit 1 ;;
 esac
 
@@ -32,7 +33,11 @@ mkdir -p out
 : > out/concat.txt
 for entry in "${SCENES[@]}"; do
   cls="${entry##*:}"
-  f=$(find "$OUT" -name "${cls}.mp4" | sort | tail -1)
+  # Match the quality directory this run wrote. Picking the newest, or the
+  # last after sort, silently stitched 480p drafts into the final cut: "480p15"
+  # sorts after "1080p60", and a draft left over from pacing is newer than a
+  # scene that did not need re-rendering.
+  f=$(find "$OUT" -path "*/$QDIR/*" -name "${cls}.mp4" | head -1)
   [ -n "$f" ] && echo "file '$(realpath "$f")'" >> out/concat.txt
 done
 ffmpeg -y -f concat -safe 0 -i out/concat.txt -c copy out/spendgate.mp4 2>/dev/null

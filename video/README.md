@@ -1,13 +1,24 @@
 # The explainer video
 
-A five-minute Manim animation of how SpendGate works, built to be narrated live
-with a webcam in the corner.
+A Manim animation of how SpendGate works, narrated end to end by a cloned
+voice. Nothing here is recorded by hand: the script is `NARRATION.md`, the
+voice is Chatterbox, the animation is timed to the recording rather than the
+other way round, and Whisper checks that what was spoken is what was written.
 
 ```bash
-./render.sh check    # one still with the webcam box drawn — run this first
-./render.sh draft    # all six scenes at 720p, fast, for checking pacing
+./render.sh draft    # all seven scenes at 720p, fast, for checking pacing
 ./render.sh final    # 1080p60, then stitched to out/spendgate.mp4
+
+VOICE=/path/to/voice/.venv/bin/python
+$VOICE narrate.py --all        # speak the script      -> audio/sN.wav
+$VOICE verify_audio.py         # check it against the script
+../.venv-manim/bin/python tools/fit_pace.py    # fit the animation to the audio
+../.venv-manim/bin/python mux.py               # lay it under and stitch
 ```
+
+Run them in that order. `fit_pace.py` reads `audio/manifest.json`, so the voice
+has to exist before the timing means anything, and `render.sh final` has to run
+after `fit_pace.py` has written the new `SPEED` values.
 
 ## Layout, and why it is not hand-positioned
 
@@ -30,27 +41,51 @@ Six scenes, rendered as separate files and stitched at the end. That is
 deliberate: a bad take on scene 4 costs you scene 4, not the whole video, and
 you can re-record narration section by section.
 
-| Scene | Covers | Length |
-|---|---|---|
-| `s1_problem` | Why the obvious design fails, ending on the split-purchase | 47s |
-| `s2_where` | ACP, AP2, Razorpay — and the layer nobody builds | 31s |
-| `s3_how` | The request shape, where the price comes from, the rule pipeline | 61s |
-| `s4_edges` | Injection, splitting, the three-way outcome, the tamper bug | 86s |
-| `s5_results` | Two-arm numbers, then the LLM finding | 56s |
-| `s6_limits` | What it does not do, and the close | 36s |
+| Scene | Covers |
+|---|---|
+| `s1_problem` | Why the obvious design fails, ending on the split-purchase |
+| `s2_where` | ACP, AP2, Razorpay — and the layer nobody builds |
+| `s3_how` | The request shape, where the price comes from, the rule pipeline |
+| `s4_edges` | Injection, splitting, the three-way outcome, the tamper bug |
+| `s5_results` | Two-arm numbers, then the LLM finding |
+| `s6_proof` | The anchor that closes that bug, and the live Razorpay rail |
+| `s7_limits` | What it does not do, and the close |
 
-[`NARRATION.md`](NARRATION.md) is the script, timed to those lengths at ~145
-words per minute. Record the audio first and lay the video underneath — trying
-to match a render while talking is miserable and it shows.
+Scene 6 is not a description of the ledger — it runs it. The chain on screen is
+built by `spendgate.ledger` while the frame renders, rewritten the way an
+attacker would rewrite it, and the two verdicts are whatever `verify_chain` and
+`verify_against_anchor` actually return. If the fix regresses, the scene stops
+claiming it works.
 
-## The webcam
+[`NARRATION.md`](NARRATION.md) is the script. The audio comes first and the
+video is fitted to it — matching a render while talking is miserable and it
+shows.
 
-Your face sits bottom-right, about 490 × 365 in a 1920 × 1080 frame. Nothing is
-ever drawn there. `theme.py` defines the box and `layout_check.py` renders a
-still with it outlined, so you can prove it rather than hoping.
+## The voice
 
-If you move the camera, change `FACECAM_*` in `theme.py` and re-run
-`./render.sh check`.
+`narrate.py` speaks each paragraph of `NARRATION.md` as its own clip, cloning a
+reference voice, and keeps the clips: a fluffed line is re-taken with
+`--scene N --chunk M` for the price of one paragraph rather than the film.
+
+Chatterbox is a sampler, so it occasionally drops a clause or trails off, and
+that is inaudible in a progress log. `verify_audio.py` transcribes every clip
+with Whisper and diffs it against the line it was asked to read. Figures are
+reduced to a single token before comparing — Whisper writes "96" where the
+script says "ninety six", and flagging that buries the two defects that matter
+under a page of noise. The figures themselves are checked against
+`results/models.json`, which is where they came from.
+
+## The webcam, and why the frame is fuller now
+
+There isn't one. The first cut reserved the bottom-right corner for a live
+camera, which cost the entire lower half of the frame — content is centred in
+the band beneath the heading, so a floor drawn above the camera pinned every
+scene into the top third and left 60% of the picture empty. That was the
+"everything is small and floating at the top" problem, and it lived in the
+geometry rather than in any one scene.
+
+`FACECAM=1 ./render.sh final` restores the reservation for a live-narrated cut,
+and `./render.sh check` draws the box so you can prove it.
 
 ## Pacing
 

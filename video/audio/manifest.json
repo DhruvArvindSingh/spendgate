@@ -1,0 +1,303 @@
+{
+  "s1": {
+    "title": "The problem",
+    "written_s": 31,
+    "spoken_s": 28.25,
+    "chunks": [
+      {
+        "i": 1,
+        "start": 0.0,
+        "dur": 6.36,
+        "gap": 0.55,
+        "text": "You give an AI agent your card. Buy my groceries, stay under five thousand rupees a purchase."
+      },
+      {
+        "i": 2,
+        "start": 6.91,
+        "dur": 6.64,
+        "gap": 0.55,
+        "text": "Almost everyone builds this the same way, hand the model a payment button, write the limits into its instructions."
+      },
+      {
+        "i": 3,
+        "start": 14.1,
+        "dur": 9.92,
+        "gap": 0.55,
+        "text": "Here's the failure. It buys four thousand rupees of headphones. Then again. Then again. Twelve thousand at one shop, inside an hour."
+      },
+      {
+        "i": 4,
+        "start": 24.57,
+        "dur": 3.68,
+        "gap": 0.55,
+        "text": "Every purchase is legal. Nothing was keeping score."
+      }
+    ]
+  },
+  "s2": {
+    "title": "Where it fits",
+    "written_s": 27,
+    "spoken_s": 25.37,
+    "chunks": [
+      {
+        "i": 1,
+        "start": 0.0,
+        "dur": 10.6,
+        "gap": 0.55,
+        "text": "This isn't an empty field. Stripe and OpenAI's protocol handles the checkout. Google's handles proof that a human authorised it. Razorpay moves the money."
+      },
+      {
+        "i": 2,
+        "start": 11.15,
+        "dur": 7.48,
+        "gap": 0.55,
+        "text": "The missing layer is keeping score. And Google's own specification says the amount spent must be added to a running total."
+      },
+      {
+        "i": 3,
+        "start": 19.18,
+        "dur": 3.84,
+        "gap": 0.55,
+        "text": "It says the budget must be tracked. It doesn't say who tracks it."
+      },
+      {
+        "i": 4,
+        "start": 23.57,
+        "dur": 1.8,
+        "gap": 0.55,
+        "text": "That's this project."
+      }
+    ]
+  },
+  "s3": {
+    "title": "How it works",
+    "written_s": 57,
+    "spoken_s": 49.79,
+    "chunks": [
+      {
+        "i": 1,
+        "start": 0.0,
+        "dur": 2.56,
+        "gap": 0.55,
+        "text": "The security is in the shape of the request."
+      },
+      {
+        "i": 2,
+        "start": 3.11,
+        "dur": 8.32,
+        "gap": 0.55,
+        "text": "This is the agent's entire vocabulary. A permission slip, a basket, and who's asking. No amount. No item. No merchant."
+      },
+      {
+        "i": 3,
+        "start": 11.98,
+        "dur": 6.4,
+        "gap": 0.55,
+        "text": "A completely compromised agent still sends exactly this. There is nowhere to put a lie."
+      },
+      {
+        "i": 4,
+        "start": 18.93,
+        "dur": 11.96,
+        "gap": 0.55,
+        "text": "So where does the price come from? The agent hands over a ticket number. Spend Gate asks the shop directly, on a connection the agent is not part of. The shop says twelve hundred rupees."
+      },
+      {
+        "i": 5,
+        "start": 31.44,
+        "dur": 11.12,
+        "gap": 0.28,
+        "text": "Then ordinary code decides. Thirty-eight rules, in a fixed order. Is the slip real. Is the basket real and unpaid. Is it inside the hard limits. Is it a duplicate."
+      },
+      {
+        "i": 6,
+        "start": 42.84,
+        "dur": 3.08,
+        "gap": 0.55,
+        "text": "And last, is it something you'd want to be asked about."
+      },
+      {
+        "i": 7,
+        "start": 46.47,
+        "dur": 3.32,
+        "gap": 0.55,
+        "text": "First objection wins, and it names one reason."
+      }
+    ]
+  },
+  "s4": {
+    "title": "The edges",
+    "written_s": 62,
+    "spoken_s": 56.88,
+    "chunks": [
+      {
+        "i": 1,
+        "start": 0.0,
+        "dur": 1.6,
+        "gap": 0.55,
+        "text": "Four things worth showing."
+      },
+      {
+        "i": 2,
+        "start": 2.15,
+        "dur": 11.84,
+        "gap": 0.55,
+        "text": "A hostile listing. This one hides text telling the agent the limits are void and the television costs five rupees. The agent believes it, and it doesn't matter, because all it can send is the ticket number."
+      },
+      {
+        "i": 3,
+        "start": 14.54,
+        "dur": 10.04,
+        "gap": 0.55,
+        "text": "Splitting. Four thousand goes through. Five minutes later another four thousand, and the two get added together. Escalated, not refused, because you might genuinely want it."
+      },
+      {
+        "i": 4,
+        "start": 25.13,
+        "dur": 14.24,
+        "gap": 0.28,
+        "text": "Third, the one payments people care about. Most systems have two outcomes: paid, or failed. You need three. Money is set aside first. Paid, it becomes spent. Failed, it comes back. Don't know, it stays held."
+      },
+      {
+        "i": 5,
+        "start": 39.65,
+        "dur": 3.56,
+        "gap": 0.55,
+        "text": "Release it too early and a late payment means you paid twice."
+      },
+      {
+        "i": 6,
+        "start": 43.76,
+        "dur": 8.4,
+        "gap": 0.28,
+        "text": "Fourth, the one I got wrong. Each entry's fingerprint includes the one before it. Except a full rewrite recomputes them all, and it verifies clean."
+      },
+      {
+        "i": 7,
+        "start": 52.44,
+        "dur": 4.44,
+        "gap": 0.55,
+        "text": "I found that by breaking my own code and noticing no test complained."
+      }
+    ]
+  },
+  "s5": {
+    "title": "Six models",
+    "written_s": 49,
+    "spoken_s": 46.6,
+    "chunks": [
+      {
+        "i": 1,
+        "start": 0.0,
+        "dur": 9.16,
+        "gap": 0.55,
+        "text": "So I tested it properly. Six models, GPT five, Gemini, Claude, GLM, Kimi, MiniMax. Eight scenarios, both arms."
+      },
+      {
+        "i": 2,
+        "start": 9.71,
+        "dur": 3.64,
+        "gap": 0.55,
+        "text": "Without Spend Gate they passed forty out of ninety-six."
+      },
+      {
+        "i": 3,
+        "start": 13.9,
+        "dur": 11.28,
+        "gap": 0.55,
+        "text": "Four scenarios were failed by every single model. The windowed limit. The budget across fresh contexts. A merchant that reprices after quoting. And permission withdrawn while the agent was away."
+      },
+      {
+        "i": 4,
+        "start": 25.73,
+        "dur": 10.32,
+        "gap": 0.28,
+        "text": "Three of the six also lied about the price when the listing told them to. Three did not. The three that lied leaked three and a half lakh between them. The three that didn't, just over one lakh."
+      },
+      {
+        "i": 5,
+        "start": 36.33,
+        "dur": 2.68,
+        "gap": 0.55,
+        "text": "It changed the conclusion not at all."
+      },
+      {
+        "i": 6,
+        "start": 39.56,
+        "dur": 7.04,
+        "gap": 0.55,
+        "text": "With Spend Gate: ninety-six out of ninety-six. Four lakh sixty-six thousand rupees, down to zero."
+      }
+    ]
+  },
+  "s7": {
+    "title": "What it doesn't do",
+    "written_s": 24,
+    "spoken_s": 19.83,
+    "chunks": [
+      {
+        "i": 1,
+        "start": 0.0,
+        "dur": 11.48,
+        "gap": 0.55,
+        "text": "Where it breaks. The split check is a time window, so a patient attacker gets past it. The shop declares its own category. And it checks whether a purchase was allowed, not whether it was a good idea."
+      },
+      {
+        "i": 2,
+        "start": 12.03,
+        "dur": 7.8,
+        "gap": 0.55,
+        "text": "That's Spend Gate. A hundred and eighty-seven tests, thirty-eight rules, six models, and verified against live Razorpay."
+      }
+    ]
+  },
+  "s6": {
+    "title": "Proof",
+    "written_s": 52,
+    "spoken_s": 50.45,
+    "chunks": [
+      {
+        "i": 1,
+        "start": 0.0,
+        "dur": 4.08,
+        "gap": 0.55,
+        "text": "Numbers in a repository are a claim. Here's what backs them."
+      },
+      {
+        "i": 2,
+        "start": 4.63,
+        "dur": 10.56,
+        "gap": 0.28,
+        "text": "First, the fix for that bug. The head of the chain is also written to an anchor outside the service, somewhere the code that writes the ledger cannot reach back into."
+      },
+      {
+        "i": 3,
+        "start": 15.47,
+        "dur": 8.04,
+        "gap": 0.55,
+        "text": "Rewrite the whole file and it still verifies clean, but the anchor remembers what the last entry used to be, and the two no longer agree."
+      },
+      {
+        "i": 4,
+        "start": 24.06,
+        "dur": 12.96,
+        "gap": 0.55,
+        "text": "Second, the rail. This is live Razorpay, in test mode. An order created, and the amount read back from Razorpay's own API rather than taken from the agent's word. Fifteen checks, fifteen passed."
+      },
+      {
+        "i": 5,
+        "start": 37.57,
+        "dur": 9.28,
+        "gap": 0.28,
+        "text": "And what that doesn't prove. Capturing a payment needs a human to open the link, so settlement is exercised against the fake rail in the test suite, not this one."
+      },
+      {
+        "i": 6,
+        "start": 47.13,
+        "dur": 3.32,
+        "gap": 0.55,
+        "text": "I'd rather tell you that than let you assume otherwise."
+      }
+    ]
+  }
+}
